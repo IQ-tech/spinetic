@@ -1,0 +1,63 @@
+@import "../spinetic.scss";
+
+.spinetic-dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  gap: 20px;
+
+  flex-wrap: wrap;
+  line-height: 0.7;
+
+  .default {
+    width: 14px;
+    height: 14px;
+    background: $spinetic-blue;
+    opacity: 0.5;
+    transition: 0.5s linear;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+
+	&:hover {
+      opacity: 1;
+      transform: scale(1.2);
+    }
+  }
+
+  .long-rounded {
+	@extend .default;
+    border-radius: 50%;
+  }
+
+  .active-default {
+    width: 22px;
+    height: 22px;
+
+	position: relative;
+    bottom: 4px;
+
+    &:hover,
+    &:focus {
+      transform: scale(1);
+    }
+  }
+
+  .active-long-rounded {
+    @extend .active-default;
+	width: 60px;
+	height: 12px;
+    border-radius: 45px;
+
+	position: unset;
+	bottom: unset;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .spinetic-dots .default:hover,
+  .spinetic-dots .default:focus {
+    opacity: 0.5;
+    transform: none;
+  }
+}

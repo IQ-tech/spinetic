@@ -1,0 +1,56 @@
+@import "../spinetic.scss";
+
+.spinetic-container-arrows {
+  display: flex;
+  align-items: center;
+}
+
+.spinetic-btn-prev {
+  position: absolute;
+  left: 0px;
+}
+
+.spinetic-btn-next {
+  position: absolute;
+  right: 0px;
+}
+
+.spinetic-navigation-button {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: $spinetic-white;
+  background-color: $spinetic-blue;
+  border-radius: 100%;
+  border: none;
+  cursor: pointer;
+
+  &:disabled {
+    i,
+    svg {
+      opacity: 0.5;
+    }
+
+    &:hover {
+      transition: none;
+      transform: none;
+    }
+  }
+
+  &:hover {
+    transition: 0.6s;
+    transform: scale(1.2);
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .spinetic-navigation-button:hover,
+  .spinetic-navigation-button:focus {
+    transition: none;
+    transform: none;
+  }
+}

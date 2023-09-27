@@ -1,0 +1,48 @@
+$spinetic-blue: #135df5;
+$spinetic-white: white;
+
+.spinetic-main {
+	display: block;
+	position: relative;
+}
+
+.spinetic-wrapper {
+	display: flex;
+	overflow: hidden;
+	-webkit-overflow-scrolling: touch;
+	scroll-snap-type: x mandatory;
+}
+
+.spinetic-container {
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: flex-start;
+	-webkit-transition: -webkit-transform 0.5s ease;
+	transition: transform 0.5s ease;
+	-webkit-position: relative;
+	position: relative;
+	overflow: hidden;
+}
+
+.spinetic-no-transition {
+	-webkit-transition: none;
+	transition: none;
+}
+
+.verticalAlign {
+	touch-action: unset;
+
+	div.spinetic-wrapper {
+		overflow: unset;
+	}
+
+	div.spinetic-container {
+		flex-direction: column;
+		width: 100%;
+	}
+}
+
+.hasDraggable {
+	cursor: grab;
+}
+

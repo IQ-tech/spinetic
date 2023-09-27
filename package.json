@@ -1,0 +1,62 @@
+{
+  "author": "lxavier",
+  "name": "react-spinetic",
+  "version": "0.0.1",
+  "description": "A lightweight React carousel library for creating interactive carousels in your web applications.",
+  "keywords": [ "carousel", "slider", "web", "library", "react-spinetic" ],
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/es/index.js",
+  "types": "./src/spinetic-types.d.ts",
+  "files": [
+    "dist",
+    "src/spinetic-types.d.ts",
+    "LICENSE",
+    "README.md"
+  ],
+  "homepage": "...github#readme",
+  "repository": { "type": "git", "url": "...github.git" },
+  "bugs": { "url": "https://...github/issues" },
+  "scripts": {
+    "start": "react-scripts start",
+    "build:es": "tsc --module esnext --outDir dist/es",
+    "build:cjs": "tsc --module commonjs --outDir dist/cjs",
+    "build:sass": "node-sass src/styles.scss dist/styles.css",
+    "build": "npm run build:sass && npm run build:es && npm run build:cjs",
+    "pre:publish": "npm run build"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^16.18.48",
+    "@types/react": "^18.2.21",
+    "@types/react-dom": "^18.2.7",
+    "node-sass": "^7.0.3",
+    "typescript": "^4.9.5"
+  },
+  "eslintConfig": {
+    "rules": {
+      "react-hooks/exhaustive-deps": "off",
+      "import/no-anonymous-default-export": "off",
+      "array-callback-return": "off"
+    },
+
+    "extends": [
+      "react-app"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

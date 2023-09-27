@@ -1,0 +1,12 @@
+.spinetic-item {
+	scroll-snap-align: start;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	user-select: none;
+	touch-action: pan-y;
+}
+
+.no-click {
+	pointer-events: none;
+}
