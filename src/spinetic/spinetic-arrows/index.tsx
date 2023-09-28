@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import ArrowLeft from "./arrow-left";
 import ArrowRight from "./arrow-right";
 import { TypesArrows } from "../../spinetic-types"
@@ -41,7 +41,7 @@ const SpineticArrows = ({
         <div className="spinetic-btn-next">
           <button
             className="spinetic-navigation-button"
-            onClick={(e) => onClickNextItem()}
+            onClick={() => onClickNextItem()}
             disabled={isLastItem}
             style={{
               left: currentConfig.autoWidth

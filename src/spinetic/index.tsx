@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import SpineticArrows from "./spinetic-arrows";
 import SpineticDots from "./spinetic-dots";
 import { useSpinetic } from "./spinetic";

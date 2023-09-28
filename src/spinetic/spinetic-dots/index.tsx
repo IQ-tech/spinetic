@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { TypesDots } from "../../spinetic-types"
 
 const SpineticDots = ({
@@ -14,7 +14,7 @@ const SpineticDots = ({
     <>
       {visibleDots && (
         <div className="spinetic-dots">
-          {remainingIndexes?.map((item: number, i: number) => (
+          {remainingIndexes?.map((_item: number, i: number) => (
             <span
               key={i}
               className={`${currentConfig.dotsModel} ${

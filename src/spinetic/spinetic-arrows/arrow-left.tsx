@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 
 const ArrowLeft = () => {
 return <svg style= {{ marginRight: '2px' }} xmlns="http://www.w3.org/2000/svg" height="21" width="13" viewBox="0 0 13 21">
