@@ -6,7 +6,7 @@ export default [
   {
     input: "src/index.ts",
     output: {
-      file: "index.js", // TODO <<<<<<
+      file: "index.js",
       format: "es",
       sourcemap: true,
       exports: "named",

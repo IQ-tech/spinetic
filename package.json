@@ -2,7 +2,7 @@
   "type": "module",
   "author": "lxavier",
   "name": "react-spinetic",
-  "version": "0.0.17",
+  "version": "0.0.19",
   "description": "A lightweight React carousel library for creating interactive carousels in your web applications.",
   "private": false,
   "keywords": [
@@ -16,12 +16,12 @@
   "module": "index.js",
   "types": "types/index.d.ts",
   "files": [
-    "dist",
+    "spinetic",
     "types",
+    "styles.css",
     "index.js",
     "index.d.ts",
     "index.js.map",
-    "style",
     "LICENSE",
     "README.md"
   ],
@@ -34,9 +34,9 @@
     "url": "https://github.com/IQ-tech/spinetic/issues"
   },
   "scripts": {
-    "build:sass": "node-sass src/styles.scss style/index.css",
-    "clean:publish": "rm -rf dist",
-    "build:publish": "npm run build:sass && npx rollup -c",
+    "build:sass:publish": "node-sass src/styles.scss styles.css",
+    "clean:publish": "rm -rf spinetic && rm -rf index.d.ts && rm -rf styles.css && rm -rf index.js && rm -rf index.js.map",
+    "build:publish": "npm run build:sass:publish && npx rollup -c",
     "deploy:publish": "npm run clean:publish && npm run build:publish && npm publish"
   },
   "peerDependencies": {
@@ -44,15 +44,14 @@
     "react-dom": ">=17.0.0 <19.0.0"
   },
   "devDependencies": {
+    "typescript": "^5.2.2",
+    "node-sass": "^7.0.3",
+    "rollup-plugin-typescript2": "^0.36.0",
     "@rollup/plugin-commonjs": "^25.0.4",
     "@rollup/plugin-node-resolve": "^15.2.1",
     "@types/node": "^16.18.48",
     "@types/react": "^18.2.21",
-    "@types/react-dom": "^18.2.7",
-    "node-sass": "^7.0.3",
-    "rollup-plugin-dts": "^6.0.2",
-    "rollup-plugin-typescript2": "^0.36.0",
-    "typescript": "^5.2.2"
+    "@types/react-dom": "^18.2.7"
   },
   "eslintConfig": {
     "rules": {
