@@ -1,5 +1,5 @@
 import * as React from "react";
-import { TypesDots } from "../../../types"
+import { TypesDots } from "types"
 
 const SpineticDots = ({
   currentConfig,

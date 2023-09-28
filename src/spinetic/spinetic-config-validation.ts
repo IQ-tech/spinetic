@@ -1,5 +1,5 @@
 
-import { TypesConfig, TypesReponsiveSettings, TypesConfigOptional } from "../../types"
+import { TypesConfig, TypesReponsiveSettings, TypesConfigOptional } from "types"
 
 const _defaultConfig: TypesConfig = {
   arrows: true,

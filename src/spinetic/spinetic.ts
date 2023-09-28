@@ -1,12 +1,8 @@
-import { useRef, useEffect, useState, ReactNode, Children } from "react";
+import { useRef, useEffect, useState, Children } from "react";
 import { useDragSpinetic } from "./spinetic-use-drag";
 import * as SpineticUtils from "./spinetic-utils";
 import * as SpineticConfig from "./spinetic-config-validation";
-import { TypesConfigOptional, TypesReturnSpinetic, TypesConfig } from "../../types"
-
-interface TypesUseSpinetic {
-  children: ReactNode, config?: TypesConfigOptional
-}
+import { TypesUseSpinetic, TypesReturnSpinetic, TypesConfig, TypesConfigOptional } from "types"
 
 export const useSpinetic = ({ children, config }: TypesUseSpinetic
 ): TypesReturnSpinetic => {

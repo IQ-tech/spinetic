@@ -2,6 +2,7 @@
   "include": ["src", "types.d.ts"],
   "exclude": ["node_modules", "dist"],
   "compilerOptions": {
+    "paths": { "types": ["./types.d.ts"] },
     "module": "esnext",
     "sourceMap": true,
     "lib": ["dom", "esnext"],

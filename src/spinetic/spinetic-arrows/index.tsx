@@ -1,7 +1,7 @@
 import * as React from "react";
 import ArrowLeft from "./arrow-left";
 import ArrowRight from "./arrow-right";
-import { TypesArrows } from "../../../types"
+import { TypesArrows } from "types"
 
 const SpineticArrows = ({
   children,

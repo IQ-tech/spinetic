@@ -96,6 +96,10 @@ export interface TypesReturnSpinetic {
   end: (ep0: TypesEventDragEnd) => void 
 }
 
+export interface TypesUseSpinetic {
+  children: ReactNode, config?: TypesConfigOptional
+}
+
 export interface TypesArrows {
   children: ReactNode;
   currentConfig: TypesConfig;
