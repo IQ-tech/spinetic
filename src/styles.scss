@@ -2,23 +2,3 @@
 @import "./spinetic/spinetic-arrows/spinetic-arrows.scss";
 @import "./spinetic/spinetic-dots/spinetic-dots.scss";
 @import "./spinetic/spinetic-item/spinetic-item.scss";
-
-* {
-  margin: 0px;
-  padding: 0px;
-}
-
-.App {
-  width: 100%;
-  max-width: 800px;
-  margin: 200px auto;
-  // all: unset;
-
-  p {
-    display: unset;
-    margin-block-start: unset;
-    margin-block-end: unset;
-    margin-inline-start: unset;
-    margin-inline-end: unset;
-  }
-}
