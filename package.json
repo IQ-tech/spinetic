@@ -1,7 +1,7 @@
 {
   "author": "lxavier",
   "name": "react-spinetic",
-  "version": "0.0.9",
+  "version": "0.0.12",
   "description": "A lightweight React carousel library for creating interactive carousels in your web applications.",
   "private": false,
   "keywords": [
@@ -32,17 +32,16 @@
     "build:sass": "node-sass src/styles.scss dist/styles.css",
     "clean:publish": "rm -rf dist",
     "build:publish": "npm run build:sass && npx rollup -c",
-    "deploy:publish": "npm run clean && npm run build && npm publish"
+    "deploy:publish": "npm run clean:publish && npm run build:publish && npm publish"
   },
   "peerDependencies": {
     "react": ">=17.0.0 <19.0.0",
-    "react-dom": ">=17.0.0 <19.0.0",
-    "react-scripts": "5.0.1"
+    "react-dom": ">=17.0.0 <19.0.0"
   },
   "devDependencies": {
+    "typescript": ">=4.1.6 <6.0.0",
     "node-sass": "^7.0.3",
     "rollup-plugin-typescript2": "^0.36.0",
-    "typescript": ">=4.1.6 <6.0.0",
     "@rollup/plugin-commonjs": "^25.0.4",
     "@rollup/plugin-node-resolve": "^15.2.1",
     "@types/node": "^16.18.48",
