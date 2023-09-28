@@ -4,7 +4,8 @@
 build
 dist
 es
-types
+# types.d.ts
+styles.css
 
 # dependencies
 /node_modules

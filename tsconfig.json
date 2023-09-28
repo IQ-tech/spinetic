@@ -1,22 +1,23 @@
 {
-  "compilerOptions": {
-    "rootDir": "src",
-    "declaration": true,
-    "declarationDir": "./dist",
-    "module": "esnext",
-    "target": "es5",
-    "jsx": "react",
-    "moduleResolution": "node",
-    "strict": true,
-    "esModuleInterop": true,
-    "typeRoots": ["./", "node_modules/@types"],
-    "types": ["node"],
-  },
-  "include": [
-    "src/**/*"
-  ],
+  "include": ["src", "src/spinetic-types.d.ts"],
   "exclude": [
-    "node_modules",
-    "dist"
-  ]
+    "dist",
+    "node_modules"
+  ],
+  "compilerOptions": {
+    "module": "esnext",
+    "sourceMap": true,
+    "lib": ["dom", "esnext"],
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "jsx": "react",
+    "strict": true,
+    "importHelpers": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "declaration": true,
+    "declarationDir": "./dist", 
+    "outDir": "./dist", 
+  }
 }
