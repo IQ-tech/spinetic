@@ -13,16 +13,18 @@
     "LICENSE",
     "README.md"
   ],
-  "homepage": "...github#readme",
-  "repository": { "type": "git", "url": "...github.git" },
-  "bugs": { "url": "https://...github/issues" },
+  "homepage": "https://github.com/IQ-tech/spinetic#readme",
+  "repository": { "type": "git", "url": "https://github.com/IQ-tech/spinetic.git" },
+  "bugs": { "url": "https://github.com/IQ-tech/spinetic/issues" },
   "scripts": {
     "start": "react-scripts start",
     "build:es": "tsc --module esnext --outDir dist/es",
     "build:cjs": "tsc --module commonjs --outDir dist/cjs",
     "build:sass": "node-sass src/styles.scss dist/styles.css",
     "build": "npm run build:sass && npm run build:es && npm run build:cjs",
-    "pre:publish": "npm run build"
+    "pre:publish": "npm run build",
+    "deploy": "npm run pre:publish && npm publish" 
+  
   },
   "peerDependencies": {
     "react": "^18.2.0",
