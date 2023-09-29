@@ -1,7 +1,7 @@
 
 import { TypesConfig, TypesReponsiveSettings, TypesConfigOptional } from "types"
 
-const _defaultConfig: TypesConfig = {
+export const _defaultConfig: TypesConfig = {
   arrows: true,
   autoWidth: false,
   autoRotate: false,
