@@ -17,10 +17,7 @@ export const useSpinetic = ({ children, config }: TypesUseSpinetic
   const [_isProcessingClick, setIsProcessingClick] = useState(true);
   const [_initialWindowWidth, setInitialWindowWidth] = useState(window?.innerWidth);
 
-  useEffect(() => {
-    console.log("currentConfig", currentConfig);
-  }, [currentIndex, currentConfig])
-
+  useEffect(() => _setConfigs(config), [config]) // <<<< [temp]: TODO: to change in the storybook
   useEffect(() => _handleItemChange(), [remainingIndexes, currentIndex]);
   useEffect(() => _setConfigs(config), [children, _initialWindowWidth]);
   useEffect(() => {
@@ -31,14 +28,6 @@ export const useSpinetic = ({ children, config }: TypesUseSpinetic
     return () => window.removeEventListener('resize', _handleResize);
   }, [spineticContainer.current?.offsetWidth, _initialWindowWidth, window?.innerWidth]);
 
-
-  const _handleResize = (): void => {
-    if (_initialWindowWidth !== window?.innerWidth) {
-      setInitialWindowWidth(window?.innerWidth);
-      _setConfigs(config);
-    }
-  }
-  
   useEffect(() => {
     if (currentConfig.autoRotate) {
       const autoRotateIntervalId = setInterval(() => {
@@ -52,6 +41,13 @@ export const useSpinetic = ({ children, config }: TypesUseSpinetic
     }
   }, [remainingIndexes]);
 
+
+  const _handleResize = (): void => {
+    if (_initialWindowWidth !== window?.innerWidth) {
+      setInitialWindowWidth(window?.innerWidth);
+      _setConfigs(config);
+    }
+  }
 
   const _setConfigs = (config?: TypesConfigOptional) => {
     const currentOrDefaultConfig: TypesConfig = SpineticConfig.validConfig(config);
