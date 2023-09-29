@@ -2,7 +2,7 @@
   "type": "module",
   "author": "lxavier",
   "name": "react-spinetic",
-  "version": "0.0.20",
+  "version": "0.0.29",
   "description": "A lightweight React carousel library for creating interactive carousels in your web applications.",
   "private": false,
   "keywords": [
@@ -12,16 +12,13 @@
     "library",
     "react-spinetic"
   ],
-  "main": "index.js",
-  "module": "index.js",
-  "types": "types.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "files": [
-    "spinetic",
+    "dist",
     "types.d.ts",
     "styles.css",
-    "index.js",
-    "index.d.ts",
-    "index.js.map",
     "LICENSE",
     "README.md"
   ],
@@ -35,7 +32,7 @@
   },
   "scripts": {
     "build:sass:publish": "node-sass src/styles.scss styles.css",
-    "clean:publish": "rm -rf spinetic && rm -rf index.d.ts && rm -rf styles.css && rm -rf index.js && rm -rf index.js.map",
+    "clean:publish": "rm -rf dist && rm -rf styles.css",
     "build:publish": "npm run build:sass:publish && npx rollup -c",
     "deploy:publish": "npm run clean:publish && npm run build:publish && npm publish"
   },
