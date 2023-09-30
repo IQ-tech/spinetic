@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "typescript": "^5.2.2",
-    "node-sass": "^7.0.3",
+    "node-sass": "^9.0.0",
     "rollup-plugin-typescript2": "^0.36.0",
     "@rollup/plugin-commonjs": "^25.0.4",
     "@rollup/plugin-node-resolve": "^15.2.1",
