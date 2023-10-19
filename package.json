@@ -2,7 +2,7 @@
   "type": "module",
   "author": "lxavier",
   "name": "react-spinetic",
-  "version": "0.0.32",
+  "version": "0.0.33",
   "description": "A lightweight React carousel library for creating interactive carousels in your web applications.",
   "private": false,
   "keywords": [
