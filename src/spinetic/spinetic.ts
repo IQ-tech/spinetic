@@ -93,7 +93,7 @@ export const useSpinetic = ({ children, config }: TypesUseSpinetic
       _carouselItemsWidths
     );
 
-    spineticMain.current?.classList.toggle("verticalAlign", currentConfig.verticalAlign);
+    spineticMain.current?.classList.toggle("spinetic-vertical-align", currentConfig.verticalAlign);
     setCurrentIndex(0)
 
     let numVisibleCards = 0;
