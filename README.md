@@ -41,14 +41,14 @@ import { TypesConfigOptional } from "react-spinetic/types";
 
 ```tsx
 function App() {
-  const exampleItems = ['content-1', 'content-2', 'content-3'];
+  const exampleItems = ['content-1', 'content-2', 'content-3', 'content-4', 'content-5'];
   const configuration: TypesConfigOptional = { autoRotate: true };
 
   return (
     <Spinetic config={configuration}>
       {exampleItems.map((content, index) => (
         <SpineticItem key={index}>
-          <div style={{ height: 200, width: 250, background: 'blue' }}>
+          <div style={{ height: 200, width: 250, background: 'blue', margin: 10 }}>
             {content}
           </div>
         </SpineticItem>
