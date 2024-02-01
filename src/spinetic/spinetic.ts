@@ -4,8 +4,9 @@ import * as SpineticUtils from "./spinetic-utils";
 import * as SpineticConfig from "./spinetic-config-validation";
 import { TypesUseSpinetic, TypesReturnSpinetic, TypesConfig, TypesConfigOptional } from "types"
 
-export const useSpinetic = ({ children, config }: TypesUseSpinetic
+export const useSpinetic = ({ children, config, change }: TypesUseSpinetic
 ): TypesReturnSpinetic => {
+
   const spineticMain = useRef<HTMLDivElement>(null);
   const spineticContainer = useRef<HTMLDivElement>(null);
 
@@ -17,8 +18,23 @@ export const useSpinetic = ({ children, config }: TypesUseSpinetic
   const [_isProcessingClick, setIsProcessingClick] = useState(true);
   const [_initialWindowWidth, setInitialWindowWidth] = useState(window?.innerWidth);
 
+  const [elementsChange, setElementsChange] = useState<any>({ // [temp]: TODO: types 
+    previous: {
+      index: currentIndex,
+      remainingIndexes: remainingIndexes,
+      totalItems: Children.count(children)
+    },
+    current: {
+      index: currentIndex,
+      remainingIndexes: remainingIndexes,
+      totalItems: Children.count(children)
+    }
+  })
+
   useEffect(() => _setConfigs(config), [config]) // <<<< [temp]: TODO: to change in the storybook
   useEffect(() => _handleItemChange(), [remainingIndexes, currentIndex]);
+  useEffect(() => { if (change) change(elementsChange) }, [currentIndex]);
+
   useEffect(() => _setConfigs(config), [children, _initialWindowWidth]);
   useEffect(() => {
     _setConfigs(config);
@@ -32,8 +48,15 @@ export const useSpinetic = ({ children, config }: TypesUseSpinetic
     if (currentConfig.autoRotate) {
       const autoRotateIntervalId = setInterval(() => {
         setCurrentIndex((prevIndex) => {
-          const newIndex = prevIndex + 1;
-          return newIndex >= remainingIndexes.length ? 0 : newIndex;
+          const newIdx = prevIndex + 1;
+          const currentIndex = newIdx >= remainingIndexes.length ? 0 : newIdx;
+
+          _updateElementsChange({
+            current: { index: currentIndex },
+            previous: { index: prevIndex }
+          });
+
+          return currentIndex
         });
       }, currentConfig.msPerAutoRotate);
 
@@ -94,7 +117,9 @@ export const useSpinetic = ({ children, config }: TypesUseSpinetic
     );
 
     spineticMain.current?.classList.toggle("spinetic-vertical-align", currentConfig.verticalAlign);
+
     setCurrentIndex(0)
+    console.log("_setCarouselWidth")
 
     let numVisibleCards = 0;
     let totalVisibleWidth = 0;
@@ -128,10 +153,25 @@ export const useSpinetic = ({ children, config }: TypesUseSpinetic
       scrollSum(_carouselItemsWidths);
     }
 
-    setRemainingIndexes(Array.from(
+    const currentRemainingIdx = Array.from(
       { length: maxScrollIndex + 1 },
       (_, index) => index + numVisibleCards
-    ));
+    )
+
+    _updateElementsChange({
+      current: {
+        index: 0,
+        remainingIndexes: currentRemainingIdx,
+        totalItems: Children.count(children),
+      },
+      previous: {
+        index: 0,
+        remainingIndexes: currentRemainingIdx,
+        totalItems: Children.count(children)
+      }
+    });
+
+    setRemainingIndexes(currentRemainingIdx);
 
     const hasDraggable = currentConfig.draggable && remainingIndexes?.length > 1
     spineticContainer.current?.classList.toggle("hasDraggable", hasDraggable);
@@ -179,6 +219,21 @@ export const useSpinetic = ({ children, config }: TypesUseSpinetic
     return widths;
   }
 
+  const _updateElementsChange = (updateElements: any) => { // TODO: types
+    setElementsChange((prevElementsChange: any) => {
+      return {
+        previous: {
+          ...prevElementsChange.previous,
+          ...updateElements.previous
+        },
+        current: {
+          ...prevElementsChange.current,
+          ...updateElements.current
+        }
+      };
+    });
+  }
+
   const _hasClickTransitionCtrl = (additionalConditionalForTransition: boolean): boolean => {
     return currentConfig.clickTransitionCtrl ?
       _isProcessingClick && additionalConditionalForTransition :
@@ -188,14 +243,28 @@ export const useSpinetic = ({ children, config }: TypesUseSpinetic
   const _hasPreviousItem = currentIndex > 0;
   const previousItem = (): void => {
     if (_hasClickTransitionCtrl(_hasPreviousItem)) {
-      setCurrentIndex(currentIndex - 1);
+      const newIdx = currentIndex - 1
+
+      _updateElementsChange({
+        current: { index: newIdx },
+        previous: { index: currentIndex }
+      });
+
+      setCurrentIndex(newIdx);
     }
   }
 
   const _hasNextItem = currentIndex < remainingIndexes?.length - 1;
   const nextItem = (): void => {
     if (_hasClickTransitionCtrl(_hasNextItem)) {
-      setCurrentIndex(currentIndex + 1);
+      const newIdx = currentIndex + 1;
+
+      _updateElementsChange({
+        current: { index: newIdx },
+        previous: { index: currentIndex }
+      });
+
+      setCurrentIndex(newIdx);
     }
   }
 
@@ -203,8 +272,15 @@ export const useSpinetic = ({ children, config }: TypesUseSpinetic
   const _isValidIndex = (index: number): boolean => {
     return index >= 0 && index < maxCarouselItems;
   }
+
   const goToItem = (index: number): void => {
     if (_hasClickTransitionCtrl(_isValidIndex(index))) {
+
+      _updateElementsChange({
+        current: { index: index },
+        previous: { index: currentIndex }
+      });
+
       setCurrentIndex(index);
     }
   }
@@ -226,7 +302,6 @@ export const useSpinetic = ({ children, config }: TypesUseSpinetic
       setIsProcessingClick(true);
     }, currentConfig.msPerClicks);
   }
-
 
   const { start, move, end } = useDragSpinetic({
     currentConfig,

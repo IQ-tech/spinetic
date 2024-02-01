@@ -78,6 +78,7 @@ export interface TypesUseDragSpinetic {
 export interface TypesSpinetic {
   children: ReactNode;
   config?: TypesConfigOptional;
+  change?: (e: any) => void; // TODO types
 }
 
 export interface TypesReturnSpinetic {
@@ -97,7 +98,9 @@ export interface TypesReturnSpinetic {
 }
 
 export interface TypesUseSpinetic {
-  children: ReactNode, config?: TypesConfigOptional
+  children: ReactNode, 
+  config?: TypesConfigOptional,
+  change?: (e: any) => void ; // TODO types
 }
 
 export interface TypesArrows {
