@@ -4,11 +4,12 @@
 dist
 styles.css
 
-# dependencies
-/node_modules
-
 # production
 /build
+storybook-static
+
+# dependencies
+/node_modules
 
 # misc
 .DS_Store

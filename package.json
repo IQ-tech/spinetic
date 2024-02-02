@@ -34,21 +34,36 @@
     "build:sass:publish": "node-sass src/styles.scss styles.css",
     "clean:publish": "rm -rf dist && rm -rf styles.css",
     "build:publish": "npm run build:sass:publish && npx rollup -c",
-    "deploy:publish": "npm run clean:publish && npm run build:publish && npm publish"
+    "deploy:publish": "npm run clean:publish && npm run build:publish && npm publish",
+    "storybook": "storybook dev -p 6006",
+    "build:storybook": "storybook build"
   },
   "peerDependencies": {
     "react": ">=17.0.0 <19.0.0",
     "react-dom": ">=17.0.0 <19.0.0"
   },
   "devDependencies": {
-    "typescript": "^5.2.2",
-    "node-sass": "^9.0.0",
-    "rollup-plugin-typescript2": "^0.36.0",
     "@rollup/plugin-commonjs": "^25.0.4",
     "@rollup/plugin-node-resolve": "^15.2.1",
+    "@storybook/addon-essentials": "^7.6.12",
+    "@storybook/addon-interactions": "^7.6.12",
+    "@storybook/addon-links": "^7.6.12",
+    "@storybook/addon-onboarding": "^1.0.11",
+    "@storybook/blocks": "^7.6.12",
+    "@storybook/react": "^7.6.12",
+    "@storybook/react-vite": "^7.6.12",
+    "@storybook/test": "^7.6.12",
     "@types/node": "^16.18.48",
     "@types/react": "^18.2.21",
-    "@types/react-dom": "^18.2.7"
+    "@types/react-dom": "^18.2.7",
+    "eslint-plugin-storybook": "^0.6.15",
+    "node-sass": "^9.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "rollup-plugin-typescript2": "^0.36.0",
+    "sass": "^1.70.0",
+    "storybook": "^7.6.12",
+    "typescript": "^5.2.2"
   },
   "eslintConfig": {
     "rules": {
@@ -57,7 +72,9 @@
       "array-callback-return": "off"
     },
     "extends": [
-      "react-app"
+      "react-app",
+      "plugin:storybook/recommended",
+      "plugin:storybook/recommended"
     ]
   },
   "engines": {
