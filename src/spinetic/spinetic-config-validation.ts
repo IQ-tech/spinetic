@@ -9,7 +9,7 @@ export const _defaultConfig: TypesConfig = {
   dots: true,
   dotsModel: "default",
   draggable: true,
-  fullHeightItems: false,
+  fullHeightItems: true,
   hideArrows: false,
   indexInDots: false,
   msPerClicks: 500,
@@ -39,6 +39,10 @@ export const _validTouchLimit = (touchThreshold: number) => {
     : touchThreshold;
 }
 
+const _validShowItems = (showItems: number) => {
+  return showItems < 1 ? _defaultConfig.showItems : showItems;
+}
+
 export const validConfig = (config?: TypesConfigOptional): TypesConfig => {
   const C = config;
   const DC = _defaultConfig;
@@ -59,7 +63,7 @@ export const validConfig = (config?: TypesConfigOptional): TypesConfig => {
     positionArrowLeft: C?.positionArrowLeft ?? DC.positionArrowLeft,
     positionArrowRight: C?.positionArrowRight ?? DC.positionArrowRight,
     responsive: _validResponsive(C?.responsive),
-    showItems: C?.showItems ?? DC.showItems,
+    showItems: _validShowItems(C?.showItems ?? DC.showItems),
     touchThreshold: _validTouchLimit(C?.touchThreshold ?? DC.touchThreshold),
     verticalAlign: C?.verticalAlign ?? DC.verticalAlign,
   };
