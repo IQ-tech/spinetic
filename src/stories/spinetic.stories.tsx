@@ -12,6 +12,8 @@ import SpineticItem from "../spinetic/spinetic-item";
 import CardExample, { exampleItems } from "./card-example";
 import { argTypes } from "./argTypes";
 
+import documentation from "./documentation.mdx";
+
 const Spinetic = ({ config }: { config: TypesConfigOptional }) => {
   console.log("🚀 ~ Spinetic ~ config:>>>[STORYBOOK]>>", config);
 
@@ -28,14 +30,23 @@ const Spinetic = ({ config }: { config: TypesConfigOptional }) => {
 
 export default {
   title: "Spinetic",
-  component: Spinetic,
+  parameters: { docs: { page: documentation } },
   tags: ["autodocs"],
-  
+
+  component: Spinetic,
   argTypes: argTypes,
 } as Meta;
 
 const Template: StoryFn = (args: TypesConfigOptional) => {
-  return <Spinetic config={args} />;
+  return (
+    <SpineticComp config={args}>
+      {exampleItems.map((text: string, index: number) => (
+        <SpineticItem key={index}>
+          <CardExample highlightText={false} index={index} text={text} />
+        </SpineticItem>
+      ))}
+    </SpineticComp>
+  );
 };
 
 export const Default = Template.bind({});
@@ -52,10 +63,8 @@ export const AutoRotate = Template.bind({});
 AutoRotate.args = {
   autoRotate: true,
   dotsModel: "long-rounded",
-  fullHeightItems: true,
   hideArrows: true,
   msPerAutoRotate: 2000,
-  positionArrowLeft: 30,
-  positionArrowRight: 30,
   showItems: 3,
 };
+

@@ -1,10 +1,12 @@
+import { _defaultConfig } from "../spinetic/spinetic-config-validation";
+
 export const argTypes = {
     arrows: {
         description: "arrowssssss",
         control: "boolean",
         table: {
             type: { summary: "boolean" },
-            defaultValue: { summary: true },
+            defaultValue: { summary: _defaultConfig.arrows },
         },
     },
 
@@ -13,7 +15,7 @@ export const argTypes = {
         control: "boolean",
         table: {
             type: { summary: "boolean" },
-            defaultValue: { summary: false },
+            defaultValue: { summary: _defaultConfig.autoWidth },
         },
     },
 
@@ -22,7 +24,7 @@ export const argTypes = {
         control: "boolean",
         table: {
             type: { summary: "boolean" },
-            defaultValue: { summary: false },
+            defaultValue: { summary: _defaultConfig.autoRotate },
         },
     },
 
@@ -31,7 +33,7 @@ export const argTypes = {
         control: "boolean",
         table: {
             type: { summary: "boolean" },
-            defaultValue: { summary: false },
+            defaultValue: { summary: _defaultConfig.clickTransitionCtrl },
         },
     },
 
@@ -40,7 +42,7 @@ export const argTypes = {
         control: "boolean",
         table: {
             type: { summary: "boolean" },
-            defaultValue: { summary: true },
+            defaultValue: { summary: _defaultConfig.dots },
         },
     },
 
@@ -50,7 +52,7 @@ export const argTypes = {
         options: ["default", "long-rounded"],
         table: {
             type: { summary: "text" },
-            defaultValue: { summary: "default" },
+            defaultValue: { summary: _defaultConfig.dotsModel },
         },
     },
 
@@ -59,7 +61,7 @@ export const argTypes = {
         control: "boolean",
         table: {
             type: { summary: "boolean" },
-            defaultValue: { summary: true },
+            defaultValue: { summary: _defaultConfig.draggable },
         },
     },
 
@@ -68,7 +70,7 @@ export const argTypes = {
         control: "boolean",
         table: {
             type: { summary: "boolean" },
-            defaultValue: { summary: true },
+            defaultValue: { summary: _defaultConfig.fullHeightItems },
         },
     },
 
@@ -77,7 +79,7 @@ export const argTypes = {
         control: "boolean",
         table: {
             type: { summary: "boolean" },
-            defaultValue: { summary: false },
+            defaultValue: { summary: _defaultConfig.hideArrows },
         },
     },
 
@@ -86,7 +88,7 @@ export const argTypes = {
         control: "boolean",
         table: {
             type: { summary: "boolean" },
-            defaultValue: { summary: false },
+            defaultValue: { summary: _defaultConfig.indexInDots },
         },
     },
 
@@ -95,7 +97,7 @@ export const argTypes = {
         control: "number",
         table: {
             type: { summary: "number" },
-            defaultValue: { summary: 500 },
+            defaultValue: { summary: _defaultConfig.msPerClicks },
         },
     },
 
@@ -104,7 +106,7 @@ export const argTypes = {
         control: "number",
         table: {
             type: { summary: "number" },
-            defaultValue: { summary: 3000 },
+            defaultValue: { summary: _defaultConfig.msPerAutoRotate },
         },
     },
 
@@ -113,7 +115,7 @@ export const argTypes = {
         control: "number",
         table: {
             type: { summary: "number" },
-            defaultValue: { summary: 0 },
+            defaultValue: { summary: _defaultConfig.positionArrowLeft },
         },
     },
 
@@ -122,11 +124,11 @@ export const argTypes = {
         control: "number",
         table: {
             type: { summary: "number" },
-            defaultValue: { summary: 0 },
+            defaultValue: { summary: _defaultConfig.positionArrowRight },
         },
     },
 
-    // responsive: { TODO: undefined
+    // responsive: { TODO: undefined <<<[so descomentar e olhar o console no storybook]<
     //     description: "responsive",
     //     control: "object",
     //     table: {
@@ -154,11 +156,12 @@ export const argTypes = {
     },
 
     verticalAlign: {
-        description: "verticalAlign",
+        description: `<h1 id="test">verticalAlign</h1>`,
         control: "boolean",
         table: {
             type: { summary: "boolean" },
             defaultValue: { summary: false },
         },
     },
+
 }

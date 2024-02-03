@@ -25,27 +25,20 @@ yarn add react-spinetic
 import "react-spinetic/styles.css";
 ```
 
-2. Import the carousel components wherever you want to use them:
+2. Import the Spinetic components wherever you want to use them:
 
 ```tsx
 import { Spinetic, SpineticItem } from "react-spinetic";
 ```
 
-3. Import the optional configuration types to better understand the available options:
-
-```tsx
-import { TypesConfigOptional } from "react-spinetic/types";
-```
-
-4. Use the following example to understand how to use Spinetic:
+3. Use the following example to understand how to use Spinetic:
 
 ```tsx
 function App() {
   const exampleItems = ['content-1', 'content-2', 'content-3', 'content-4', 'content-5'];
-  const configuration: TypesConfigOptional = { autoRotate: true };
 
   return (
-    <Spinetic config={configuration}>
+    <Spinetic config={{ autoRotate: true }}>
       {exampleItems.map((content, index) => (
         <SpineticItem key={index}>
           <div style={{ height: 200, width: 250, background: 'blue', margin: 10 }}>
