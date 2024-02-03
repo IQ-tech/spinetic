@@ -1,5 +1,6 @@
-# Spinetic - [Documentation](https://iq-tech.github.io/spinetic/?path=/docs/getting-started--documentation)
+# Spinetic 
 
+## [Getting Started](https://iq-tech.github.io/spinetic/?path=/docs/getting-started--documentation)
 
 ### Installation with npm
 
@@ -52,4 +53,4 @@ export default App;
 Make sure to import the required styles, components, and configuration types. Then, use the `Spinetic` component and `SpineticItem` component to create a carousel. Customize the appearance and behavior of the carousel through the configuration options. Finally, map through your items and wrap them in `SpineticItem` components to display them within the carousel.
 
 
-For more information, refer to the complete documentation and explore the carousel features in the playground by visiting the following link: [Spinetic Documentation](https://iq-tech.github.io/spinetic/?path=/docs/getting-started--documentation).
+For more information, refer to the complete documentation and explore the carousel features in the playground by visiting the following link: [Spinetic Documentation](hhttps://iq-tech.github.io/spinetic/?path=/docs/spinetic--documentation).
