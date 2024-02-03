@@ -2,6 +2,7 @@
   "type": "module",
   "author": "lxavier",
   "name": "react-spinetic",
+  "home": "https://iq-tech.github.io/",
   "version": "0.0.40",
   "description": "A lightweight React carousel library for creating interactive carousels in your web applications.",
   "private": false,
@@ -31,12 +32,13 @@
     "url": "https://github.com/IQ-tech/spinetic/issues"
   },
   "scripts": {
+    "clean": "rm -rf dist && rm -rf styles.css && rm -rf storybook-static",
     "build:sass:publish": "node-sass src/styles.scss styles.css",
-    "clean:publish": "rm -rf dist && rm -rf styles.css",
     "build:publish": "npm run build:sass:publish && npx rollup -c",
-    "deploy:publish": "npm run clean:publish && npm run build:publish && npm publish",
+    "deploy:publish": "npm run clean && npm run build:publish && npm publish",
     "storybook": "storybook dev -p 6006",
-    "build:storybook": "storybook build"
+    "build:storybook": "npm run clean && storybook build",
+    "deploy": "npm run build:storybook && touch ./storybook-static/.nojekyll && gh-pages -d ./storybook-static -t true"
   },
   "peerDependencies": {
     "react": ">=17.0.0 <19.0.0",
@@ -57,6 +59,7 @@
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
     "eslint-plugin-storybook": "^0.6.15",
+    "gh-pages": "^6.1.1",
     "node-sass": "^9.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
