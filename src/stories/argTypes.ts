@@ -2,7 +2,7 @@ import { _defaultConfig } from "../spinetic/spinetic-config-validation";
 
 export const argTypes = {
     arrows: {
-        description: "arrowssssss",
+        description: `<span id="arrows">Specifies whether to display arrows for navigation</span>`,
         control: "boolean",
         table: {
             type: { summary: "boolean" },
@@ -10,35 +10,37 @@ export const argTypes = {
         },
     },
 
-    autoWidth: {
-        description: "autoWidth",
-        control: "boolean",
+    arrowLeftPosition: {
+        description: `<span id="arrowLeftPosition">Adjusts the position of the left arrow</span>`,
+        control: "number",
         table: {
-            type: { summary: "boolean" },
-            defaultValue: { summary: _defaultConfig.autoWidth },
+            type: { summary: "number" },
+            defaultValue: { summary: _defaultConfig.arrowLeftPosition },
         },
     },
 
-    autoRotate: {
-        description: "autoRotate",
-        control: "boolean",
+    arrowRightPosition: {
+        description: `<span id="arrowRightPosition">Adjusts the position of the right arrow</span>`,
+        control: "number",
         table: {
-            type: { summary: "boolean" },
-            defaultValue: { summary: _defaultConfig.autoRotate },
+            type: { summary: "number" },
+            defaultValue: { summary: _defaultConfig.arrowRightPosition },
         },
     },
 
-    clickTransitionCtrl: {
-        description: "clickTransitionCtrl",
+    hideArrows: {
+        description: `<span id="hideArrows">Controls the visibility of arrows</span>`,
         control: "boolean",
         table: {
             type: { summary: "boolean" },
-            defaultValue: { summary: _defaultConfig.clickTransitionCtrl },
+            defaultValue: { summary: _defaultConfig.hideArrows },
         },
     },
+
+
 
     dots: {
-        description: "dots",
+        description: `<span id="dots">Determines whether to display navigation dots</span>`,
         control: "boolean",
         table: {
             type: { summary: "boolean" },
@@ -47,7 +49,7 @@ export const argTypes = {
     },
 
     dotsModel: {
-        description: "dotsModel",
+        description: `<span id="dotsModel">Defines the model for the dots</span>`,
         control: "radio",
         options: ["default", "long-rounded"],
         table: {
@@ -56,35 +58,8 @@ export const argTypes = {
         },
     },
 
-    draggable: {
-        description: "draggable",
-        control: "boolean",
-        table: {
-            type: { summary: "boolean" },
-            defaultValue: { summary: _defaultConfig.draggable },
-        },
-    },
-
-    fullHeightItems: {
-        description: "fullHeightItems",
-        control: "boolean",
-        table: {
-            type: { summary: "boolean" },
-            defaultValue: { summary: _defaultConfig.fullHeightItems },
-        },
-    },
-
-    hideArrows: {
-        description: "hideArrows",
-        control: "boolean",
-        table: {
-            type: { summary: "boolean" },
-            defaultValue: { summary: _defaultConfig.hideArrows },
-        },
-    },
-
     indexInDots: {
-        description: "indexInDots",
+        description: `<span id="indexInDots">Specifies whether to show the index in dots</span>`,
         control: "boolean",
         table: {
             type: { summary: "boolean" },
@@ -92,17 +67,19 @@ export const argTypes = {
         },
     },
 
-    msPerClicks: {
-        description: "msPerClicks",
-        control: "number",
+
+
+    autoRotate: {
+        description: `<span id="autoRotate">Enables automatic rotation of items</span>`,
+        control: "boolean",
         table: {
-            type: { summary: "number" },
-            defaultValue: { summary: _defaultConfig.msPerClicks },
+            type: { summary: "boolean" },
+            defaultValue: { summary: _defaultConfig.autoRotate },
         },
     },
 
     msPerAutoRotate: {
-        description: "msPerAutoRotate",
+        description: `<span id="msPerAutoRotate">Sets the time interval for auto rotation</span>`,
         control: "number",
         table: {
             type: { summary: "number" },
@@ -110,44 +87,40 @@ export const argTypes = {
         },
     },
 
-    positionArrowLeft: {
-        description: "positionArrowLeft",
-        control: "number",
+
+
+
+    clickTransitionCtrl: {
+        description: `<span id="clickTransitionCtrl">Enables control over transitions on clicks</span>`,
+        control: "boolean",
         table: {
-            type: { summary: "number" },
-            defaultValue: { summary: _defaultConfig.positionArrowLeft },
+            type: { summary: "boolean" },
+            defaultValue: { summary: _defaultConfig.clickTransitionCtrl },
         },
     },
 
-    positionArrowRight: {
-        description: "positionArrowRight",
+    msPerClicks: {
+        description: `<span id="msPerClicks">Sets the time interval for click transitions</span>`,
         control: "number",
         table: {
             type: { summary: "number" },
-            defaultValue: { summary: _defaultConfig.positionArrowRight },
+            defaultValue: { summary: _defaultConfig.msPerClicks },
         },
     },
 
-    // responsive: { TODO: undefined <<<[so descomentar e olhar o console no storybook]<
-    //     description: "responsive",
-    //     control: "object",
-    //     table: {
-    //         type: { summary: "object" },
-    //         defaultValue: { summary: '[{ breakpoint: 0, settings: {} }]' },
-    //     },
-    // },
 
-    showItems: {
-        description: "showItems",
-        control: "number",
+
+    draggable: {
+        description: `<span id="draggable">Enables dragging functionality</span>`,
+        control: "boolean",
         table: {
-            type: { summary: "number" },
-            defaultValue: { summary: 1 },
+            type: { summary: "boolean" },
+            defaultValue: { summary: _defaultConfig.draggable },
         },
     },
 
     touchThreshold: {
-        description: "touchThreshold",
+        description: `<span id="touchThreshold">Sets the touch threshold for dragging</span>`,
         control: "number",
         table: {
             type: { summary: "number" },
@@ -155,12 +128,134 @@ export const argTypes = {
         },
     },
 
-    verticalAlign: {
-        description: `<h1 id="test">verticalAlign</h1>`,
+
+
+    showItems: {
+        description: `<span id="showItems">Defines the number of items to show</span>`,
+        control: "number",
+        table: {
+            type: { summary: "number" },
+            defaultValue: { summary: 1 },
+        },
+    },
+
+    autoWidth: {
+        description: `<span id="autoWidth">Automatically adjusts the width of the carousel, has the effect of showing half of the next card</span>`,
         control: "boolean",
         table: {
             type: { summary: "boolean" },
+            defaultValue: { summary: _defaultConfig.autoWidth },
+        },
+    },
+
+    fullHeightItems: {
+        description: `<span id="fullHeightItems">Adjusts item height to full height</span>`,
+        control: "boolean",
+        table: {
+            type: { summary: "boolean" },
+            defaultValue: { summary: _defaultConfig.fullHeightItems },
+        },
+    },
+
+
+    verticalAlign: {
+        description: `<span id="verticalAlign">Aligns items vertically.</span>`,
+        control: "boolean",
+
+        table: {
+            type: {
+                summary: "boolean",
+                detail: `
+            Responsive settings array controlling configuration changes based on breakpoints.
+            Each array element is an object with 'breakpoint' and optional 'settings'.
+            `,
+            },
             defaultValue: { summary: false },
+
+        },
+    },
+
+
+
+    // responsive: { 
+    //     description: `<span id="responsive">An array of objects representing responsive settings, each containing a breakpoint and optional settings (refer to individual properties)</span>`,
+    //     control: "object",
+    //     table: {
+    //         type: { summary: "object" },
+    //         defaultValue: { summary: '[{ breakpoint: 0, settings: {} }]' },
+    //     },
+    // }, 
+
+    responsive: {
+        description: `<span id="responsive">
+          An array of objects representing responsive settings, controlling configuration changes in the carousel based on specified breakpoints.
+          Each object should include a 'breakpoint' and optional 'settings' (refer to individual properties).
+        </span>
+        `,
+        control: {
+            type: 'array',
+            of: {
+                type: 'object',
+                controls: {
+                    breakpoint: {
+                        type: 'number',
+                        description: 'The screen width breakpoint at which the specified settings will take effect.',
+                    },
+                    settings: {
+                        type: 'object',
+                        description: `
+                Optional settings to be applied when the screen width is equal to or less than the specified breakpoint.
+                These settings will override the default configuration.
+                `,
+                    },
+                },
+            },
+        },
+        table: {
+            type: {
+                summary: 'array',
+                detail: `
+            Responsive settings array controlling configuration changes based on breakpoints.
+            Each array element is an object with 'breakpoint' and optional 'settings'.
+            `,
+            },
+            defaultValue: {
+                summary: '[{ breakpoint: 0, settings: {} }]',
+            },
+        },
+    },
+
+
+    change: {
+        description: `<span id="change">Callback function triggered on a change event in the Spinetic component.</span>`,
+        control: 'text',
+
+        table: {
+            category: 'Actions',
+            type: {
+                summary: "(event: SpineticChangeEvent) => {}",
+                detail: `
+         texto dksksaskak kask aska ksaks aks kas kaks
+         
+         default value return:
+         { 
+            previous: {
+              index: currentIndex,
+              remainingIndexes: remainingIndexes,
+              totalItems: Children.count(children)
+            },
+            current: {
+              index: currentIndex,
+              remainingIndexes: remainingIndexes,
+              totalItems: Children.count(children)
+            }
+          }.
+            `
+            },
+
+            defaultValue: {
+                summary: `See details`,
+            },
         },
     },
 
