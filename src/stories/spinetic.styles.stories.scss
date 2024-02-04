@@ -17,7 +17,7 @@
 }
 
 .carousel-card:hover {
- // transform: scale(0.9);
+  // transform: scale(0.9);
 }
 
 .highlight-text.carousel-card:hover {
@@ -43,5 +43,75 @@
 @media (prefers-reduced-motion: no-preference) {
   .logo {
     animation: logo-spin infinite 20s linear;
+  }
+}
+
+// >> GoToTheTop
+@keyframes ArrowUp {
+  0% {
+    top: 10px;
+  }
+  10% {
+    top: 8px;
+  }
+  20% {
+    top: 6px;
+  }
+  30% {
+    top: 4px;
+  }
+  40% {
+    top: -3px;
+  }
+  60% {
+    top: -4px;
+  }
+  80% {
+    top: -5px;
+  }
+  100% {
+    top: -6px;
+  }
+}
+
+$blueColor: #007bff; // You can adjust the shade as needed
+$hoverColor: #0056b3; // A darker shade for hover effect
+
+.ContainerGoToTheTop {
+  padding: 0px;
+  background: $blueColor;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  position: fixed;
+  bottom: 25px;
+  right: 30px;
+
+  svg {
+    position: relative;
+    animation-name: ArrowUp;
+    animation-duration: 0.6s;
+    animation-iteration-count: infinite;
+    margin: auto;
+  }
+
+  &:hover {
+    background: $hoverColor;
+  }
+}
+
+// storybook
+#storybook-docs {
+  p,
+  a {
+    font-size: 16px;
+  }
+
+  span {
+    font-size: 14px;
+  }
+
+  a {
+    font-weight: 700;
   }
 }
