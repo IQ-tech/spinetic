@@ -2,7 +2,7 @@
   "type": "module",
   "author": "lxavier",
   "name": "react-spinetic",
-  "home": "https://iq-tech.github.io/",
+  "homepage": "https://iq-tech.github.io/spinetic/",
   "version": "0.0.40",
   "description": "A lightweight React carousel library for creating interactive carousels in your web applications.",
   "private": false,
@@ -23,7 +23,6 @@
     "LICENSE",
     "README.md"
   ],
-  "homepage": "https://github.com/IQ-tech/spinetic#readme",
   "repository": {
     "type": "git",
     "url": "https://github.com/IQ-tech/spinetic.git"
@@ -51,6 +50,7 @@
     "@storybook/addon-interactions": "^7.6.12",
     "@storybook/addon-links": "^7.6.12",
     "@storybook/addon-onboarding": "^1.0.11",
+    "@storybook/addons": "^7.6.12",
     "@storybook/blocks": "^7.6.12",
     "@storybook/react": "^7.6.12",
     "@storybook/react-vite": "^7.6.12",
