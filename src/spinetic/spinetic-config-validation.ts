@@ -3,26 +3,37 @@ import { TypesConfig, TypesReponsiveSettings, TypesConfigOptional } from "types"
 
 export const _defaultConfig: TypesConfig = {
   arrows: true,
-  autoWidth: false,
-  autoRotate: false,
-  clickTransitionCtrl: false,
+  arrowLeftPosition: 0,
+  arrowRightPosition: 0,
+  hideArrows: false,
+
   dots: true,
   dotsModel: "default",
-  draggable: true,
-  fullHeightItems: true,
-  hideArrows: false,
   indexInDots: false,
-  msPerClicks: 500,
+
+  autoRotate: false,
   msPerAutoRotate: 3000,
-  positionArrowLeft: 0,
-  positionArrowRight: 0,
-  responsive: [{ breakpoint: 0, settings: {} }],
-  showItems: 1,
+
+  draggable: true,
   touchThreshold: 100,
+
+  showItems: 1,
+  autoWidth: false,
+  fullHeightItems: true,
   verticalAlign: false,
+
+  clickTransitionCtrl: false,
+  msPerClicks: 1500,
+
+  responsive: [{ breakpoint: 0, settings: {} }],
 };
 
+
 export const _validResponsive = (responsive?: TypesReponsiveSettings[]) => {
+  console.log("🚀 ~ responsive:", responsive?.length)
+  
+  if (!responsive|| !responsive?.length) return _defaultConfig.responsive;
+
   const sortBreakPoints = responsive?.sort(
     (a: { breakpoint: number }, b: { breakpoint: number }) =>
       b.breakpoint - a.breakpoint
@@ -49,23 +60,29 @@ export const validConfig = (config?: TypesConfigOptional): TypesConfig => {
 
   const currentOrDefaultConfig = {
     arrows: C?.arrows ?? DC.arrows,
-    autoWidth: C?.autoWidth ?? DC.autoWidth,
-    autoRotate: C?.autoRotate ?? DC.autoRotate,
-    clickTransitionCtrl: C?.clickTransitionCtrl ?? DC.clickTransitionCtrl,
+    arrowLeftPosition: C?.arrowLeftPosition ?? DC.arrowLeftPosition,
+    arrowRightPosition: C?.arrowRightPosition ?? DC.arrowRightPosition,
+    hideArrows: C?.hideArrows ?? DC.hideArrows,
+
     dots: C?.dots ?? DC.dots,
     dotsModel: C?.dotsModel ?? DC.dotsModel,
-    draggable: C?.draggable ?? DC.draggable,
-    fullHeightItems: C?.fullHeightItems ?? DC.fullHeightItems,
-    hideArrows: C?.hideArrows ?? DC.hideArrows,
     indexInDots: C?.indexInDots ?? DC.indexInDots,
-    msPerClicks: C?.msPerClicks ?? DC.msPerClicks,
+
+    autoRotate: C?.autoRotate ?? DC.autoRotate,
     msPerAutoRotate: C?.msPerAutoRotate ?? DC.msPerAutoRotate,
-    positionArrowLeft: C?.positionArrowLeft ?? DC.positionArrowLeft,
-    positionArrowRight: C?.positionArrowRight ?? DC.positionArrowRight,
-    responsive: _validResponsive(C?.responsive),
-    showItems: _validShowItems(C?.showItems ?? DC.showItems),
+
+    draggable: C?.draggable ?? DC.draggable,
     touchThreshold: _validTouchLimit(C?.touchThreshold ?? DC.touchThreshold),
+
+    showItems: _validShowItems(C?.showItems ?? DC.showItems),
+    fullHeightItems: C?.fullHeightItems ?? DC.fullHeightItems,
+    autoWidth: C?.autoWidth ?? DC.autoWidth,
     verticalAlign: C?.verticalAlign ?? DC.verticalAlign,
+
+    clickTransitionCtrl: C?.clickTransitionCtrl ?? DC.clickTransitionCtrl,
+    msPerClicks: C?.msPerClicks ?? DC.msPerClicks,
+
+    responsive: _validResponsive(C?.responsive),
   };
 
   return currentOrDefaultConfig;
