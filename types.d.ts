@@ -4,23 +4,29 @@ import { ReactNode } from "react";
 export type TypesDotsModel = "default" | "long-rounded";
 export interface TypesConfigOptional {
   arrows?: boolean;
-  autoWidth?: boolean;
-  autoRotate?: boolean;
-  clickTransitionCtrl?: boolean;
+  arrowLeftPosition?: number;
+  arrowRightPosition?: number;
+  hideArrows?: boolean;
+  
   dots?: boolean;
   dotsModel?: TypesDotsModel;
-  draggable?: boolean;
-  fullHeightItems?: boolean;
-  hideArrows?: boolean;
   indexInDots?: boolean;
-  msPerClicks?: number;
+
+  autoRotate?: boolean;
   msPerAutoRotate?: number;
-  positionArrowLeft?: number;
-  positionArrowRight?: number;
-  responsive?: TypesReponsiveSettings[];
-  showItems?: number;
+
+  clickTransitionCtrl?: boolean;
+  msPerClicks?: number;
+
+  draggable?: boolean;
   touchThreshold?: number;
+
+  showItems?: number;
+  autoWidth?: boolean;
+  fullHeightItems?: boolean;
   verticalAlign?: boolean;
+  
+  responsive?: TypesReponsiveSettings[];
 }
 
 export type TypesConfig = Required<TypesConfigOptional>;
@@ -29,6 +35,11 @@ export interface TypesReponsiveSettings {
   breakpoint: number;
   settings: TypesConfigOptional;
 }
+
+// export interface TypesReponsiveSettings {
+//   breakpoint: number;
+//   settings?: Omit<TypesConfigOptional, 'responsive'>;
+// }
 //#endregion config
 
 //#region Drag
@@ -98,7 +109,7 @@ export interface TypesReturnSpinetic {
 }
 
 export interface TypesUseSpinetic {
-  children: ReactNode, 
+  children: ReactNode | ReactNode[], 
   config?: TypesConfigOptional,
   change?: (e: any) => void ; // TODO types
 }
@@ -118,4 +129,19 @@ export interface TypesDots {
   remainingIndexes: number[];
   goToItem: (p0: number) => void;
 }
+
+
+export interface SpineticChangeEvent {
+  previous: {
+    index: number;
+    remainingIndexes: number[];
+    totalItems: number;
+  };
+  current: {
+    index: number;
+    remainingIndexes: number[];
+    totalItems: number;
+  };
+};
+
 //#endregion Components
