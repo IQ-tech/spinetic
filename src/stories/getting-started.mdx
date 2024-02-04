@@ -1,8 +1,10 @@
 import { Meta, Title, Primary, Controls, Stories } from "@storybook/blocks";
 
+import { argTypes } from "./argTypes.ts";
+
 <Meta title="Getting Started" />
 
-# Spinetic - [Documentation](?path=/docs/spinetic--documentation)
+# Spinetic - [Overview](?path=/docs/spinetic--documentation)
 
 <br />
 
@@ -72,11 +74,120 @@ export default App;
 
 This example demonstrates a basic setup of Spinetic. Customize appearance and behavior through configuration options and enjoy a integration of a carousel in your React project.
 
+## Props
 
-PROPS >>>> ????
+## `children`: _ReactNode_ or _ReactNode[]_
+
+Children elements to be rendered inside the Spinetic component. It can be a single `ReactNode` or an _array_ of `ReactNodes`.
+
+## `config`: _TypesConfigOptional_
+
+The `config` prop accepts an object with optional settings for customizing the Spinetic component. To run tests and explore detailed information about each property and its functionality, navigate by clicking on individual properties and experiment with them in the playground:
+
+```tsx
+export interface TypesConfigOptional {
+  arrows?: boolean;
+  arrowLeftPosition?: number;
+  arrowRightPosition?: number;
+  hideArrows?: boolean;
+
+  dots?: boolean;
+  dotsModel?: TypesDotsModel;
+  indexInDots?: boolean;
+
+  autoRotate?: boolean;
+  msPerAutoRotate?: number;
+
+  clickTransitionCtrl?: boolean;
+  msPerClicks?: number;
+
+  draggable?: boolean;
+  touchThreshold?: number;
+
+  showItems?: number;
+  autoWidth?: boolean;
+  fullHeightItems?: boolean;
+  verticalAlign?: boolean;
+
+  responsive?: TypesReponsiveSettings[];
+}
+
+export interface TypesReponsiveSettings {
+  breakpoint: number;
+  settings: TypesConfigOptional;
+}
+```
+
+- [**arrows**](?path=/docs/spinetic--documentation#arrows): <span dangerouslySetInnerHTML={{ __html:argTypes.arrows.description}} />
+- [arrowLeftPosition](?path=/docs/spinetic--documentation#arrowLeftPosition): <span dangerouslySetInnerHTML={{ __html:argTypes.arrowLeftPosition.description}} />
+- [arrowRightPosition](?path=/docs/spinetic--documentation#arrowRightPosition): <span dangerouslySetInnerHTML={{ __html:argTypes.arrowRightPosition.description}} />
+- [hideArrows](?path=/docs/spinetic--documentation#hideArrows): <span dangerouslySetInnerHTML={{ __html:argTypes.hideArrows.description}} />
+
+- [dots](?path=/docs/spinetic--documentation#dots): <span dangerouslySetInnerHTML={{ __html:argTypes.dots.description}} />
+- [dotsModel](?path=/docs/spinetic--documentation#dotsModel): <span dangerouslySetInnerHTML={{ __html:argTypes.dotsModel.description}} />
+- [indexInDots](?path=/docs/spinetic--documentation#indexInDots): <span dangerouslySetInnerHTML={{ __html:argTypes.indexInDots.description}} />
+
+- [autoRotate](?path=/docs/spinetic--documentation#autoRotate): <span dangerouslySetInnerHTML={{ __html:argTypes.autoRotate.description}} />
+- [msPerAutoRotate](?path=/docs/spinetic--documentation#msPerAutoRotate): <span dangerouslySetInnerHTML={{ __html:argTypes.msPerAutoRotate.description}} />
+
+- [clickTransitionCtrl](?path=/docs/spinetic--documentation#clickTransitionCtrl): <span dangerouslySetInnerHTML={{ __html:argTypes.clickTransitionCtrl.description}} />
+- [msPerClicks](?path=/docs/spinetic--documentation#msPerClicks): <span dangerouslySetInnerHTML={{ __html:argTypes.msPerClicks.description}} />
+
+- [draggable](?path=/docs/spinetic--documentation#draggable): <span dangerouslySetInnerHTML={{ __html:argTypes.draggable.description}} />
+- [touchThreshold](?path=/docs/spinetic--documentation#touchThreshold): <span dangerouslySetInnerHTML={{ __html:argTypes.touchThreshold.description}} />
+
+- [showItems](?path=/docs/spinetic--documentation#showItems): <span dangerouslySetInnerHTML={{ __html:argTypes.showItems.description}} />
+- [autoWidth](?path=/docs/spinetic--documentation#autoWidth): <span dangerouslySetInnerHTML={{ __html:argTypes.autoWidth.description}} />
+- [fullHeightItems](?path=/docs/spinetic--documentation#fullHeightItems): <span dangerouslySetInnerHTML={{ __html:argTypes.fullHeightItems.description}} />
+- [verticalAlign](?path=/docs/spinetic--documentation#verticalAlign): <span dangerouslySetInnerHTML={{ __html: argTypes.verticalAlign.description }} />
+
+- [responsive](?path=/docs/spinetic--documentation#verticalAlign): <span dangerouslySetInnerHTML={{ __html: argTypes.responsive.description  }} />
 
 
+## `change`: _function_
+
+Callback function triggered on a change event in the Spinetic component. The `change` function is called every time an item in the carousel is changed, providing information about the previous and current state.
+
+- **Callback Signature**:
+  ```tsx
+  (event: SpineticChangeEvent) => void
+  ```
+
+- **`previous`**: Object containing information about the previous state.
+  - `index`: The index of the previously active item.
+  - `remainingIndexes`: The number of remaining items in the carousel.
+  - `totalItems`: The total number of items in the carousel.
+
+- **`current`**: Object containing information about the current state.
+  - `index`: The index of the currently active item.
+  - `remainingIndexes`: The number of remaining items in the carousel.
+  - `totalItems`: The total number of items in the carousel.
+
+### Example Usage:
+
+```tsx
+const handleChange = (event: SpineticChangeEvent) => {
+  console.log('Previous State:', event.previous);
+  console.log('Current State:', event.current);
+};
+```
+
+The SpineticChangeEvent object is used within the change callback function, offering a structured way to access details about the previous and current states of the carousel during a change event.
+
+```tsx
+export type SpineticChangeEvent = {
+  previous: {
+    index: number;
+    remainingIndexes: number[];
+    totalItems: number;
+  };
+  current: {
+    index: number;
+    remainingIndexes: number[];
+    totalItems: number;
+  };
+};
+```
 
 
-
-Feel free to explore additional features and configurations available in the Spinetic [documentation](?path=/docs/spinetic--documentation) for a more tailored carousel experience.
+Feel free to explore the various features and configurations available. Utilize [the Spinetic playground](?path=/docs/spinetic--documentation#the-spinetic-playground) for a customized carousel experience tailored to your preferences. Explore and enjoy!
