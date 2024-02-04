@@ -233,24 +233,42 @@ export const argTypes = {
         table: {
             category: 'Actions',
             type: {
-                summary: "(event: SpineticChangeEvent) => {}",
+                summary: "(event: SpineticChangeEvent) => void",
                 detail: `
-         texto dksksaskak kask aska ksaks aks kas kaks
-         
-         default value return:
-         { 
-            previous: {
-              index: currentIndex,
-              remainingIndexes: remainingIndexes,
-              totalItems: Children.count(children)
-            },
-            current: {
-              index: currentIndex,
-              remainingIndexes: remainingIndexes,
-              totalItems: Children.count(children)
-            }
-          }.
-            `
+            The \`change\` function is a callback triggered whenever a change event occurs in the Spinetic 
+        component. It receives an event object of type SpineticChangeEvent, providing information 
+        about the previous and current states of the carousel.
+      
+              - Callback Signature**:
+                \`\`\`tsx
+                (event: SpineticChangeEvent) => void
+                \`\`\`
+      
+              - Event Object: SpineticChangeEvent:
+                - \`previous\` Object:
+                  - \`index\`: The index of the previously active item.
+                  - \`remainingIndexes\`: The number of remaining items in the carousel.
+                  - \`totalItems\`: The total number of items in the carousel.
+      
+                - \`current\` Object:
+                  - \`index\`: The index of the currently active item.
+                  - \`remainingIndexes\`: The number of remaining items in the carousel.
+                  - \`totalItems\`: The total number of items in the carousel.
+      
+             -  Default:
+                { 
+                  previous: {
+                    index: 0,
+                    remainingIndexes: [],
+                    totalItems: 0
+                  },
+                  current: {
+                    index: 0,
+                    remainingIndexes: [],
+                    totalItems: 0
+                  }
+                }
+            `,
             },
 
             defaultValue: {
@@ -258,5 +276,6 @@ export const argTypes = {
             },
         },
     },
+
 
 }
