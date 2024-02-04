@@ -13,10 +13,9 @@ const config: StorybookConfig = {
     options: {},
   },
   docs: {
-    //👇 See the table below for the list of supported options
     autodocs: 'tag',
     defaultName: 'Documentation',
-    //docsMode: true
+    docsMode: true
   },
 };
 export default config;
