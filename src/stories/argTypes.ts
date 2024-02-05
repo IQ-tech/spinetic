@@ -228,7 +228,7 @@ export const argTypes = {
 
     change: {
         description: `<span id="change">Callback function triggered on a change event in the Spinetic component.</span>`,
-        control: 'text',
+        control: 'boolean',
 
         table: {
             category: 'Actions',
@@ -240,9 +240,7 @@ export const argTypes = {
         about the previous and current states of the carousel.
       
               - Callback Signature**:
-                \`\`\`tsx
                 (event: SpineticChangeEvent) => void
-                \`\`\`
       
               - Event Object: SpineticChangeEvent:
                 - \`previous\` Object:
@@ -255,24 +253,24 @@ export const argTypes = {
                   - \`remainingIndexes\`: The number of remaining items in the carousel.
                   - \`totalItems\`: The total number of items in the carousel.
       
-             -  Default:
-                { 
-                  previous: {
-                    index: 0,
-                    remainingIndexes: [],
-                    totalItems: 0
-                  },
-                  current: {
-                    index: 0,
-                    remainingIndexes: [],
-                    totalItems: 0
-                  }
-                }
             `,
             },
 
             defaultValue: {
-                summary: `See details`,
+                summary: `See default`,
+                detail: ` { 
+previous: {
+    index: 0,
+    remainingIndexes: [],
+    totalItems: 0
+  },
+current: {
+    index: 0,
+    remainingIndexes: [],
+    totalItems: 0
+  }
+}
+                `,
             },
         },
     },
