@@ -1,4 +1,4 @@
-import{j as n,a as i,F as r}from"./card-example-dc13e54a.js";import{M as c}from"./index-1e2b3603.js";import{u as o}from"./index-a1cf9e47.js";import"./index-76fb7be0.js";import"./_commonjsHelpers-de833af9.js";import"./iframe-8e97faa2.js";import"../sb-preview/runtime.js";import"./index-d3ea75b5.js";import"./index-11d98b33.js";import"./index-8fd8397b.js";import"./index-356e4a49.js";function a(t){const e=Object.assign({h1:"h1",h2:"h2",p:"p",ul:"ul",li:"li",a:"a"},o(),t.components);return i(r,{children:[`
+import{j as n,a as i,F as r}from"./card-example-a1cc0bc4.js";import{M as c}from"./index-ce33b602.js";import{u as o}from"./index-a1cf9e47.js";import"./index-76fb7be0.js";import"./_commonjsHelpers-de833af9.js";import"./iframe-a8b98733.js";import"../sb-preview/runtime.js";import"./index-d3ea75b5.js";import"./index-11d98b33.js";import"./index-8fd8397b.js";import"./index-356e4a49.js";function a(t){const e=Object.assign({h1:"h1",h2:"h2",p:"p",ul:"ul",li:"li",a:"a"},o(),t.components);return i(r,{children:[`
 `,n(c,{title:"pages/Overview"}),`
 `,n(e.h1,{id:"spinetic",children:"Spinetic"}),`
 `,n("br",{}),`
