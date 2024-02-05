@@ -1,4 +1,4 @@
-import{j as e,a as i,F as a,G as d}from"./card-example-dc13e54a.js";import{M as l}from"./index-db3281a6.js";import{a as t}from"./argTypes-9524c678.js";import{u as c}from"./index-a1cf9e47.js";import"./index-76fb7be0.js";import"./_commonjsHelpers-de833af9.js";import"./iframe-506ce826.js";import"../sb-preview/runtime.js";import"./index-d3ea75b5.js";import"./index-11d98b33.js";import"./index-8fd8397b.js";import"./index-356e4a49.js";function o(r){const n=Object.assign({h1:"h1",h2:"h2",code:"code",em:"em",p:"p",pre:"pre",ul:"ul",li:"li",a:"a",strong:"strong",h3:"h3"},c(),r.components);return i(a,{children:[e(d,{}),`
+import{j as e,a as i,F as c,G as d}from"./card-example-dc13e54a.js";import{M as l}from"./index-1e2b3603.js";import{a as t}from"./argTypes-4d2d3ca1.js";import{u as a}from"./index-a1cf9e47.js";import"./index-76fb7be0.js";import"./_commonjsHelpers-de833af9.js";import"./iframe-8e97faa2.js";import"../sb-preview/runtime.js";import"./index-d3ea75b5.js";import"./index-11d98b33.js";import"./index-8fd8397b.js";import"./index-356e4a49.js";function o(r){const n=Object.assign({h1:"h1",h2:"h2",code:"code",em:"em",p:"p",pre:"pre",ul:"ul",li:"li",a:"a",strong:"strong",h3:"h3"},a(),r.components);return i(c,{children:[e(d,{}),`
 `,e(l,{title:"pages/Props"}),`
 `,e(n.h1,{id:"spinetic",children:"Spinetic"}),`
 `,e("br",{}),`
@@ -41,58 +41,58 @@ interface TypesReponsiveSettings {
 `})}),`
 `,i(n.ul,{children:[`
 `,i(n.li,{children:[`
-`,i(n.p,{children:[e(n.a,{href:"?path=/docs/spinetic--documentation#arrows",children:e(n.strong,{children:"arrows"})}),": ",e("span",{dangerouslySetInnerHTML:{__html:t.arrows.description}})]}),`
+`,i(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#arrows",children:e(n.strong,{children:"arrows"})}),": ",e("span",{dangerouslySetInnerHTML:{__html:t.arrows.description}})]}),`
 `]}),`
 `,i(n.li,{children:[`
-`,i(n.p,{children:[e(n.a,{href:"?path=/docs/spinetic--documentation#arrowLeftPosition",children:"arrowLeftPosition"}),": ",e("span",{dangerouslySetInnerHTML:{__html:t.arrowLeftPosition.description}})]}),`
+`,i(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#arrowLeftPosition",children:"arrowLeftPosition"}),": ",e("span",{dangerouslySetInnerHTML:{__html:t.arrowLeftPosition.description}})]}),`
 `]}),`
 `,i(n.li,{children:[`
-`,i(n.p,{children:[e(n.a,{href:"?path=/docs/spinetic--documentation#arrowRightPosition",children:"arrowRightPosition"}),": ",e("span",{dangerouslySetInnerHTML:{__html:t.arrowRightPosition.description}})]}),`
+`,i(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#arrowRightPosition",children:"arrowRightPosition"}),": ",e("span",{dangerouslySetInnerHTML:{__html:t.arrowRightPosition.description}})]}),`
 `]}),`
 `,i(n.li,{children:[`
-`,i(n.p,{children:[e(n.a,{href:"?path=/docs/spinetic--documentation#hideArrows",children:"hideArrows"}),": ",e("span",{dangerouslySetInnerHTML:{__html:t.hideArrows.description}})]}),`
+`,i(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#hideArrows",children:"hideArrows"}),": ",e("span",{dangerouslySetInnerHTML:{__html:t.hideArrows.description}})]}),`
 `]}),`
 `,i(n.li,{children:[`
-`,i(n.p,{children:[e(n.a,{href:"?path=/docs/spinetic--documentation#dots",children:"dots"}),": ",e("span",{dangerouslySetInnerHTML:{__html:t.dots.description}})]}),`
+`,i(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#dots",children:"dots"}),": ",e("span",{dangerouslySetInnerHTML:{__html:t.dots.description}})]}),`
 `]}),`
 `,i(n.li,{children:[`
-`,i(n.p,{children:[e(n.a,{href:"?path=/docs/spinetic--documentation#dotsModel",children:"dotsModel"}),": ",e("span",{dangerouslySetInnerHTML:{__html:t.dotsModel.description}})]}),`
+`,i(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#dotsModel",children:"dotsModel"}),": ",e("span",{dangerouslySetInnerHTML:{__html:t.dotsModel.description}})]}),`
 `]}),`
 `,i(n.li,{children:[`
-`,i(n.p,{children:[e(n.a,{href:"?path=/docs/spinetic--documentation#indexInDots",children:"indexInDots"}),": ",e("span",{dangerouslySetInnerHTML:{__html:t.indexInDots.description}})]}),`
+`,i(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#indexInDots",children:"indexInDots"}),": ",e("span",{dangerouslySetInnerHTML:{__html:t.indexInDots.description}})]}),`
 `]}),`
 `,i(n.li,{children:[`
-`,i(n.p,{children:[e(n.a,{href:"?path=/docs/spinetic--documentation#autoRotate",children:"autoRotate"}),": ",e("span",{dangerouslySetInnerHTML:{__html:t.autoRotate.description}})]}),`
+`,i(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#autoRotate",children:"autoRotate"}),": ",e("span",{dangerouslySetInnerHTML:{__html:t.autoRotate.description}})]}),`
 `]}),`
 `,i(n.li,{children:[`
-`,i(n.p,{children:[e(n.a,{href:"?path=/docs/spinetic--documentation#msPerAutoRotate",children:"msPerAutoRotate"}),": ",e("span",{dangerouslySetInnerHTML:{__html:t.msPerAutoRotate.description}})]}),`
+`,i(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#msPerAutoRotate",children:"msPerAutoRotate"}),": ",e("span",{dangerouslySetInnerHTML:{__html:t.msPerAutoRotate.description}})]}),`
 `]}),`
 `,i(n.li,{children:[`
-`,i(n.p,{children:[e(n.a,{href:"?path=/docs/spinetic--documentation#clickTransitionCtrl",children:"clickTransitionCtrl"}),": ",e("span",{dangerouslySetInnerHTML:{__html:t.clickTransitionCtrl.description}})]}),`
+`,i(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#clickTransitionCtrl",children:"clickTransitionCtrl"}),": ",e("span",{dangerouslySetInnerHTML:{__html:t.clickTransitionCtrl.description}})]}),`
 `]}),`
 `,i(n.li,{children:[`
-`,i(n.p,{children:[e(n.a,{href:"?path=/docs/spinetic--documentation#msPerClicks",children:"msPerClicks"}),": ",e("span",{dangerouslySetInnerHTML:{__html:t.msPerClicks.description}})]}),`
+`,i(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#msPerClicks",children:"msPerClicks"}),": ",e("span",{dangerouslySetInnerHTML:{__html:t.msPerClicks.description}})]}),`
 `]}),`
 `,i(n.li,{children:[`
-`,i(n.p,{children:[e(n.a,{href:"?path=/docs/spinetic--documentation#draggable",children:"draggable"}),": ",e("span",{dangerouslySetInnerHTML:{__html:t.draggable.description}})]}),`
+`,i(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#draggable",children:"draggable"}),": ",e("span",{dangerouslySetInnerHTML:{__html:t.draggable.description}})]}),`
 `]}),`
 `,i(n.li,{children:[`
-`,i(n.p,{children:[e(n.a,{href:"?path=/docs/spinetic--documentation#touchThreshold",children:"touchThreshold"}),": ",e("span",{dangerouslySetInnerHTML:{__html:t.touchThreshold.description}})]}),`
+`,i(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#touchThreshold",children:"touchThreshold"}),": ",e("span",{dangerouslySetInnerHTML:{__html:t.touchThreshold.description}})]}),`
 `]}),`
 `,i(n.li,{children:[`
-`,i(n.p,{children:[e(n.a,{href:"?path=/docs/spinetic--documentation#showItems",children:"showItems"}),": ",e("span",{dangerouslySetInnerHTML:{__html:t.showItems.description}})]}),`
+`,i(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#showItems",children:"showItems"}),": ",e("span",{dangerouslySetInnerHTML:{__html:t.showItems.description}})]}),`
 `]}),`
 `,i(n.li,{children:[`
-`,i(n.p,{children:[e(n.a,{href:"?path=/docs/spinetic--documentation#autoWidth",children:"autoWidth"}),": ",e("span",{dangerouslySetInnerHTML:{__html:t.autoWidth.description}})]}),`
+`,i(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#autoWidth",children:"autoWidth"}),": ",e("span",{dangerouslySetInnerHTML:{__html:t.autoWidth.description}})]}),`
 `]}),`
 `,i(n.li,{children:[`
-`,i(n.p,{children:[e(n.a,{href:"?path=/docs/spinetic--documentation#fullHeightItems",children:"fullHeightItems"}),": ",e("span",{dangerouslySetInnerHTML:{__html:t.fullHeightItems.description}})]}),`
+`,i(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#fullHeightItems",children:"fullHeightItems"}),": ",e("span",{dangerouslySetInnerHTML:{__html:t.fullHeightItems.description}})]}),`
 `]}),`
 `,i(n.li,{children:[`
-`,i(n.p,{children:[e(n.a,{href:"?path=/docs/spinetic--documentation#verticalAlign",children:"verticalAlign"}),": ",e("span",{dangerouslySetInnerHTML:{__html:t.verticalAlign.description}})]}),`
+`,i(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#verticalAlign",children:"verticalAlign"}),": ",e("span",{dangerouslySetInnerHTML:{__html:t.verticalAlign.description}})]}),`
 `]}),`
 `,i(n.li,{children:[`
-`,i(n.p,{children:[e(n.a,{href:"?path=/docs/spinetic--documentation#verticalAlign",children:"responsive"}),": ",e("span",{dangerouslySetInnerHTML:{__html:t.responsive.description}})]}),`
+`,i(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#verticalAlign",children:"responsive"}),": ",e("span",{dangerouslySetInnerHTML:{__html:t.responsive.description}})]}),`
 `]}),`
 `]}),`
 `,i(n.h2,{id:"change-function",children:[e(n.code,{children:"change"}),": ",e(n.em,{children:"function"})]}),`
@@ -171,4 +171,4 @@ default App;
 };
 `})}),`
 `,e(n.p,{children:"Feel free to explore the various features and configurations available. Utilize the Spinetic playground for a customized carousel experience tailored to your preferences. Explore and enjoy!"}),`
-`,i("div",{class:"nav-previous-next-idx",children:[e(n.p,{children:e(n.a,{href:"?path=/docs/pages-getting-started--documentation",children:"< Getting Started"})}),e(n.p,{children:e(n.a,{href:"?path=/docs/pages-playground--documentation",children:"Playground >"})})]})]})}function _(r={}){const{wrapper:n}=Object.assign({},c(),r.components);return n?e(n,Object.assign({},r,{children:e(o,r)})):o(r)}export{_ as default};
+`,i("div",{class:"nav-previous-next-idx",children:[e(n.p,{children:e(n.a,{href:"?path=/docs/pages-getting-started--documentation",children:"< Getting Started"})}),e(n.p,{children:e(n.a,{href:"?path=/docs/pages-playground--documentation",children:"Playground >"})})]})]})}function _(r={}){const{wrapper:n}=Object.assign({},a(),r.components);return n?e(n,Object.assign({},r,{children:e(o,r)})):o(r)}export{_ as default};
