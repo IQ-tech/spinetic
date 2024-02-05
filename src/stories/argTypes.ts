@@ -1,6 +1,135 @@
+import { SpineticChangeEvent } from "types";
 import { _defaultConfig } from "../spinetic/spinetic-config-validation";
 
+
 export const argTypes = {
+    children: {
+        description: `<span id="children">Children elements to be rendered inside the Spinetic component.</span>`,
+        control: "number",
+        table: {
+            type: {
+                summary: "ReactNode | ReactNode[]",
+                detail: `
+                
+The "children" property represents the child items of the Spinetic component to be rendered.
+ For example:
+
+<Spinetic>
+    <SpineticItem>
+    <div style={{ height: 200, width: 250, background: "blue", margin: 10 }}>
+        Content 1
+    </div>
+    </SpineticItem>
+    <SpineticItem>
+    <div style={{ height: 200, width: 250, background: "blue", margin: 10 }}>
+        Content 2
+    </div>
+    </SpineticItem>
+</Spinetic>
+                
+This is an example of how you can render two children within the Spinetic component.
+Another example is as follows:
+
+const exampleItems = [
+    "content-1",
+    "content-2",
+    "content-3"
+];
+    
+<Spinetic >
+{exampleItems.map((content, index) => (
+    <SpineticItem key={index}>
+    <div
+        style={{ height: 200, width: 250, background: "blue", margin: 10 }}
+    >
+        {content}
+    </div>
+    </SpineticItem>
+))}
+</Spinetic>
+                
+Always remember to wrap your component with a SpineticItem.
+
+
+.
+`
+            },
+        },
+    },
+
+
+    "  ": {
+        description: `config`,
+        control: " ",
+        table: {
+            type: {
+                summary: "TypesConfigOptional",
+                detail: `
+The config prop accepts an object with optional settings to customize the Spinetic component. 
+Here are the available types:
+
+types:
+
+interface TypesConfigOptional {
+    arrows?: boolean;
+    arrowLeftPosition?: number;
+    arrowRightPosition?: number;
+    hideArrows?: boolean;
+  
+    dots?: boolean;
+    dotsModel?: TypesDotsModel;
+    indexInDots?: boolean;
+  
+    autoRotate?: boolean;
+    msPerAutoRotate?: number;
+  
+    clickTransitionCtrl?: boolean;
+    msPerClicks?: number;
+  
+    draggable?: boolean;
+    touchThreshold?: number;
+  
+    showItems?: number;
+    autoWidth?: boolean;
+    fullHeightItems?: boolean;
+    verticalAlign?: boolean;
+  
+    responsive?: TypesReponsiveSettings[];
+  }
+  
+interface TypesReponsiveSettings {
+breakpoint: number;
+settings: TypesConfigOptional;
+}
+
+
+  Example:
+{
+autoWidth: true,
+responsive: [
+    {
+    breakpoint: 768,
+    settings: {
+        arrows: false,
+        dots: false,
+        autoWidth: false,
+        fullHeightItems: false,
+        },
+    },
+  ]
+}
+
+The provided example showcases how to use the config prop to enable auto-width and define 
+responsive settings for different breakpoints, including adjusting arrow and 
+dot visibility, auto-width behavior, and full-height item display.
+
+.
+`
+            },
+
+        }
+    },
+
     arrows: {
         description: `<span id="arrows">Specifies whether to display arrows for navigation</span>`,
         control: "boolean",
@@ -53,7 +182,7 @@ export const argTypes = {
         control: "radio",
         options: ["default", "long-rounded"],
         table: {
-            type: { summary: "text" },
+            type: { summary: "string" },
             defaultValue: { summary: _defaultConfig.dotsModel },
         },
     },
@@ -128,11 +257,16 @@ export const argTypes = {
         },
     },
 
-
+    sb: { table: { disable: true } },
 
     showItems: {
         description: `<span id="showItems">Defines the number of items to show</span>`,
-        control: "number",
+        control: {
+            type: 'number', // range
+            min: 1,
+            max: 15, 
+            // step: 1,
+          },
         table: {
             type: { summary: "number" },
             defaultValue: { summary: 1 },
@@ -166,8 +300,17 @@ export const argTypes = {
             type: {
                 summary: "boolean",
                 detail: `
-            Responsive settings array controlling configuration changes based on breakpoints.
-            Each array element is an object with 'breakpoint' and optional 'settings'.
+The "verticalAlign" property ensures vertical alignment for all carousel items. 
+When set to true, the following properties are automatically configured:
+
+{    
+    arrows: false,
+    dots: false,
+    draggable: false,
+    fullHeightItems: false,
+}
+
+.
             `,
             },
             defaultValue: { summary: false },
@@ -176,16 +319,6 @@ export const argTypes = {
     },
 
 
-
-    // responsive: { 
-    //     description: `<span id="responsive">An array of objects representing responsive settings, each containing a breakpoint and optional settings (refer to individual properties)</span>`,
-    //     control: "object",
-    //     table: {
-    //         type: { summary: "object" },
-    //         defaultValue: { summary: '[{ breakpoint: 0, settings: {} }]' },
-    //     },
-    // }, 
-
     responsive: {
         description: `<span id="responsive">
           An array of objects representing responsive settings, controlling configuration changes in the carousel based on specified breakpoints.
@@ -193,34 +326,72 @@ export const argTypes = {
         </span>
         `,
         control: {
-            type: 'array',
-            of: {
-                type: 'object',
-                controls: {
-                    breakpoint: {
-                        type: 'number',
-                        description: 'The screen width breakpoint at which the specified settings will take effect.',
-                    },
-                    settings: {
-                        type: 'object',
-                        description: `
-                Optional settings to be applied when the screen width is equal to or less than the specified breakpoint.
-                These settings will override the default configuration.
-                `,
-                    },
-                },
-            },
+            // type: 'array',
         },
         table: {
             type: {
-                summary: 'array',
+                summary: 'TypesReponsiveSettings[]',
                 detail: `
-            Responsive settings array controlling configuration changes based on breakpoints.
-            Each array element is an object with 'breakpoint' and optional 'settings'.
+Types:
+        
+    TypesReponsiveSettings {
+        breakpoint: number;
+        settings: TypesConfigOptional;
+    }
+      
+Reactive definitions array that manages configuration changes based on breakpoints.
+Each array element is an object with optional "breakpoint" and "settings."
+
+Example:
+
+[
+    {  
+        breakpoint: 800, 
+        settings: {
+            arrows: false,
+            autoRotate: true,
+            dots: false
+        }
+    },
+    {  
+        breakpoint: 400, 
+        settings: {
+            verticalAlign: true
+        }
+    }
+]
+
+Breakpoint validation is performed from largest to smallest screen size. For 
+instance, the carousel applies the configuration based on the screen size,
+checking if it is  greater than 800 to apply the default configuration. Using 
+the example, if the screen size is less than 800 and greater than 400, the 
+following configuration will be applied:
+
+{
+    arrows: false,
+    autoRotate: true,
+    dots: false
+}
+
+If the screen size is less than 400, the configuration applied is:
+
+{
+    verticalAlign: true
+}            
+
+
+.
             `,
             },
             defaultValue: {
-                summary: '[{ breakpoint: 0, settings: {} }]',
+                summary: 'See default',
+                detail: `
+[
+    {  
+        breakpoint: 0, 
+        settings: {}
+    }
+]`
             },
         },
     },
@@ -272,22 +443,46 @@ export const argTypes = {
 
             defaultValue: {
                 summary: `See default`,
-                detail: ` { 
-previous: {
-    index: 0,
-    remainingIndexes: [],
-    totalItems: 0
-  },
-current: {
-    index: 0,
-    remainingIndexes: [],
-    totalItems: 0
-  }
+                detail: ` 
+{ 
+    previous: {
+        index: 0,
+        remainingIndexes: [],
+        totalItems: 0
+    },
+    current: {
+        index: 0,
+        remainingIndexes: [],
+        totalItems: 0
+    }
 }
                 `,
             },
         },
     },
 
-
 }
+
+
+
+export const handleChange = (event: SpineticChangeEvent) => {
+    const currentState = event.current;
+    const previousState = event.previous;
+
+    alert(
+        ` change
+      { 
+        current: {
+          index: ${JSON.stringify(currentState.index)},
+          remainingIndexes: ${JSON.stringify(previousState.remainingIndexes)}
+          totalItems: ${JSON.stringify(previousState.totalItems)}
+        },
+        previous: {
+            index: ${JSON.stringify(previousState.index)},
+            remainingIndexes: ${JSON.stringify(previousState.remainingIndexes)}
+            totalItems: ${JSON.stringify(previousState.totalItems)}
+        }
+    }
+  `
+    );
+};
