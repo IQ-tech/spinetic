@@ -13,7 +13,9 @@
   margin: 5px;
   padding: 10px;
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+  // box-shadow: 0px 2px 10px rgb(97, 218, 251);
   transition: transform 0.3s ease;
+  background-color: white;
 }
 
 .carousel-card:hover {
@@ -113,5 +115,19 @@ $hoverColor: #0056b3; // A darker shade for hover effect
 
   a {
     font-weight: 700;
+  }
+}
+
+.nav-previous-next-idx {
+  display: flex;
+  justify-content: space-between;
+
+  p {
+    max-width: 140px;
+  }
+
+  &__only-next {
+    display: flex;
+    justify-content: flex-end;
   }
 }
