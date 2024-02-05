@@ -1,10 +1,10 @@
-import { useRef, useEffect, useState, Children } from "react";
+import { useRef, useEffect, useState, Children, useCallback } from "react";
 import { useDragSpinetic } from "./spinetic-use-drag";
 import * as SpineticUtils from "./spinetic-utils";
 import * as SpineticConfig from "./spinetic-config-validation";
-import { TypesUseSpinetic, TypesReturnSpinetic, TypesConfig, TypesConfigOptional } from "types"
+import { TypesUseSpinetic, TypesReturnSpinetic, TypesConfig, TypesConfigOptional, SpineticChangeEvent } from "types"
 
-export const useSpinetic = ({ children, config, change }: TypesUseSpinetic
+export const useSpinetic = ({ children, config = SpineticConfig._defaultConfig, change }: TypesUseSpinetic
 ): TypesReturnSpinetic => {
 
   const spineticMain = useRef<HTMLDivElement>(null);
@@ -18,7 +18,7 @@ export const useSpinetic = ({ children, config, change }: TypesUseSpinetic
   const [_isProcessingClick, setIsProcessingClick] = useState(true);
   const [_initialWindowWidth, setInitialWindowWidth] = useState(window?.innerWidth);
 
-  const [elementsChange, setElementsChange] = useState<any>({ // [temp]: TODO: types 
+  const [elementsChange, setElementsChange] = useState<SpineticChangeEvent>({
     previous: {
       index: currentIndex,
       remainingIndexes: remainingIndexes,
@@ -31,13 +31,12 @@ export const useSpinetic = ({ children, config, change }: TypesUseSpinetic
     }
   })
 
-  useEffect(() => _setConfigs(config), [config]) // <<<< [temp]: TODO: to change in the storybook
   useEffect(() => _handleItemChange(), [remainingIndexes, currentIndex]);
   useEffect(() => { if (change) change(elementsChange) }, [currentIndex]);
 
   useEffect(() => _setConfigs(config), [children, _initialWindowWidth]);
   useEffect(() => {
-    _setConfigs(config);
+    _setConfigs(config); 
     window.removeEventListener('resize', _handleResize);
     window.addEventListener('resize', _handleResize);
 
@@ -52,8 +51,8 @@ export const useSpinetic = ({ children, config, change }: TypesUseSpinetic
           const currentIndex = newIdx >= remainingIndexes.length ? 0 : newIdx;
 
           _updateElementsChange({
-            current: { index: currentIndex },
-            previous: { index: prevIndex }
+            current: { ...elementsChange.current, index: currentIndex },
+            previous: { ...elementsChange.current, index: prevIndex }
           });
 
           return currentIndex
@@ -62,8 +61,11 @@ export const useSpinetic = ({ children, config, change }: TypesUseSpinetic
 
       return () => clearInterval(autoRotateIntervalId);
     }
-  }, [remainingIndexes]);
+  }, [currentConfig.autoRotate]); // used to be: remainingIndexes
 
+  useEffect(() => { if (config.sb)  _setConfigs(config)
+}, [config])
+  
 
   const _handleResize = (): void => {
     if (_initialWindowWidth !== window?.innerWidth) {
@@ -118,9 +120,6 @@ export const useSpinetic = ({ children, config, change }: TypesUseSpinetic
 
     spineticMain.current?.classList.toggle("spinetic-vertical-align", currentConfig.verticalAlign);
 
-    setCurrentIndex(0)
-    console.log("_setCarouselWidth")
-
     let numVisibleCards = 0;
     let totalVisibleWidth = 0;
     let maxScrollIndex = 0;
@@ -135,6 +134,7 @@ export const useSpinetic = ({ children, config, change }: TypesUseSpinetic
     });
 
     maxScrollIndex = Math.max(0, Children.count(children) - numVisibleCards);
+  
     let scrollToIndex = currentIndex;
     let scrollAmount = 0;
 
@@ -173,6 +173,8 @@ export const useSpinetic = ({ children, config, change }: TypesUseSpinetic
 
     setRemainingIndexes(currentRemainingIdx);
 
+    if (elementsChange.current.remainingIndexes !== currentRemainingIdx) setCurrentIndex(0);
+
     const hasDraggable = currentConfig.draggable && remainingIndexes?.length > 1
     spineticContainer.current?.classList.toggle("hasDraggable", hasDraggable);
 
@@ -181,7 +183,7 @@ export const useSpinetic = ({ children, config, change }: TypesUseSpinetic
     } else {
       _setCarouselContainerTransform(scrollAmount);
     }
-  }
+  };
 
   const _getCarouselItemsWidth = (): number[] => {
     const carouselItems: NodeListOf<HTMLElement> | null =
@@ -192,16 +194,21 @@ export const useSpinetic = ({ children, config, change }: TypesUseSpinetic
     const widths: number[] = [];
 
     if (carouselItems !== null) {
-      carouselItems.forEach((item: HTMLElement) => {
+      carouselItems.forEach((item: HTMLElement, i) => {
 
-        if (currentConfig.autoWidth) {
+        const defaultAutoWidth = config.autoWidth ?? false
+        const autoWidth = config.sb ? defaultAutoWidth : currentConfig.autoWidth;
+     
+        if (defaultAutoWidth) {
           widths.push(item.offsetWidth)
           item.style.width = "";
 
         } else {
-          widths.push(mainWidth / currentConfig.showItems);
+          const showItems = config.sb ? SpineticConfig.validShowItems(config.showItems) : currentConfig.showItems;
+          
+          widths.push(mainWidth / showItems);
 
-          item.style.width = mainWidth / currentConfig.showItems + "px";
+          item.style.width = mainWidth / showItems + "px";
         }
 
         if (currentConfig.fullHeightItems) {
@@ -219,8 +226,8 @@ export const useSpinetic = ({ children, config, change }: TypesUseSpinetic
     return widths;
   }
 
-  const _updateElementsChange = (updateElements: any) => { // TODO: types
-    setElementsChange((prevElementsChange: any) => {
+  const _updateElementsChange = (updateElements: SpineticChangeEvent) => {
+    setElementsChange((prevElementsChange: SpineticChangeEvent) => {
       return {
         previous: {
           ...prevElementsChange.previous,
@@ -246,8 +253,8 @@ export const useSpinetic = ({ children, config, change }: TypesUseSpinetic
       const newIdx = currentIndex - 1
 
       _updateElementsChange({
-        current: { index: newIdx },
-        previous: { index: currentIndex }
+        current: { ...elementsChange.current, index: newIdx },
+        previous: { ...elementsChange.current, index: currentIndex }
       });
 
       setCurrentIndex(newIdx);
@@ -260,8 +267,8 @@ export const useSpinetic = ({ children, config, change }: TypesUseSpinetic
       const newIdx = currentIndex + 1;
 
       _updateElementsChange({
-        current: { index: newIdx },
-        previous: { index: currentIndex }
+        current: { ...elementsChange.current, index: newIdx },
+        previous: { ...elementsChange.current, index: currentIndex }
       });
 
       setCurrentIndex(newIdx);
@@ -277,8 +284,8 @@ export const useSpinetic = ({ children, config, change }: TypesUseSpinetic
     if (_hasClickTransitionCtrl(_isValidIndex(index))) {
 
       _updateElementsChange({
-        current: { index: index },
-        previous: { index: currentIndex }
+        current: { ...elementsChange.current, index: index },
+        previous: { ...elementsChange.current, index: currentIndex }
       });
 
       setCurrentIndex(index);
