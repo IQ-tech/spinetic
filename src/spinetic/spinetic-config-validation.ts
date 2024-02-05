@@ -30,8 +30,6 @@ export const _defaultConfig: TypesConfig = {
 
 
 export const _validResponsive = (responsive?: TypesReponsiveSettings[]) => {
-  console.log("🚀 ~ responsive:", responsive?.length)
-  
   if (!responsive|| !responsive?.length) return _defaultConfig.responsive;
 
   const sortBreakPoints = responsive?.sort(
@@ -50,8 +48,12 @@ export const _validTouchLimit = (touchThreshold: number) => {
     : touchThreshold;
 }
 
-const _validShowItems = (showItems: number) => {
-  return showItems < 1 ? _defaultConfig.showItems : showItems;
+export const validShowItems = (showItems: number) => {
+  return !showItems || showItems < 1 ? _defaultConfig.showItems : showItems;
+}
+
+export const validAutoWidth = (autoWidth: boolean | undefined) => {
+  return typeof autoWidth !== "boolean" ?? _defaultConfig.autoWidth;
 }
 
 export const validConfig = (config?: TypesConfigOptional): TypesConfig => {
@@ -74,15 +76,15 @@ export const validConfig = (config?: TypesConfigOptional): TypesConfig => {
     draggable: C?.draggable ?? DC.draggable,
     touchThreshold: _validTouchLimit(C?.touchThreshold ?? DC.touchThreshold),
 
-    showItems: _validShowItems(C?.showItems ?? DC.showItems),
+    showItems: validShowItems(C?.showItems ?? DC.showItems),
     fullHeightItems: C?.fullHeightItems ?? DC.fullHeightItems,
-    autoWidth: C?.autoWidth ?? DC.autoWidth,
+    autoWidth: validAutoWidth(C?.autoWidth),
     verticalAlign: C?.verticalAlign ?? DC.verticalAlign,
 
     clickTransitionCtrl: C?.clickTransitionCtrl ?? DC.clickTransitionCtrl,
     msPerClicks: C?.msPerClicks ?? DC.msPerClicks,
 
-    responsive: _validResponsive(C?.responsive),
+    responsive: _validResponsive(C?.responsive)
   };
 
   return currentOrDefaultConfig;

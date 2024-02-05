@@ -10,9 +10,9 @@ import { SpineticChangeEvent } from "types";
 import Spinetic from "../spinetic";
 import SpineticItem from "../spinetic/spinetic-item";
 
-import CardExample, { exampleItems } from "./card-example";
+import CardExample, { exampleItems, generateItems } from "./card-example";
 
-import { argTypes } from "./argTypes";
+import { argTypes, handleChange } from "./argTypes";
 import documentation from "./docs/Playground.mdx";
 
 export default {
@@ -24,26 +24,20 @@ export default {
   argTypes: argTypes,
 } as Meta;
 
-const handleChange = (event: SpineticChangeEvent) => {
-  const previousState = event.previous;
-  const currentState = event.current;
-
-  alert(
-    `Previous State: ${JSON.stringify(
-      previousState
-    )}\nCurrent State: ${JSON.stringify(currentState)}`
-  );
-};
 
 const Template: StoryFn = (args: TypesConfigOptional | any) => {
+  const childrens = generateItems(args.children) 
+
   const change = args.change;
 
+  delete args.children;
   delete args.change;
 
-  const config = args;
+  const config = {...args};
+
   return (
-    <Spinetic config={config} change={change ? handleChange : undefined}>
-      {exampleItems.map((text: string, index: number) => (
+    <Spinetic sb config={{...config }} change={change ? handleChange : undefined}>
+      {childrens.map((text: string, index: number) => (
         <SpineticItem key={index}>
           <CardExample highlightText={false} index={index} text={text} />
         </SpineticItem>
@@ -52,14 +46,14 @@ const Template: StoryFn = (args: TypesConfigOptional | any) => {
   );
 };
 
-export const Default = Template.bind({});
+ export const Default = Template.bind({});
 
-export const AutoWidth = Template.bind({});
-AutoWidth.args = {
-  autoWidth: true,
-  dotsModel: "long-rounded",
-  fullHeightItems: true,
-};
+// export const AutoWidth = Template.bind({});
+// AutoWidth.args = {
+//   autoWidth: true,
+//   dotsModel: "long-rounded",
+//   fullHeightItems: true,
+// };
 
 // export const AutoRotate = Template.bind({});
 // AutoRotate.args = {

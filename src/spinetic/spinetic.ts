@@ -4,7 +4,11 @@ import * as SpineticUtils from "./spinetic-utils";
 import * as SpineticConfig from "./spinetic-config-validation";
 import { TypesUseSpinetic, TypesReturnSpinetic, TypesConfig, TypesConfigOptional, SpineticChangeEvent } from "types"
 
-export const useSpinetic = ({ children, config = SpineticConfig._defaultConfig, change }: TypesUseSpinetic
+export const useSpinetic = ({
+  sb,
+  children,
+  config = SpineticConfig._defaultConfig,
+  change }: TypesUseSpinetic
 ): TypesReturnSpinetic => {
 
   const spineticMain = useRef<HTMLDivElement>(null);
@@ -31,12 +35,13 @@ export const useSpinetic = ({ children, config = SpineticConfig._defaultConfig, 
     }
   })
 
+  useEffect(() => { if (sb) _setConfigs(config) }, [config, sb])
   useEffect(() => _handleItemChange(), [remainingIndexes, currentIndex]);
   useEffect(() => { if (change) change(elementsChange) }, [currentIndex]);
-
   useEffect(() => _setConfigs(config), [children, _initialWindowWidth]);
+
   useEffect(() => {
-    _setConfigs(config); 
+    _setConfigs(config);
     window.removeEventListener('resize', _handleResize);
     window.addEventListener('resize', _handleResize);
 
@@ -62,10 +67,6 @@ export const useSpinetic = ({ children, config = SpineticConfig._defaultConfig, 
       return () => clearInterval(autoRotateIntervalId);
     }
   }, [currentConfig.autoRotate]); // used to be: remainingIndexes
-
-  useEffect(() => { if (config.sb)  _setConfigs(config)
-}, [config])
-  
 
   const _handleResize = (): void => {
     if (_initialWindowWidth !== window?.innerWidth) {
@@ -134,7 +135,7 @@ export const useSpinetic = ({ children, config = SpineticConfig._defaultConfig, 
     });
 
     maxScrollIndex = Math.max(0, Children.count(children) - numVisibleCards);
-  
+
     let scrollToIndex = currentIndex;
     let scrollAmount = 0;
 
@@ -197,15 +198,15 @@ export const useSpinetic = ({ children, config = SpineticConfig._defaultConfig, 
       carouselItems.forEach((item: HTMLElement, i) => {
 
         const defaultAutoWidth = config.autoWidth ?? false
-        const autoWidth = config.sb ? defaultAutoWidth : currentConfig.autoWidth;
-     
+        const autoWidth = sb ? defaultAutoWidth : currentConfig.autoWidth;
+
         if (defaultAutoWidth) {
           widths.push(item.offsetWidth)
           item.style.width = "";
 
         } else {
-          const showItems = config.sb ? SpineticConfig.validShowItems(config.showItems) : currentConfig.showItems;
-          
+          const showItems = sb ? SpineticConfig.validShowItems(config.showItems) : currentConfig.showItems;
+
           widths.push(mainWidth / showItems);
 
           item.style.width = mainWidth / showItems + "px";

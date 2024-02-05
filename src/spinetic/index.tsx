@@ -5,6 +5,7 @@ import { useSpinetic } from "./spinetic";
 import { TypesSpinetic } from "types";
 
 const Spinetic = ({
+  sb,
   children,
   config,
   change
@@ -23,8 +24,8 @@ const Spinetic = ({
 
     start,
     move,
-    end
-  } = useSpinetic({ children, config, change });
+    end,
+  } = useSpinetic({ sb, children, config, change });
 
   return (
     <div className="spinetic-main" ref={spineticMain}>
