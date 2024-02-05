@@ -1,6 +1,6 @@
 # Spinetic 
 
-## [Getting Started](https://iq-tech.github.io/spinetic/?path=/docs/getting-started--documentation)
+## [Getting Started](https://iq-tech.github.io/spinetic/?path=/docs/pages-getting-started--documentation)
 
 ### Installation with npm
 
