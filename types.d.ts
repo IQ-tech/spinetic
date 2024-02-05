@@ -87,7 +87,6 @@ export interface TypesUseDragSpinetic {
 
 //#region Components
 export interface TypesSpinetic {
-  sb?: boolean,
   children: ReactNode;
   config?: TypesConfigOptional;
   change?: (e: SpineticChangeEvent) => void; 
@@ -110,7 +109,6 @@ export interface TypesReturnSpinetic {
 }
 
 export interface TypesUseSpinetic {
-  sb?: boolean,
   children: ReactNode | ReactNode[], 
   config?: TypesConfigOptional | any,
   change?: (e: any) => void ; // TODO types

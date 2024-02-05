@@ -257,8 +257,6 @@ dot visibility, auto-width behavior, and full-height item display.
         },
     },
 
-    sb: { table: { disable: true } },
-
     showItems: {
         description: `<span id="showItems">Defines the number of items to show</span>`,
         control: {

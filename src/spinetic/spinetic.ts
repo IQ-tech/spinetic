@@ -5,7 +5,6 @@ import * as SpineticConfig from "./spinetic-config-validation";
 import { TypesUseSpinetic, TypesReturnSpinetic, TypesConfig, TypesConfigOptional, SpineticChangeEvent } from "types"
 
 export const useSpinetic = ({
-  sb,
   children,
   config = SpineticConfig._defaultConfig,
   change }: TypesUseSpinetic
@@ -21,6 +20,7 @@ export const useSpinetic = ({
   const [_carouselItemsWidths, setCarouselItemsWidths] = useState<number[]>([]);
   const [_isProcessingClick, setIsProcessingClick] = useState(true);
   const [_initialWindowWidth, setInitialWindowWidth] = useState(window?.innerWidth);
+  const [_sb, setSb] = useState<boolean | undefined>(undefined)
 
   const [elementsChange, setElementsChange] = useState<SpineticChangeEvent>({
     previous: {
@@ -35,7 +35,8 @@ export const useSpinetic = ({
     }
   })
 
-  useEffect(() => { if (sb) _setConfigs(config) }, [config, sb])
+  useEffect(() => checkIsSb(), []);
+  useEffect(() => { if (_sb) _setConfigs(config)}, [config, _sb])
   useEffect(() => _handleItemChange(), [remainingIndexes, currentIndex]);
   useEffect(() => { if (change) change(elementsChange) }, [currentIndex]);
   useEffect(() => _setConfigs(config), [children, _initialWindowWidth]);
@@ -73,6 +74,17 @@ export const useSpinetic = ({
       setInitialWindowWidth(window?.innerWidth);
       _setConfigs(config);
     }
+  }
+
+
+  const checkIsSb = () => {
+    const currentUrl = window?.location?.href;
+    const hasStoreInSS = !!sessionStorage.getItem("@storybook/manager/store");
+    const hasStoreInLS = !!localStorage.getItem("@storybook/manager/store");
+
+    const isSb = currentUrl?.includes("docs") || hasStoreInSS || hasStoreInLS;
+
+    return setSb(isSb)
   }
 
   const _setConfigs = (config?: TypesConfigOptional) => {
@@ -198,14 +210,14 @@ export const useSpinetic = ({
       carouselItems.forEach((item: HTMLElement, i) => {
 
         const defaultAutoWidth = config.autoWidth ?? false
-        const autoWidth = sb ? defaultAutoWidth : currentConfig.autoWidth;
+        const autoWidth = _sb ? defaultAutoWidth : currentConfig.autoWidth;
 
         if (defaultAutoWidth) {
           widths.push(item.offsetWidth)
           item.style.width = "";
 
         } else {
-          const showItems = sb ? SpineticConfig.validShowItems(config.showItems) : currentConfig.showItems;
+          const showItems = _sb ? SpineticConfig.validShowItems(config.showItems) : currentConfig.showItems;
 
           widths.push(mainWidth / showItems);
 
