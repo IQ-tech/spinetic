@@ -239,7 +239,7 @@ export const argTypes = {
         component. It receives an event object of type SpineticChangeEvent, providing information 
         about the previous and current states of the carousel.
       
-              - Callback Signature**:
+              - Callback Signature
                 (event: SpineticChangeEvent) => void
       
               - Event Object: SpineticChangeEvent:
@@ -252,7 +252,21 @@ export const argTypes = {
                   - \`index\`: The index of the currently active item.
                   - \`remainingIndexes\`: The number of remaining items in the carousel.
                   - \`totalItems\`: The total number of items in the carousel.
+
+       ------------------------------------------------------------------------------------------
+
+[WARNING] The property has been set as boolean solely for testing purposes in the playground.
+ When setting the change property to true, the following function will be assigned to the change event:
+
+    const handleChange = (event: SpineticChangeEvent) => {
+        const previousState = event.previous;
+        const currentState = event.current;
       
+        alert('
+            Previous State: JSON.stringify(previousState)
+            Current State: JSON.stringify(currentState)}
+        ');
+      };
             `,
             },
 
