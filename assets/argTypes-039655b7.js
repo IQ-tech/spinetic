@@ -41,7 +41,7 @@ Always remember to wrap your component with a SpineticItem.
 
 
 .
-`}}},"  ":{description:"config",control:" ",table:{type:{summary:"TypesConfigOptional",detail:`
+`}}},config:{description:"config",control:" ",table:{type:{summary:"TypesConfigOptional",detail:`
 The config prop accepts an object with optional settings to customize the Spinetic component. 
 Here are the available types:
 
