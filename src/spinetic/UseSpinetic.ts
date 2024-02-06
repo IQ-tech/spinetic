@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState, Children, useCallback } from "react";
+import { useRef, useEffect, useState, Children, useCallback, ReactNode } from "react";
 import { useDragSpinetic } from "./SpineticUseDrag";
 import * as SpineticUtils from "./SpineticUtils";
 import * as SpineticConfig from "./SpineticConfigValidation";
@@ -16,11 +16,12 @@ export const useSpinetic = ({
   const [currentConfig, setCurrentConfig] = useState<TypesConfig>(SpineticConfig.validConfig(config));
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [remainingIndexes, setRemainingIndexes] = useState<number[]>([]);
+  const [childrenCrl, setChildrenCrl] = useState<ReactNode | ReactNode[]>([]);
 
   const [_carouselItemsWidths, setCarouselItemsWidths] = useState<number[]>([]);
   const [_isProcessingClick, setIsProcessingClick] = useState(true);
   const [_initialWindowWidth, setInitialWindowWidth] = useState(window?.innerWidth);
-  const [_sb, setSb] = useState<boolean | undefined>(undefined)
+  const [_sb, setSb] = useState<boolean | undefined>(undefined);
 
   const [elementsChange, setElementsChange] = useState<SpineticChangeEvent>({
     previous: {
@@ -36,12 +37,11 @@ export const useSpinetic = ({
   })
 
   useEffect(() => checkIsSb(), []);
-  useEffect(() => { if (_sb) _setConfigs(config)}, [config, _sb]);
+  useEffect(() => { if (_sb) _setConfigs(config) }, [config, _sb]);
+  useEffect(() =>_setConfigs(config) , [children,  _initialWindowWidth]); 
 
-  useEffect(() => _setConfigs(config), [children, _initialWindowWidth]);
   useEffect(() => _handleItemChange(), [remainingIndexes, currentIndex]);
-
-  useEffect(() => { if (!!change && remainingIndexes?.length > 1)change(elementsChange)}, [currentIndex]);
+  useEffect(() => { if (!!change && remainingIndexes?.length > 1) change(elementsChange) }, [currentIndex]);
 
   useEffect(() => {
     _setConfigs(config);
@@ -50,6 +50,7 @@ export const useSpinetic = ({
 
     return () => window.removeEventListener('resize', _handleResize);
   }, [spineticContainer.current?.offsetWidth, _initialWindowWidth, window?.innerWidth]);
+
 
   useEffect(() => {
     if (currentConfig.autoRotate) {
@@ -78,7 +79,6 @@ export const useSpinetic = ({
     }
   }
 
-
   const checkIsSb = () => {
     const currentUrl = window?.location?.href;
     const hasStoreInSS = !!sessionStorage?.getItem("@storybook/manager/store");
@@ -86,7 +86,7 @@ export const useSpinetic = ({
 
     const isSb = currentUrl?.includes("docs") || hasStoreInSS || hasStoreInLS;
 
-    return setSb(isSb);
+    return setSb(false);
   }
 
   const _setConfigs = (config?: TypesConfigOptional) => {
@@ -116,7 +116,6 @@ export const useSpinetic = ({
 
   const _setCarouselWidth = (): void => {
     _getCarouselItemsWidth()
-    
     const totalWidth = SpineticUtils.sumCarouselItemsWidths(
       _carouselItemsWidths
     );
@@ -178,7 +177,11 @@ export const useSpinetic = ({
 
     setRemainingIndexes(currentRemainingIdx);
 
-    if (elementsChange?.current?.remainingIndexes !== currentRemainingIdx) setCurrentIndex(0);
+    const remainingidxIsEquals = SpineticUtils.arraysAreEqual(
+      elementsChange?.current?.remainingIndexes,
+      currentRemainingIdx)
+
+    if (!remainingidxIsEquals) setCurrentIndex(0);
 
     const draggable = _sb ? sbConfig.draggable : currentConfig.draggable;
 
@@ -215,13 +218,13 @@ export const useSpinetic = ({
           widths.push(mainWidth / showItems);
           item.style.width = mainWidth / showItems + "px";
         }
-
+ 
         const fullHeightItems = _sb ? sbConfig.fullHeightItems : currentConfig.fullHeightItems;
+    
         if (fullHeightItems) {
-          window?.requestAnimationFrame(() => {
+          window.requestAnimationFrame(() => {
             item.style.height = containerHeight + "px";
           });
-
         } else {
           item.style.height = "";
         }
