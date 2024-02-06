@@ -2,8 +2,8 @@
   "type": "module",
   "author": "lxavier",
   "name": "react-spinetic",
-  "homepage": "https://iq-tech.github.io/spinetic/",
-  "version": "0.0.40",
+  "homepage": "https://iq-tech.github.io/spinetic/?path=/docs/pages-playground--documentation",
+  "version": "0.0.43",
   "description": "A lightweight React carousel library for creating interactive carousels in your web applications.",
   "private": false,
   "keywords": [
