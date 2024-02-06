@@ -53,7 +53,7 @@ export const validShowItems = (showItems: number) => {
 }
 
 export const validAutoWidth = (autoWidth: boolean | undefined) => {
-  return typeof autoWidth !== "boolean" ?? _defaultConfig.autoWidth;
+  return typeof autoWidth !== "boolean" ? _defaultConfig.autoWidth : autoWidth;
 }
 
 export const validConfig = (config?: TypesConfigOptional): TypesConfig => {
