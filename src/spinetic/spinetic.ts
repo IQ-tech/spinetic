@@ -44,7 +44,7 @@ export const useSpinetic = ({
   useEffect(() => { if (!!change && remainingIndexes?.length > 0)change(elementsChange)}, [currentIndex]);
 
   useEffect(() => {
-   // _setConfigs(config);
+    _setConfigs(config);
     window.removeEventListener('resize', _handleResize);
     window.addEventListener('resize', _handleResize);
 
@@ -69,7 +69,7 @@ export const useSpinetic = ({
 
       return () => clearInterval(autoRotateIntervalId);
     }
-  }, [remainingIndexes, currentConfig.autoRotate]); // remainingIndexes
+  }, [remainingIndexes, currentConfig.autoRotate]);
 
   const _handleResize = (): void => {
     if (_initialWindowWidth !== window?.innerWidth) {
@@ -86,11 +86,10 @@ export const useSpinetic = ({
 
     const isSb = currentUrl?.includes("docs") || hasStoreInSS || hasStoreInLS;
 
-    return setSb(false)
+    return setSb(isSb)
   }
 
   const _setConfigs = (config?: TypesConfigOptional) => {
-    // checkIsSb();
     const currentOrDefaultConfig: TypesConfig = SpineticConfig.validConfig(config);
 
     const breakpoints = currentOrDefaultConfig.responsive
