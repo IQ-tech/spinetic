@@ -50,3 +50,22 @@
       ?.reduce((total, width) => total - width, 0));
   }
 
+  /**
+ * Compares two arrays of numbers for equality.
+ *
+ * @param {number[]} array1 - The first array to compare.
+ * @param {number[]} array2 - The second array to compare.
+ * @returns {boolean} True if both arrays are of equal length and contain identical elements at each index, otherwise false.
+ *
+ * @example
+ * const arrayA = [1, 2, 3];
+ * const arrayB = [1, 2, 3];
+ * const result = arraysAreEqual(arrayA, arrayB); // result is true
+ */
+export const arraysAreEqual = (array1: any[] | any, array2: any[] | any) => {
+  if (array1?.length !== array2?.length || !array1 || !array2) {
+    return false;
+  }
+
+  return array1?.every((element: any, index: number) => element === array2[index]);
+};
