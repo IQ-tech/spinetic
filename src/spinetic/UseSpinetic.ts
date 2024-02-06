@@ -86,7 +86,7 @@ export const useSpinetic = ({
 
     const isSb = currentUrl?.includes("docs") || hasStoreInSS || hasStoreInLS;
 
-    return setSb(false);
+    return setSb(isSb);
   }
 
   const _setConfigs = (config?: TypesConfigOptional) => {
