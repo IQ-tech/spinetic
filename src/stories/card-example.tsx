@@ -13,6 +13,20 @@ export const exampleItems = [
   "useDebugValue: Customizes the display of a hook value in development tools. Facilitates debugging and bug analysis.",
 ];
 
+export const  generateItems = (quantity: number) => {
+  const result = [];
+
+  for (let i = 0; i < quantity; i++) {
+    const index = Math.floor(Math.random() * exampleItems.length);
+    result.push(exampleItems[index]);
+  }
+
+  if(!result || result?.length === 0) return exampleItems;
+
+  return result;
+}
+
+
 const LogoReact = () => {
   return (
     <svg
