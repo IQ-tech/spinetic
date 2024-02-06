@@ -15,7 +15,6 @@
     });
 
     sessionStorage.setItem('@storybook/manager/store', defaultStore);
-    alert("Welcome to the Spinentic documentation");
     location.reload();
   }
 })();
