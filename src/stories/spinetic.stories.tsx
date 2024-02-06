@@ -67,3 +67,18 @@ AutoRotate.args = {
   msPerAutoRotate: 2000,
   showItems: 3,
 };
+
+// export const Responsive = Template.bind({}); todo
+// Responsive.args = {
+//   autoWidth: true,
+//   dotsModel: "long-rounded",
+//   responsive: [
+//     {
+//       breakpoint: 768,
+//       settings: {
+//         dots: false,
+//         verticalAlign: true,
+//       },
+//     },
+//   ],
+// };

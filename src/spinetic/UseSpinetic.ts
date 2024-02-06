@@ -41,7 +41,7 @@ export const useSpinetic = ({
   useEffect(() => _setConfigs(config), [children, _initialWindowWidth]);
   useEffect(() => _handleItemChange(), [remainingIndexes, currentIndex]);
 
-  useEffect(() => { if (!!change && remainingIndexes?.length > 0)change(elementsChange)}, [currentIndex]);
+  useEffect(() => { if (!!change && remainingIndexes?.length > 1)change(elementsChange)}, [currentIndex]);
 
   useEffect(() => {
     _setConfigs(config);
@@ -86,7 +86,7 @@ export const useSpinetic = ({
 
     const isSb = currentUrl?.includes("docs") || hasStoreInSS || hasStoreInLS;
 
-    return setSb(isSb) // disabled sb
+    return setSb(isSb);
   }
 
   const _setConfigs = (config?: TypesConfigOptional) => {
@@ -110,35 +110,25 @@ export const useSpinetic = ({
       }
     });
 
-    if (currentOrDefaultConfig.verticalAlign) {
-      const updatedConfig = {
-        ...currentOrDefaultConfig,
-        arrows: false,
-        dots: false,
-        draggable: false,
-        fullHeightItems: false,
-      };
-
-      setCurrentConfig(SpineticConfig.validConfig(updatedConfig));
-      _setCarouselWidth();
-    } else {
-      setCurrentConfig(SpineticConfig.validConfig(currentOrDefaultConfig));
-      _setCarouselWidth();
-    }
+    setCurrentConfig(SpineticConfig.validConfig(currentOrDefaultConfig));
+    _setCarouselWidth();
   }
 
   const _setCarouselWidth = (): void => {
     _getCarouselItemsWidth()
+    
     const totalWidth = SpineticUtils.sumCarouselItemsWidths(
       _carouselItemsWidths
     );
 
-    spineticMain.current?.classList.toggle("spinetic-vertical-align", currentConfig.verticalAlign);
+    const sbConfig = _sb ? SpineticConfig.validConfig(config) : SpineticConfig._defaultConfig;
+
+    const verticalAlign = _sb ? sbConfig.verticalAlign : currentConfig.verticalAlign;
+    spineticMain.current?.classList.toggle("spinetic-vertical-align", verticalAlign);
 
     let numVisibleCards = 0;
     let totalVisibleWidth = 0;
     let maxScrollIndex = 0;
-
 
     _carouselItemsWidths.some((width) => {
       totalVisibleWidth += width;
@@ -190,7 +180,9 @@ export const useSpinetic = ({
 
     if (elementsChange?.current?.remainingIndexes !== currentRemainingIdx) setCurrentIndex(0);
 
-    const hasDraggable = currentConfig.draggable && remainingIndexes?.length > 1
+    const draggable = _sb ? sbConfig.draggable : currentConfig.draggable;
+
+    const hasDraggable = draggable && remainingIndexes?.length > 1
     spineticContainer.current?.classList.toggle("hasDraggable", hasDraggable);
 
     if (totalWidth <= spineticMain?.current!.offsetWidth) {
@@ -208,24 +200,24 @@ export const useSpinetic = ({
     const containerHeight = spineticContainer.current?.offsetHeight;
     const widths: number[] = [];
 
+    const sbConfig = _sb ? SpineticConfig.validConfig(config) : SpineticConfig._defaultConfig;
+
     if (carouselItems !== null) {
       carouselItems.forEach((item: HTMLElement, i) => {
 
-        const defaultAutoWidth = config.autoWidth ?? false
-        const autoWidth = _sb ? defaultAutoWidth : currentConfig.autoWidth;
+        const autoWidth = _sb ? sbConfig.autoWidth : currentConfig.autoWidth;
         if (autoWidth) {
           widths.push(item.offsetWidth)
           item.style.width = "";
 
         } else {
-          const showItems = _sb ? SpineticConfig.validShowItems(config.showItems ?? 1) : currentConfig.showItems;
-
+          const showItems = _sb ? sbConfig.showItems : currentConfig.showItems;
           widths.push(mainWidth / showItems);
-
           item.style.width = mainWidth / showItems + "px";
         }
 
-        if (currentConfig.fullHeightItems) {
+        const fullHeightItems = _sb ? sbConfig.fullHeightItems : currentConfig.fullHeightItems;
+        if (fullHeightItems) {
           window?.requestAnimationFrame(() => {
             item.style.height = containerHeight + "px";
           });
@@ -325,6 +317,8 @@ export const useSpinetic = ({
   }
 
   const { start, move, end } = useDragSpinetic({
+    _sb,
+    config,
     currentConfig,
     remainingIndexes,
     spineticContainer,

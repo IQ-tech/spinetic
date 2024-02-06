@@ -1,18 +1,21 @@
 import { useState } from "react";
 import * as SpineticUtils from "./SpineticUtils";
+import * as SpineticConfig from "./SpineticConfigValidation";
 import { TypesUseDragSpinetic, TypesEventDragStart, TypesEventDragMove, TypesEventDragEnd } from "types"
 
-export const useDragSpinetic = ({ 
-    currentConfig, 
-    remainingIndexes, 
-    spineticContainer, 
-    _carouselItemsWidths, 
-    currentIndex, 
-    _setCarouselContainerTransform, 
+export const useDragSpinetic = ({
+    _sb,
+    config,
+    currentConfig,
+    remainingIndexes,
+    spineticContainer,
+    _carouselItemsWidths,
+    currentIndex,
+    _setCarouselContainerTransform,
     previousItem,
     nextItem,
     _handleItemChange
- }: TypesUseDragSpinetic) => {
+}: TypesUseDragSpinetic) => {
 
     const [startX, setStartX] = useState<number>(0);
     const [startTX, setStartTX] = useState<number>(0);
@@ -22,6 +25,8 @@ export const useDragSpinetic = ({
     const [itemElement, setItemElement] = useState<HTMLElement | null>(null);
     const [finalDist, setFinalDist] = useState<number | null>(null);
 
+    const sbConfig = _sb ? SpineticConfig.validConfig(config) : SpineticConfig._defaultConfig;
+
     const detectTouchScreen = () => {
         const touchSupport = "ontouchstart" in window || navigator?.maxTouchPoints > 0;
 
@@ -29,6 +34,7 @@ export const useDragSpinetic = ({
     };
 
     const start = (e: TypesEventDragStart): void => {
+        if (!sbConfig.draggable) return;
         if (remainingIndexes?.length <= 1) return;
         detectTouchScreen();
 
@@ -47,6 +53,7 @@ export const useDragSpinetic = ({
     }
 
     const move = (e: TypesEventDragMove): void => {
+        if (!sbConfig.draggable) return;
         let touchMove = e?.touches?.[0];
 
         let currenTX = touchMove?.clientX;
@@ -85,6 +92,7 @@ export const useDragSpinetic = ({
     }
 
     const end = (e: TypesEventDragEnd): void => {
+        if (!sbConfig.draggable) return;
         setIsDragging(false);
 
         if (cancelDraggable || currentConfig.verticalAlign) return;
@@ -102,7 +110,7 @@ export const useDragSpinetic = ({
 
     return {
         start,
-        move, 
+        move,
         end
     }
 }

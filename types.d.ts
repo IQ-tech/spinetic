@@ -73,6 +73,8 @@ export interface TypesEventDragEnd {
 }
 
 export interface TypesUseDragSpinetic {
+  _sb: boolean | undefined;
+  config: TypesConfigOptional,
   currentConfig: TypesConfig, 
   remainingIndexes: number[], 
   spineticContainer: React.RefObject<HTMLDivElement>, 

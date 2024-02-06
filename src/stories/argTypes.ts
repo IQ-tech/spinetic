@@ -59,16 +59,13 @@ Always remember to wrap your component with a SpineticItem.
 
 
     config: {
-        description: `config`,
+        description: `The config prop accepts an object with optional settings to customize the Spinetic component. 
+        Here are the available types:`,
         control: " ",
-        order: 2,
         table: {
             type: {
                 summary: "TypesConfigOptional",
                 detail: `
-The config prop accepts an object with optional settings to customize the Spinetic component. 
-Here are the available types:
-
 types:
 
 interface TypesConfigOptional {
@@ -104,7 +101,7 @@ settings: TypesConfigOptional;
 }
 
 
-  Example:
+  Example to config:
 {
 autoWidth: true,
 responsive: [
@@ -251,10 +248,14 @@ dot visibility, auto-width behavior, and full-height item display.
 
     touchThreshold: {
         description: `<span id="touchThreshold">Sets the touch threshold for dragging</span>`,
-        control: "number",
+        control: {
+            type: 'range',
+            min: 1,
+            max: 400, 
+          },
         table: {
             type: { summary: "number" },
-            defaultValue: { summary: 100 },
+            defaultValue: { summary: 50 },
         },
     },
 

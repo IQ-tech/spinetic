@@ -30,7 +30,7 @@ export const _defaultConfig: TypesConfig = {
 
 
 export const _validResponsive = (responsive?: TypesReponsiveSettings[]) => {
-  if (!responsive|| !responsive?.length) return _defaultConfig.responsive;
+  if (!responsive || !responsive?.length) return _defaultConfig.responsive;
 
   const sortBreakPoints = responsive?.sort(
     (a: { breakpoint: number }, b: { breakpoint: number }) =>
@@ -60,7 +60,7 @@ export const validConfig = (config?: TypesConfigOptional): TypesConfig => {
   const C = config;
   const DC = _defaultConfig;
 
-  const currentOrDefaultConfig = {
+  const currentOrDefaultConfig: TypesConfig = {
     arrows: C?.arrows ?? DC.arrows,
     arrowLeftPosition: C?.arrowLeftPosition ?? DC.arrowLeftPosition,
     arrowRightPosition: C?.arrowRightPosition ?? DC.arrowRightPosition,
@@ -86,6 +86,17 @@ export const validConfig = (config?: TypesConfigOptional): TypesConfig => {
 
     responsive: _validResponsive(C?.responsive)
   };
+
+
+  if (currentOrDefaultConfig.verticalAlign) {
+    return {
+      ...currentOrDefaultConfig,
+      arrows: false,
+      dots: false,
+      draggable: false,
+      fullHeightItems: false,
+    };
+  }
 
   return currentOrDefaultConfig;
 }
