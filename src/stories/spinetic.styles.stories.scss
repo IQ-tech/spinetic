@@ -88,6 +88,7 @@ $hoverColor: #0056b3; // A darker shade for hover effect
   position: fixed;
   bottom: 25px;
   right: 30px;
+  z-index: 9999;
 
   svg {
     position: relative;

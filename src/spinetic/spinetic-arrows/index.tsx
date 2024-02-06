@@ -28,7 +28,7 @@ const SpineticArrows = ({
             onClick={() => onClickPreviousItem()}
             disabled={isFirstItem}
             style={{
-              right: `${currentConfig.positionArrowLeft}px`,
+              right: `${currentConfig.arrowLeftPosition}px`,
               display: handleDisappearArrowLeft ? "none" : "flex",
             }}
           >
@@ -45,8 +45,8 @@ const SpineticArrows = ({
             disabled={isLastItem}
             style={{
               left: currentConfig.autoWidth
-                ? `${currentConfig.positionArrowRight + 4}px`
-                : `${currentConfig.positionArrowRight}px`,
+                ? `${currentConfig.arrowRightPosition + 4}px`
+                : `${currentConfig.arrowRightPosition}px`,
               display: handleDisappearArrowRight ? "none" : "flex",
             }}
           >
