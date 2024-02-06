@@ -36,13 +36,15 @@ export const useSpinetic = ({
   })
 
   useEffect(() => checkIsSb(), []);
-  useEffect(() => { if (_sb) _setConfigs(config)}, [config, _sb])
-  useEffect(() => _handleItemChange(), [remainingIndexes, currentIndex]);
-  useEffect(() => { if (change) change(elementsChange) }, [currentIndex]);
+  useEffect(() => { if (_sb) _setConfigs(config)}, [config, _sb]);
+
   useEffect(() => _setConfigs(config), [children, _initialWindowWidth]);
+  useEffect(() => _handleItemChange(), [remainingIndexes, currentIndex]);
+
+  useEffect(() => { if (!!change && remainingIndexes?.length > 0)change(elementsChange)}, [currentIndex]);
 
   useEffect(() => {
-    _setConfigs(config);
+   // _setConfigs(config);
     window.removeEventListener('resize', _handleResize);
     window.addEventListener('resize', _handleResize);
 
@@ -58,7 +60,7 @@ export const useSpinetic = ({
 
           _updateElementsChange({
             current: { ...elementsChange.current, index: currentIndex },
-            previous: { ...elementsChange.current, index: prevIndex }
+            previous: { ...elementsChange.previous, index: prevIndex }
           });
 
           return currentIndex
@@ -67,7 +69,7 @@ export const useSpinetic = ({
 
       return () => clearInterval(autoRotateIntervalId);
     }
-  }, [currentConfig.autoRotate]); // used to be: remainingIndexes
+  }, [remainingIndexes, currentConfig.autoRotate]); // remainingIndexes
 
   const _handleResize = (): void => {
     if (_initialWindowWidth !== window?.innerWidth) {
@@ -79,15 +81,16 @@ export const useSpinetic = ({
 
   const checkIsSb = () => {
     const currentUrl = window?.location?.href;
-    const hasStoreInSS = !!sessionStorage.getItem("@storybook/manager/store");
-    const hasStoreInLS = !!localStorage.getItem("@storybook/manager/store");
+    const hasStoreInSS = !!sessionStorage?.getItem("@storybook/manager/store");
+    const hasStoreInLS = !!localStorage?.getItem("@storybook/manager/store");
 
     const isSb = currentUrl?.includes("docs") || hasStoreInSS || hasStoreInLS;
 
-    return setSb(isSb)
+    return setSb(false)
   }
 
   const _setConfigs = (config?: TypesConfigOptional) => {
+    // checkIsSb();
     const currentOrDefaultConfig: TypesConfig = SpineticConfig.validConfig(config);
 
     const breakpoints = currentOrDefaultConfig.responsive
@@ -186,7 +189,7 @@ export const useSpinetic = ({
 
     setRemainingIndexes(currentRemainingIdx);
 
-    if (elementsChange.current.remainingIndexes !== currentRemainingIdx) setCurrentIndex(0);
+    if (elementsChange?.current?.remainingIndexes !== currentRemainingIdx) setCurrentIndex(0);
 
     const hasDraggable = currentConfig.draggable && remainingIndexes?.length > 1
     spineticContainer.current?.classList.toggle("hasDraggable", hasDraggable);
@@ -211,13 +214,12 @@ export const useSpinetic = ({
 
         const defaultAutoWidth = config.autoWidth ?? false
         const autoWidth = _sb ? defaultAutoWidth : currentConfig.autoWidth;
-
-        if (defaultAutoWidth) {
+        if (autoWidth) {
           widths.push(item.offsetWidth)
           item.style.width = "";
 
         } else {
-          const showItems = _sb ? SpineticConfig.validShowItems(config.showItems) : currentConfig.showItems;
+          const showItems = _sb ? SpineticConfig.validShowItems(config.showItems ?? 1) : currentConfig.showItems;
 
           widths.push(mainWidth / showItems);
 
@@ -267,7 +269,7 @@ export const useSpinetic = ({
 
       _updateElementsChange({
         current: { ...elementsChange.current, index: newIdx },
-        previous: { ...elementsChange.current, index: currentIndex }
+        previous: { ...elementsChange.previous, index: currentIndex }
       });
 
       setCurrentIndex(newIdx);
@@ -281,7 +283,7 @@ export const useSpinetic = ({
 
       _updateElementsChange({
         current: { ...elementsChange.current, index: newIdx },
-        previous: { ...elementsChange.current, index: currentIndex }
+        previous: { ...elementsChange.previous, index: currentIndex }
       });
 
       setCurrentIndex(newIdx);
@@ -298,7 +300,7 @@ export const useSpinetic = ({
 
       _updateElementsChange({
         current: { ...elementsChange.current, index: index },
-        previous: { ...elementsChange.current, index: currentIndex }
+        previous: { ...elementsChange.previous, index: currentIndex }
       });
 
       setCurrentIndex(index);
