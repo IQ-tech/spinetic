@@ -219,17 +219,4 @@ If the screen size is less than 400, the configuration applied is:
         totalItems: 0
     }
 }
-                `}}}},c=o=>{const e=o.current,t=o.previous;alert(` change
-      { 
-        current: {
-          index: ${JSON.stringify(e.index)},
-          remainingIndexes: ${JSON.stringify(t.remainingIndexes)}
-          totalItems: ${JSON.stringify(t.totalItems)}
-        },
-        previous: {
-            index: ${JSON.stringify(t.index)},
-            remainingIndexes: ${JSON.stringify(t.remainingIndexes)}
-            totalItems: ${JSON.stringify(t.totalItems)}
-        }
-    }
-  `)};export{n as _,u as a,r as b,c as h,d as v};
+                `}}}};export{n as _,u as a,r as b,d as v};
