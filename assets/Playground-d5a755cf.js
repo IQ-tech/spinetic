@@ -1,4 +1,4 @@
-import{j as e,a as n,F as s,G as a}from"./CardExample-1e7cc3e5.js";import{M as p,P as c,C as h,b as d}from"./index-c70b6957.js";import{u as r}from"./index-a1cf9e47.js";import"./index-76fb7be0.js";import"./_commonjsHelpers-de833af9.js";import"./iframe-010ca532.js";import"../sb-preview/runtime.js";import"./index-d3ea75b5.js";import"./index-11d98b33.js";import"./index-8fd8397b.js";import"./index-356e4a49.js";function i(o){const t=Object.assign({h1:"h1",h2:"h2",p:"p",a:"a"},r(),o.components);return n(s,{children:[e(a,{}),`
+import{j as e,a as n,F as s,G as a}from"./CardExample-47265fcd.js";import{M as p,P as c,C as h,b as d}from"./index-af693af0.js";import{u as i}from"./index-a1cf9e47.js";import"./index-76fb7be0.js";import"./_commonjsHelpers-de833af9.js";import"./iframe-fb05a069.js";import"../sb-preview/runtime.js";import"./index-d3ea75b5.js";import"./index-11d98b33.js";import"./index-8fd8397b.js";import"./index-356e4a49.js";function r(o){const t=Object.assign({h1:"h1",h2:"h2",p:"p",a:"a"},i(),o.components);return n(s,{children:[e(a,{}),`
 `,e(p,{isTemplate:!0,title:"Pages/Playground"}),`
 `,e(t.h1,{id:"spinetic",children:"Spinetic"}),`
 `,e("br",{}),`
@@ -11,4 +11,8 @@ import{j as e,a as n,F as s,G as a}from"./CardExample-1e7cc3e5.js";import{M as p
 `,e(t.p,{children:"Here are some examples of configurations. Try expanding them or see if any examples suit your specific case."}),`
 `,e(d,{title:""}),`
 `,e(t.p,{children:"Hope this component proves helpful for you! If you have any questions down the road, don't hesitate to drop us a line. Best of luck with your project, and happy coding! 🌟"}),`
-`,e("div",{class:"nav-previous-next-idx",children:e(t.p,{children:e(t.a,{href:"?path=/docs/pages-props--documentation",children:"< Props"})})})]})}function b(o={}){const{wrapper:t}=Object.assign({},r(),o.components);return t?e(t,Object.assign({},o,{children:e(i,o)})):i(o)}export{b as default};
+`,e("div",{class:"nav-previous-next-idx",children:e(t.p,{children:e(t.a,{href:"?path=/docs/pages-props--documentation",children:"< Props"})})}),`
+`,e("br",{}),`
+`,e("br",{}),`
+`,e("br",{}),`
+`,e("br",{})]})}function T(o={}){const{wrapper:t}=Object.assign({},i(),o.components);return t?e(t,Object.assign({},o,{children:e(r,o)})):r(o)}export{T as default};

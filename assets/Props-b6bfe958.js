@@ -1,4 +1,4 @@
-import{j as e,a as i,F as c,G as d}from"./CardExample-1e7cc3e5.js";import{M as l}from"./index-c70b6957.js";import{a as t}from"./argTypes-ec8699a8.js";import{u as a}from"./index-a1cf9e47.js";import"./index-76fb7be0.js";import"./_commonjsHelpers-de833af9.js";import"./iframe-010ca532.js";import"../sb-preview/runtime.js";import"./index-d3ea75b5.js";import"./index-11d98b33.js";import"./index-8fd8397b.js";import"./index-356e4a49.js";function o(r){const n=Object.assign({h1:"h1",h2:"h2",code:"code",em:"em",p:"p",pre:"pre",ul:"ul",li:"li",a:"a",strong:"strong",h3:"h3"},a(),r.components);return i(c,{children:[e(d,{}),`
+import{j as e,a as i,F as c,G as d}from"./CardExample-47265fcd.js";import{M as l}from"./index-af693af0.js";import{a as t}from"./argTypes-ec8699a8.js";import{u as a}from"./index-a1cf9e47.js";import"./index-76fb7be0.js";import"./_commonjsHelpers-de833af9.js";import"./iframe-fb05a069.js";import"../sb-preview/runtime.js";import"./index-d3ea75b5.js";import"./index-11d98b33.js";import"./index-8fd8397b.js";import"./index-356e4a49.js";function o(r){const n=Object.assign({h1:"h1",h2:"h2",code:"code",em:"em",p:"p",pre:"pre",ul:"ul",li:"li",a:"a",strong:"strong",h3:"h3"},a(),r.components);return i(c,{children:[e(d,{}),`
 `,e(l,{title:"pages/Props"}),`
 `,e(n.h1,{id:"spinetic",children:"Spinetic"}),`
 `,e("br",{}),`
@@ -171,4 +171,8 @@ default App;
 };
 `})}),`
 `,e(n.p,{children:"Feel free to explore the various features and configurations available. Utilize the Spinetic playground for a customized carousel experience tailored to your preferences. Explore and enjoy!"}),`
-`,i("div",{class:"nav-previous-next-idx",children:[e(n.p,{children:e(n.a,{href:"?path=/docs/pages-getting-started--documentation",children:"< Getting Started"})}),e(n.p,{children:e(n.a,{href:"?path=/docs/pages-playground--documentation",children:"Playground >"})})]})]})}function _(r={}){const{wrapper:n}=Object.assign({},a(),r.components);return n?e(n,Object.assign({},r,{children:e(o,r)})):o(r)}export{_ as default};
+`,i("div",{class:"nav-previous-next-idx",children:[e(n.p,{children:e(n.a,{href:"?path=/docs/pages-getting-started--documentation",children:"< Getting Started"})}),e(n.p,{children:e(n.a,{href:"?path=/docs/pages-playground--documentation",children:"Playground >"})})]}),`
+`,e("br",{}),`
+`,e("br",{}),`
+`,e("br",{}),`
+`,e("br",{})]})}function _(r={}){const{wrapper:n}=Object.assign({},a(),r.components);return n?e(n,Object.assign({},r,{children:e(o,r)})):o(r)}export{_ as default};
