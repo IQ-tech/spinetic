@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState, Children, useCallback } from "react";
-import { useDragSpinetic } from "./spinetic-use-drag";
-import * as SpineticUtils from "./spinetic-utils";
-import * as SpineticConfig from "./spinetic-config-validation";
+import { useDragSpinetic } from "./SpineticUseDrag";
+import * as SpineticUtils from "./SpineticUtils";
+import * as SpineticConfig from "./SpineticConfigValidation";
 import { TypesUseSpinetic, TypesReturnSpinetic, TypesConfig, TypesConfigOptional, SpineticChangeEvent } from "types"
 
 export const useSpinetic = ({
@@ -86,7 +86,7 @@ export const useSpinetic = ({
 
     const isSb = currentUrl?.includes("docs") || hasStoreInSS || hasStoreInLS;
 
-    return setSb(isSb)
+    return setSb(isSb) // disabled sb
   }
 
   const _setConfigs = (config?: TypesConfigOptional) => {

@@ -1,15 +1,15 @@
 import React from "react";
 import type { Meta, StoryFn } from "@storybook/react";
 
-import "./spinetic.styles.stories.scss";
+import "./Spinetic.styles.stories.scss";
 import "../styles.scss";
 
 import { TypesConfigOptional } from "types";
 
-import Spinetic from "../spinetic";
-import SpineticItem from "../spinetic/spinetic-item";
+import Spinetic from "../Spinetic";
+import SpineticItem from "../Spinetic/SpineticItem";
 
-import CardExample, { exampleItems, generateItems } from "./card-example";
+import CardExample, { generateItems } from "./CardExample";
 
 import { argTypes, handleChange } from "./argTypes";
 import documentation from "./docs/Playground.mdx";
@@ -32,7 +32,6 @@ export default {
 
 const Template: StoryFn = (args: TypesConfigOptional | any) => {
   const childrens = generateItems(args.children);
-
   const change = args.change;
 
   delete args.children;
@@ -41,7 +40,7 @@ const Template: StoryFn = (args: TypesConfigOptional | any) => {
   const config = { ...args };
 
   return (
-    <Spinetic config={{ ...config }} change={change ? handleChange : undefined}>
+    <Spinetic config={config} change={change ? handleChange : undefined}>
       {childrens.map((text: string, index: number) => (
         <SpineticItem key={index}>
           <CardExample highlightText={false} index={index} text={text} />

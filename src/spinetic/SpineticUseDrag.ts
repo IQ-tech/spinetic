@@ -1,5 +1,5 @@
 import { useState } from "react";
-import * as SpineticUtils from "./spinetic-utils";
+import * as SpineticUtils from "./SpineticUtils";
 import { TypesUseDragSpinetic, TypesEventDragStart, TypesEventDragMove, TypesEventDragEnd } from "types"
 
 export const useDragSpinetic = ({ 

@@ -1,5 +1,5 @@
 import { SpineticChangeEvent } from "types";
-import { _defaultConfig } from "../spinetic/spinetic-config-validation";
+import { _defaultConfig } from "../Spinetic/SpineticConfigValidation";
 
 
 export const argTypes = {
@@ -58,9 +58,10 @@ Always remember to wrap your component with a SpineticItem.
     },
 
 
-    "  ": {
+    config: {
         description: `config`,
         control: " ",
+        order: 2,
         table: {
             type: {
                 summary: "TypesConfigOptional",

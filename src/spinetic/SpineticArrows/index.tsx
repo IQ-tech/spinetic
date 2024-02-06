@@ -1,6 +1,6 @@
 import * as React from "react";
-import ArrowLeft from "./arrow-left";
-import ArrowRight from "./arrow-right";
+import ArrowLeft from "./ArrowLeft";
+import ArrowRight from "./ArrowRight";
 import { TypesArrows } from "types"
 
 const SpineticArrows = ({
