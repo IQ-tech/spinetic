@@ -110,8 +110,8 @@ export interface TypesReturnSpinetic {
 
 export interface TypesUseSpinetic {
   children: ReactNode | ReactNode[], 
-  config?: TypesConfigOptional | any,
-  change?: (e: any) => void ; // TODO types
+  config?: TypesConfigOptional,
+  change?: (e: SpineticChangeEvent) => void;
 }
 
 export interface TypesArrows {
