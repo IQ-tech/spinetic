@@ -1,4 +1,4 @@
-const n={arrows:!0,arrowLeftPosition:0,arrowRightPosition:0,hideArrows:!1,dots:!0,dotsModel:"default",indexInDots:!1,autoRotate:!1,msPerAutoRotate:3e3,draggable:!0,touchThreshold:100,showItems:1,autoWidth:!1,fullHeightItems:!0,verticalAlign:!1,clickTransitionCtrl:!1,msPerClicks:1500,responsive:[{breakpoint:0,settings:{}}]},a=o=>!o||!(o!=null&&o.length)?n.responsive:(o==null?void 0:o.sort((t,i)=>i.breakpoint-t.breakpoint))??n.responsive,s=o=>{const e=window.innerWidth,t=o>e/2;return o===void 0||t?n.touchThreshold:o},r=o=>!o||o<1?n.showItems:o,l=o=>typeof o!="boolean",d=o=>{const e=o,t=n;return{arrows:(e==null?void 0:e.arrows)??t.arrows,arrowLeftPosition:(e==null?void 0:e.arrowLeftPosition)??t.arrowLeftPosition,arrowRightPosition:(e==null?void 0:e.arrowRightPosition)??t.arrowRightPosition,hideArrows:(e==null?void 0:e.hideArrows)??t.hideArrows,dots:(e==null?void 0:e.dots)??t.dots,dotsModel:(e==null?void 0:e.dotsModel)??t.dotsModel,indexInDots:(e==null?void 0:e.indexInDots)??t.indexInDots,autoRotate:(e==null?void 0:e.autoRotate)??t.autoRotate,msPerAutoRotate:(e==null?void 0:e.msPerAutoRotate)??t.msPerAutoRotate,draggable:(e==null?void 0:e.draggable)??t.draggable,touchThreshold:s((e==null?void 0:e.touchThreshold)??t.touchThreshold),showItems:r((e==null?void 0:e.showItems)??t.showItems),fullHeightItems:(e==null?void 0:e.fullHeightItems)??t.fullHeightItems,autoWidth:l(e==null?void 0:e.autoWidth),verticalAlign:(e==null?void 0:e.verticalAlign)??t.verticalAlign,clickTransitionCtrl:(e==null?void 0:e.clickTransitionCtrl)??t.clickTransitionCtrl,msPerClicks:(e==null?void 0:e.msPerClicks)??t.msPerClicks,responsive:a(e==null?void 0:e.responsive)}},u={children:{description:'<span id="children">Children elements to be rendered inside the Spinetic component.</span>',control:"number",table:{type:{summary:"ReactNode | ReactNode[]",detail:`
+const n={arrows:!0,arrowLeftPosition:0,arrowRightPosition:0,hideArrows:!1,dots:!0,dotsModel:"default",indexInDots:!1,autoRotate:!1,msPerAutoRotate:3e3,draggable:!0,touchThreshold:100,showItems:1,autoWidth:!1,fullHeightItems:!0,verticalAlign:!1,clickTransitionCtrl:!1,msPerClicks:1500,responsive:[{breakpoint:0,settings:{}}]},a=o=>!o||!(o!=null&&o.length)?n.responsive:(o==null?void 0:o.sort((t,i)=>i.breakpoint-t.breakpoint))??n.responsive,s=o=>{const e=window.innerWidth,t=o>e/2;return o===void 0||t?n.touchThreshold:o},r=o=>!o||o<1?n.showItems:o,l=o=>typeof o!="boolean"?n.autoWidth:o,d=o=>{const e=o,t=n;return{arrows:(e==null?void 0:e.arrows)??t.arrows,arrowLeftPosition:(e==null?void 0:e.arrowLeftPosition)??t.arrowLeftPosition,arrowRightPosition:(e==null?void 0:e.arrowRightPosition)??t.arrowRightPosition,hideArrows:(e==null?void 0:e.hideArrows)??t.hideArrows,dots:(e==null?void 0:e.dots)??t.dots,dotsModel:(e==null?void 0:e.dotsModel)??t.dotsModel,indexInDots:(e==null?void 0:e.indexInDots)??t.indexInDots,autoRotate:(e==null?void 0:e.autoRotate)??t.autoRotate,msPerAutoRotate:(e==null?void 0:e.msPerAutoRotate)??t.msPerAutoRotate,draggable:(e==null?void 0:e.draggable)??t.draggable,touchThreshold:s((e==null?void 0:e.touchThreshold)??t.touchThreshold),showItems:r((e==null?void 0:e.showItems)??t.showItems),fullHeightItems:(e==null?void 0:e.fullHeightItems)??t.fullHeightItems,autoWidth:l(e==null?void 0:e.autoWidth),verticalAlign:(e==null?void 0:e.verticalAlign)??t.verticalAlign,clickTransitionCtrl:(e==null?void 0:e.clickTransitionCtrl)??t.clickTransitionCtrl,msPerClicks:(e==null?void 0:e.msPerClicks)??t.msPerClicks,responsive:a(e==null?void 0:e.responsive)}},u={children:{description:'<span id="children">Children elements to be rendered inside the Spinetic component.</span>',control:"number",table:{type:{summary:"ReactNode | ReactNode[]",detail:`
                 
 The "children" property represents the child items of the Spinetic component to be rendered.
  For example:
@@ -219,4 +219,17 @@ If the screen size is less than 400, the configuration applied is:
         totalItems: 0
     }
 }
-                `}}}};export{n as _,u as a,r as b,d as v};
+                `}}}},c=o=>{const e=o.current,t=o.previous;alert(` change
+      { 
+        current: {
+          index: ${JSON.stringify(e.index)},
+          remainingIndexes: ${JSON.stringify(t.remainingIndexes)}
+          totalItems: ${JSON.stringify(t.totalItems)}
+        },
+        previous: {
+            index: ${JSON.stringify(t.index)},
+            remainingIndexes: ${JSON.stringify(t.remainingIndexes)}
+            totalItems: ${JSON.stringify(t.totalItems)}
+        }
+    }
+  `)};export{n as _,u as a,r as b,c as h,d as v};
