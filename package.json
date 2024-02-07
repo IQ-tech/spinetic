@@ -3,7 +3,7 @@
   "author": "lxavier",
   "name": "react-spinetic",
   "homepage": "https://iq-tech.github.io/spinetic/?path=/docs/pages-playground--documentation",
-  "version": "0.0.46",
+  "version": "0.0.48",
   "description": "A lightweight React carousel library for creating interactive carousels in your web applications.",
   "private": false,
   "keywords": [
@@ -34,9 +34,9 @@
     "clean": "rm -rf dist && rm -rf styles.css && rm -rf storybook-static",
     "build:sass:publish": "node-sass src/styles.scss styles.css",
     "build:publish": "npm run build:sass:publish && npx rollup -c",
-    "deploy:publish": "npm run clean && npm run build:publish && npm publish",
-    "storybook": "storybook dev -p 6006",
-    "build:storybook": "npm run clean && storybook build",
+    "publish": "npm run clean && npm run build:publish && npm publish",
+    "sb": "storybook dev -p 6006",
+    "build:sb": "npm run clean && storybook build",
     "deploy": "npm run build:storybook && touch ./storybook-static/.nojekyll && gh-pages -d ./storybook-static -t true"
   },
   "peerDependencies": {
