@@ -34,7 +34,7 @@ export const useDragSpinetic = ({
     };
 
     const start = (e: TypesEventDragStart): void => {
-        if (!sbConfig.draggable) return;
+        if (_sb && !sbConfig.draggable) return;
         if (remainingIndexes?.length <= 1) return;
         detectTouchScreen();
 
@@ -53,7 +53,7 @@ export const useDragSpinetic = ({
     }
 
     const move = (e: TypesEventDragMove): void => {
-        if (!sbConfig.draggable) return;
+        if (_sb && !sbConfig.draggable) return;
         let touchMove = e?.touches?.[0];
 
         let currenTX = touchMove?.clientX;
@@ -92,20 +92,20 @@ export const useDragSpinetic = ({
     }
 
     const end = (e: TypesEventDragEnd): void => {
-        if (!sbConfig.draggable) return;
+        if (_sb && !sbConfig.draggable) return;
         setIsDragging(false);
 
         if (cancelDraggable || currentConfig.verticalAlign) return;
         e.stopPropagation();
-        spineticContainer?.current!.classList.remove("spinetic-no-transition");
-
+        
         if (finalDist && Math.abs(finalDist) > currentConfig?.touchThreshold) {
             finalDist > 0 ? previousItem() : nextItem();
         }
-
+        
         itemElement?.classList?.remove("no-click");
         setFinalDist(null)
         _handleItemChange();
+        spineticContainer?.current!.classList.remove("spinetic-no-transition");
     }
 
     return {

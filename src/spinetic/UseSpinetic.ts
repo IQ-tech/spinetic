@@ -36,15 +36,13 @@ export const useSpinetic = ({
     }
   })
 
-
-
   const checkIsSb = () => {
     const currentUrl = window?.location?.href;
     const hasStoreInSS = !!sessionStorage?.getItem("@storybook/manager/store");
     const hasStoreInLS = !!localStorage?.getItem("@storybook/manager/store");
+    //  || hasStoreInSS || hasStoreInLS;
 
-    const isSb = currentUrl?.includes("docs") || hasStoreInSS || hasStoreInLS;
-
+    const isSb = currentUrl?.includes("docs")
     return setSb(isSb);
   }
 
@@ -220,12 +218,12 @@ export const useSpinetic = ({
     if (_hasClickTransitionCtrl(_hasPreviousItem)) {
       const newIdx = currentIndex - 1
 
+      setCurrentIndex(newIdx);
       _updateElementsChange({
         current: { ...elementsChange.current, index: newIdx },
         previous: { ...elementsChange.previous, index: currentIndex }
       });
 
-      setCurrentIndex(newIdx);
     }
   }
 
@@ -234,12 +232,12 @@ export const useSpinetic = ({
     if (_hasClickTransitionCtrl(_hasNextItem)) {
       const newIdx = currentIndex + 1;
 
+      setCurrentIndex(newIdx);
       _updateElementsChange({
         current: { ...elementsChange.current, index: newIdx },
         previous: { ...elementsChange.previous, index: currentIndex }
       });
 
-      setCurrentIndex(newIdx);
     }
   }
 
@@ -251,12 +249,12 @@ export const useSpinetic = ({
   const goToItem = (index: number): void => {
     if (_hasClickTransitionCtrl(_isValidIndex(index))) {
 
+      setCurrentIndex(index);
       _updateElementsChange({
         current: { ...elementsChange.current, index: index },
         previous: { ...elementsChange.previous, index: currentIndex }
       });
 
-      setCurrentIndex(index);
     }
   }
 
@@ -277,6 +275,14 @@ export const useSpinetic = ({
       setIsProcessingClick(true);
     }, currentConfig.msPerClicks);
   }
+
+  const _handleResize = (): void => {
+    if (_initialWindowWidth !== window?.innerWidth) {
+      setInitialWindowWidth(window?.innerWidth);
+      _setConfigs(config);
+    }
+  }
+
 
   const { start, move, end } = useDragSpinetic({
     _sb,
@@ -300,11 +306,18 @@ export const useSpinetic = ({
   useEffect(() => { if (!!change && remainingIndexes?.length > 1) change(elementsChange) }, [currentIndex]);
   useEffect(() => {
     if (!SpineticUtils.arraysAreEqual(childrenCrl, children)) {
+     setChildrenCrl(children);
       _setConfigs(config);
-      setChildrenCrl(children);
     }
-  }, [children]);
+  }, [_initialWindowWidth, children]);
 
+  useEffect(() => {
+    _setConfigs(config);
+    window.removeEventListener('resize', _handleResize);
+    window.addEventListener('resize', _handleResize);
+
+    return () => window.removeEventListener('resize', _handleResize);
+  }, [spineticContainer.current?.offsetWidth, _initialWindowWidth, window?.innerWidth]);
 
   useEffect(() => {
     if (currentConfig.autoRotate) {
@@ -326,21 +339,6 @@ export const useSpinetic = ({
     }
   }, [remainingIndexes, currentConfig.autoRotate]);
 
-  useEffect(() => {
-    _setConfigs(config);
-    window.removeEventListener('resize', _handleResize);
-    window.addEventListener('resize', _handleResize);
-
-    return () => window.removeEventListener('resize', _handleResize);
-  }, [spineticContainer.current?.offsetWidth, _initialWindowWidth, window?.innerWidth]);
-
-
-  const _handleResize = (): void => {
-    if (_initialWindowWidth !== window?.innerWidth) {
-      setInitialWindowWidth(window?.innerWidth);
-      _setConfigs(config);
-    }
-  }
 
   return {
     currentConfig,
