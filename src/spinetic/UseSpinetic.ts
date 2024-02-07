@@ -36,48 +36,7 @@ export const useSpinetic = ({
     }
   })
 
-  useEffect(() => checkIsSb(), []);
-  useEffect(() => { if (_sb) _setConfigs(config) }, [config, _sb]);
-  useEffect(() =>_setConfigs(config) , [children,  _initialWindowWidth]); 
 
-  useEffect(() => _handleItemChange(), [remainingIndexes, currentIndex]);
-  useEffect(() => { if (!!change && remainingIndexes?.length > 1) change(elementsChange) }, [currentIndex]);
-
-  useEffect(() => {
-    _setConfigs(config);
-    window.removeEventListener('resize', _handleResize);
-    window.addEventListener('resize', _handleResize);
-
-    return () => window.removeEventListener('resize', _handleResize);
-  }, [spineticContainer.current?.offsetWidth, _initialWindowWidth, window?.innerWidth]);
-
-
-  useEffect(() => {
-    if (currentConfig.autoRotate) {
-      const autoRotateIntervalId = setInterval(() => {
-        setCurrentIndex((prevIndex) => {
-          const newIdx = prevIndex + 1;
-          const currentIndex = newIdx >= remainingIndexes.length ? 0 : newIdx;
-
-          _updateElementsChange({
-            current: { ...elementsChange.current, index: currentIndex },
-            previous: { ...elementsChange.previous, index: prevIndex }
-          });
-
-          return currentIndex
-        });
-      }, currentConfig.msPerAutoRotate);
-
-      return () => clearInterval(autoRotateIntervalId);
-    }
-  }, [remainingIndexes, currentConfig.autoRotate]);
-
-  const _handleResize = (): void => {
-    if (_initialWindowWidth !== window?.innerWidth) {
-      setInitialWindowWidth(window?.innerWidth);
-      _setConfigs(config);
-    }
-  }
 
   const checkIsSb = () => {
     const currentUrl = window?.location?.href;
@@ -218,9 +177,9 @@ export const useSpinetic = ({
           widths.push(mainWidth / showItems);
           item.style.width = mainWidth / showItems + "px";
         }
- 
+
         const fullHeightItems = _sb ? sbConfig.fullHeightItems : currentConfig.fullHeightItems;
-    
+
         if (fullHeightItems) {
           window.requestAnimationFrame(() => {
             item.style.height = containerHeight + "px";
@@ -332,6 +291,56 @@ export const useSpinetic = ({
     nextItem,
     _handleItemChange
   })
+
+  useEffect(() => checkIsSb(), []);
+  useEffect(() => _setConfigs(config), [_initialWindowWidth]);
+  useEffect(() => _handleItemChange(), [remainingIndexes, currentIndex]);
+
+  useEffect(() => { if (_sb) _setConfigs(config) }, [config, _sb]);
+  useEffect(() => { if (!!change && remainingIndexes?.length > 1) change(elementsChange) }, [currentIndex]);
+  useEffect(() => {
+    if (!SpineticUtils.arraysAreEqual(childrenCrl, children)) {
+      _setConfigs(config);
+      setChildrenCrl(children);
+    }
+  }, [children]);
+
+
+  useEffect(() => {
+    if (currentConfig.autoRotate) {
+      const autoRotateIntervalId = setInterval(() => {
+        setCurrentIndex((prevIndex) => {
+          const newIdx = prevIndex + 1;
+          const currentIndex = newIdx >= remainingIndexes.length ? 0 : newIdx;
+
+          _updateElementsChange({
+            current: { ...elementsChange.current, index: currentIndex },
+            previous: { ...elementsChange.previous, index: prevIndex }
+          });
+
+          return currentIndex
+        });
+      }, currentConfig.msPerAutoRotate);
+
+      return () => clearInterval(autoRotateIntervalId);
+    }
+  }, [remainingIndexes, currentConfig.autoRotate]);
+
+  useEffect(() => {
+    _setConfigs(config);
+    window.removeEventListener('resize', _handleResize);
+    window.addEventListener('resize', _handleResize);
+
+    return () => window.removeEventListener('resize', _handleResize);
+  }, [spineticContainer.current?.offsetWidth, _initialWindowWidth, window?.innerWidth]);
+
+
+  const _handleResize = (): void => {
+    if (_initialWindowWidth !== window?.innerWidth) {
+      setInitialWindowWidth(window?.innerWidth);
+      _setConfigs(config);
+    }
+  }
 
   return {
     currentConfig,
