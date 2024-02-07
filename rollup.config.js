@@ -14,7 +14,12 @@ export default [
     plugins: [
       resolve(),
       commonjs(),
-      typescript({ tsconfig: "./tsconfig.json" }),
+      typescript({
+        tsconfig: "./tsconfig.json",
+        tsconfigOverride: {
+          exclude: ["src/stories"],
+        },
+      }),
     ],
     external: ["react", "react-dom"],
   },
