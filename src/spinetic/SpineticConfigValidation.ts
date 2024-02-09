@@ -19,7 +19,7 @@ export const _defaultConfig: TypesConfig = {
 
   showItems: 1,
   autoWidth: false,
-  fullHeightItems: true,
+  fullHeightItems: false,
   verticalAlign: false,
 
   clickTransitionCtrl: false,
