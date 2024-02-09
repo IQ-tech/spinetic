@@ -89,15 +89,15 @@ AutoRotate.args = {
   dotsModel: "long-rounded",
   hideArrows: true,
   msPerAutoRotate: 2000,
-  showItems: 3,
-  responsive: [
-    {
-      breakpoint: 450,
-      settings: {
-        showItems: 1,
-      },
-    },
-  ],
+  showItems: 1,
+  // responsive: [
+  //   {
+  //     breakpoint: 450,
+  //     settings: {
+  //       showItems: 1,
+  //     },
+  //   },
+  // ],
 };
 
 // export const Responsive = Template.bind({});
