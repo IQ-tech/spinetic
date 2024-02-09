@@ -1,7 +1,7 @@
 import * as React from "react";
 import SpineticArrows from "./SpineticArrows";
 import SpineticDots from "./SpineticDots";
-import { useSpinetic } from "./useSpinetic";
+import { useSpinetic } from "./hooks";
 import { TypesSpinetic } from "types";
 
 const Spinetic = ({

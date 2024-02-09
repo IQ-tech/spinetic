@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState, Children, useCallback, ReactNode } from "react";
-import { useDragSpinetic } from "./SpineticUseDrag";
-import * as SpineticUtils from "./SpineticUtils";
-import * as SpineticConfig from "./SpineticConfigValidation";
+import { useDragSpinetic } from "../SpineticUseDrag";
+import * as SpineticUtils from "../SpineticUtils";
+import * as SpineticConfig from "../SpineticConfigValidation";
 import { TypesUseSpinetic, TypesReturnSpinetic, TypesConfig, TypesConfigOptional, SpineticChangeEvent } from "types"
 
 export const useSpinetic = ({
