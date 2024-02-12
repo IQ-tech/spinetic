@@ -71,15 +71,22 @@ export const arraysAreEqual = (array1: number[], array2: number[]) => {
   return array1?.every((element: any, index: number) => element === array2[index]);
 };
 
-
-type Obj = { [key: string]: any } | undefined;
-function isObjEqual(obj1: Obj , obj2: Obj): boolean {
+type Obj = { [key: string]: any };
+function isObjEqual(obj1: Obj, obj2: Obj, maxElements = 500): boolean {
   if (!obj1 || !obj2) return false;
 
   const keys1 = Object.keys(obj1);
   const keys2 = Object.keys(obj2);
 
+
   if (keys1.length !== keys2.length) {
+    return false;
+  }
+
+  const totalElements1 = countTotalElements(obj1);
+  const totalElements2 = countTotalElements(obj2);
+
+  if (totalElements1 > maxElements || totalElements2 > maxElements) {
     return false;
   }
 
@@ -88,8 +95,8 @@ function isObjEqual(obj1: Obj , obj2: Obj): boolean {
     const value2 = obj2[key];
 
     if (typeof value1 === 'object' && value1 !== null &&
-        typeof value2 === 'object' && value2 !== null) {
-      if (!isObjEqual(value1, value2)) {
+      typeof value2 === 'object' && value2 !== null) {
+      if (!isObjEqual(value1, value2, maxElements)) {
         return false;
       }
     } else {
@@ -102,13 +109,52 @@ function isObjEqual(obj1: Obj , obj2: Obj): boolean {
   return true;
 }
 
-type PropsChildren = { props?: { children?: { props?: Obj } } }[] | undefined | null | any;
-export function childrenIsEqual(children: PropsChildren, prevChildren: PropsChildren): boolean {
-if(!children || !prevChildren) return false;
+function countTotalElements(obj: Obj): number {
+  let count = 0;
+  for (const key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      count++;
+      if (typeof obj[key] === 'object' && obj[key] !== null) {
+        count += countTotalElements(obj[key]);
+      }
+    }
+  }
+  return count;
+}
 
-  return children?.every((child: PropsChildren, i: number) => {
-    const props1 = child?.props?.children?.props;
-    const props2 = prevChildren[i]?.props?.children?.props;
-    return isObjEqual(props1, props2);
-  }) || false;
+type PropsChildren = { props?: { children?: { props?: Obj } } }[] | undefined | null | any;
+export function childrenIsEqual(
+  children: PropsChildren,
+  prevChildren: PropsChildren,
+  maxAttempts = 5,
+  maxLoops = 10,
+  maxElements = 500
+): boolean {
+  if (!children || !prevChildren) return false;
+
+  let attempts = 0;
+  let loops = 0;
+
+  const isEqualWithRetry = (): boolean => {
+    while (attempts < maxAttempts && loops < maxLoops) {
+      attempts++;
+
+      const arePropsEqual = children?.every((child: PropsChildren, i: number) => {
+        const props1 = child?.props?.children?.props;
+        const props2 = prevChildren[i]?.props?.children?.props;
+
+        return isObjEqual(props1, props2, maxElements);
+      }) || false;
+
+      if (arePropsEqual) {
+        return true;
+      }
+
+      loops++;
+    }
+
+    return false;
+  };
+
+  return isEqualWithRetry();
 }
