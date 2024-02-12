@@ -17,4 +17,4 @@ return <svg style= {{ marginRight: '2px' }} xmlns="http://www.w3.org/2000/svg" h
 </svg>
 }
 
-export default ArrowLeft;
+export default React.memo(ArrowLeft);
