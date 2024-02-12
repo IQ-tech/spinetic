@@ -289,7 +289,16 @@ export const useSpinetic = ({
       setInitialWindowWidth(window?.innerWidth);
       _setConfigs(config);
     }
-  }, [window?.innerWidth, window?.innerHeight, config])
+  }, [window?.innerWidth, window?.innerHeight, config]);
+
+  const checkAndSetConfigs = useCallback(() => {
+    const childrenAreEqual = SpineticUtils.childrenIsEqual(children, prevChildren.current);
+
+    if (!childrenAreEqual) {
+      prevChildren.current = children;
+      _setConfigs(config);
+    }
+  }, [children, config]);
 
   const { start, move, end } = useDragSpinetic({
     _sb,
@@ -339,13 +348,7 @@ export const useSpinetic = ({
     }
   }, [remainingIndexes, currentConfig.autoRotate]);
 
-  useEffect(() => {
-    if (!SpineticUtils.childrenIsEqual(children, prevChildren.current)) {
-      prevChildren.current = children;
-      _setConfigs(config);
-    }
-  }, [children, config])
-
+  useEffect(() => checkAndSetConfigs(), [checkAndSetConfigs]);
   useEffect(() => { if (_sb) _setConfigs(config) }, [config, _sb, children, prevChildren.current]);
 
   return {
