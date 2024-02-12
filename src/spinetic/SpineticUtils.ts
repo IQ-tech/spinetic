@@ -72,19 +72,38 @@ export const arraysAreEqual = (array1: number[], array2: number[]) => {
 };
 
 type Obj = { [key: string]: any };
-function isObjEqual(obj1: Obj, obj2: Obj, maxElements = 500): boolean {
+
+function countTotalElements(obj: Obj, visited: Set<object>): number {
+  let count = 0;
+
+  for (const key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      count++;
+
+      const value = obj[key];
+
+      if (typeof value === 'object' && value !== null && !visited.has(value)) {
+        visited.add(value);
+        count += countTotalElements(value, visited);
+      }
+    }
+  }
+
+  return count;
+}
+
+function isObjEqual(obj1: Obj, obj2: Obj, maxElements = 500, visited = new Set<object>()): boolean {
   if (!obj1 || !obj2) return false;
 
   const keys1 = Object.keys(obj1);
   const keys2 = Object.keys(obj2);
 
-
   if (keys1.length !== keys2.length) {
     return false;
   }
 
-  const totalElements1 = countTotalElements(obj1);
-  const totalElements2 = countTotalElements(obj2);
+  const totalElements1 = countTotalElements(obj1, visited);
+  const totalElements2 = countTotalElements(obj2, visited);
 
   if (totalElements1 > maxElements || totalElements2 > maxElements) {
     return false;
@@ -96,7 +115,7 @@ function isObjEqual(obj1: Obj, obj2: Obj, maxElements = 500): boolean {
 
     if (typeof value1 === 'object' && value1 !== null &&
       typeof value2 === 'object' && value2 !== null) {
-      if (!isObjEqual(value1, value2, maxElements)) {
+      if (!isObjEqual(value1, value2, maxElements, visited)) {
         return false;
       }
     } else {
@@ -109,52 +128,22 @@ function isObjEqual(obj1: Obj, obj2: Obj, maxElements = 500): boolean {
   return true;
 }
 
-function countTotalElements(obj: Obj): number {
-  let count = 0;
-  for (const key in obj) {
-    if (Object.prototype.hasOwnProperty.call(obj, key)) {
-      count++;
-      if (typeof obj[key] === 'object' && obj[key] !== null) {
-        count += countTotalElements(obj[key]);
-      }
-    }
-  }
-  return count;
-}
+
 
 type PropsChildren = { props?: { children?: { props?: Obj } } }[] | undefined | null | any;
 export function childrenIsEqual(
   children: PropsChildren,
   prevChildren: PropsChildren,
-  maxAttempts = 5,
-  maxLoops = 10,
   maxElements = 500
 ): boolean {
   if (!children || !prevChildren) return false;
 
-  let attempts = 0;
-  let loops = 0;
+  const arePropsEqual = children.every((child: PropsChildren, i: number) => {
+    const props1 = child?.props?.children?.props;
+    const props2 = prevChildren[i]?.props?.children?.props;
 
-  const isEqualWithRetry = (): boolean => {
-    while (attempts < maxAttempts && loops < maxLoops) {
-      attempts++;
+    return isObjEqual(props1, props2, maxElements);
+  });
 
-      const arePropsEqual = children?.every((child: PropsChildren, i: number) => {
-        const props1 = child?.props?.children?.props;
-        const props2 = prevChildren[i]?.props?.children?.props;
-
-        return isObjEqual(props1, props2, maxElements);
-      }) || false;
-
-      if (arePropsEqual) {
-        return true;
-      }
-
-      loops++;
-    }
-
-    return false;
-  };
-
-  return isEqualWithRetry();
+  return arePropsEqual;
 }
