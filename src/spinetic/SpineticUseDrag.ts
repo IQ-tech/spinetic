@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useCallback, useEffect } from "react";
 import * as SpineticUtils from "./SpineticUtils";
 import * as SpineticConfig from "./SpineticConfigValidation";
-import { TypesUseDragSpinetic, TypesEventDragStart, TypesEventDragMove, TypesEventDragEnd } from "types"
+import { TypesUseDragSpinetic, TypesEventDragStart, TypesEventDragMove, TypesEventDragEnd } from "types";
 
 export const useDragSpinetic = ({
     _sb,
@@ -16,7 +16,6 @@ export const useDragSpinetic = ({
     nextItem,
     _handleItemChange
 }: TypesUseDragSpinetic) => {
-
     const [startX, setStartX] = useState<number>(0);
     const [startTX, setStartTX] = useState<number>(0);
     const [startTY, setStartTY] = useState<number>(0);
@@ -31,86 +30,131 @@ export const useDragSpinetic = ({
         const touchSupport = "ontouchstart" in window || navigator?.maxTouchPoints > 0;
 
         setCancelDraggable(touchSupport ? false : !currentConfig?.draggable);
-    };
+    }
 
-    const start = (e: TypesEventDragStart): void => {
-        if (_sb && !sbConfig.draggable) return;
-        if (remainingIndexes?.length <= 1) return;
+    useEffect(() => {
         detectTouchScreen();
+    }, [detectTouchScreen, window?.ontouchstart, navigator?.maxTouchPoints]);
 
-        if (cancelDraggable || currentConfig.verticalAlign) return;
+    const handleTransitionClass = useCallback((add: boolean) => {
+        const container = spineticContainer?.current;
+        if (container) {
+            container.classList[add ? 'add' : 'remove']("spinetic-no-transition");
+        }
+    }, [spineticContainer]);
+
+    const start = useCallback((e: TypesEventDragStart): void => {
+        if (
+            _sb && !sbConfig.draggable ||
+            remainingIndexes?.length <= 1 ||
+            cancelDraggable ||
+            currentConfig.verticalAlign
+        ) return;
+
         e.stopPropagation();
 
-        let touchStart = e?.touches?.[0];
-        setStartX(e?.pageX || touchStart?.pageX);
-        setStartTX(touchStart?.clientX);
-        setStartTY(touchStart?.clientY);
+        const touchStart = e.touches?.[0];
+        setStartX(e.pageX || touchStart?.pageX || 0);
+        setStartTX(touchStart?.clientX || 0);
+        setStartTY(touchStart?.clientY || 0);
 
         setIsDragging(true);
         setItemElement(SpineticUtils.findElement(e.target));
 
-        spineticContainer?.current!.classList.add("spinetic-no-transition");
-    }
+        if (!cancelDraggable) {
+            handleTransitionClass(true);
+        }
+    }, [
+        currentConfig,
+        _sb,
+        sbConfig.draggable,
+        remainingIndexes?.length,
+        cancelDraggable,
+        handleTransitionClass
+    ])
 
-    const move = (e: TypesEventDragMove): void => {
-        if (_sb && !sbConfig.draggable) return;
-        let touchMove = e?.touches?.[0];
+    const move = useCallback((e: TypesEventDragMove): void => {
+        if (_sb && !sbConfig.draggable || !isDragging || cancelDraggable || currentConfig.verticalAlign) {
+            return;
+        }
 
-        let currenTX = touchMove?.clientX;
-        let currenTY = touchMove?.clientY;
+        const touchMove = e.touches?.[0];
 
-        let deltaX = Math.abs(currenTX - startTX);
-        let deltaY = Math.abs(currenTY - startTY);
+        const currentTX = touchMove?.clientX || 0;
+        const currentTY = touchMove?.clientY || 0;
 
-        let notDraggable = cancelDraggable || !isDragging;
+        const deltaX = Math.abs(currentTX - startTX);
+        const deltaY = Math.abs(currentTY - startTY);
 
-        if (deltaY > 30 || notDraggable || currentConfig.verticalAlign) {
+        if (deltaY > 30) {
             return;
         } else if ((deltaX > deltaY && deltaX > 20) || !touchMove) {
             e.stopPropagation();
 
-            const currentX =
-                e?.pageX || touchMove?.pageX - spineticContainer?.current!.scrollLeft;
-
+            const currentX = e.pageX || (touchMove?.pageX || 0) - (spineticContainer?.current?.scrollLeft || 0);
             const dist = currentX - startX;
+
             setFinalDist(dist);
 
-            let scrollAmountDrag = SpineticUtils.calculateScrollAmount(
-                _carouselItemsWidths,
-                currentIndex
-            );
+            const scrollAmountDrag = SpineticUtils.calculateScrollAmount(_carouselItemsWidths, currentIndex) + dist;
 
-            scrollAmountDrag += dist;
             if (deltaX > 20 || !touchMove) {
                 _setCarouselContainerTransform(scrollAmountDrag);
             }
 
-            if (finalDist && Math.abs(finalDist) > currentConfig?.touchThreshold) {
+            if (finalDist && Math.abs(finalDist) > currentConfig.touchThreshold) {
                 if (itemElement) itemElement.classList.add("no-click");
             }
         }
-    }
+    },
+        [
+            _sb,
+            sbConfig.draggable,
+            isDragging,
+            cancelDraggable,
+            currentConfig.verticalAlign,
+            startTX,
+            startTY,
+            startX,
+            finalDist,
+            itemElement,
+            _carouselItemsWidths,
+            currentIndex,
+            _setCarouselContainerTransform],
+    )
 
-    const end = (e: TypesEventDragEnd): void => {
-        if (_sb && !sbConfig.draggable) return;
+    const end = useCallback((e: TypesEventDragEnd): void => {
+        if (_sb && !sbConfig.draggable || cancelDraggable || currentConfig.verticalAlign) {
+            return;
+        }
+
         setIsDragging(false);
-
-        if (cancelDraggable || currentConfig.verticalAlign) return;
         e.stopPropagation();
-        
-        if (finalDist && Math.abs(finalDist) > currentConfig?.touchThreshold) {
+
+        if (finalDist && Math.abs(finalDist) > currentConfig.touchThreshold) {
             finalDist > 0 ? previousItem() : nextItem();
         }
-        
-        itemElement?.classList?.remove("no-click");
-        setFinalDist(null)
+
+        if (itemElement) itemElement.classList.remove("no-click");
+        setFinalDist(null);
         _handleItemChange();
-        spineticContainer?.current!.classList.remove("spinetic-no-transition");
-    }
+        handleTransitionClass(false);
+    }, [
+        _sb,
+        sbConfig.draggable,
+        cancelDraggable,
+        currentConfig.verticalAlign,
+        finalDist,
+        previousItem,
+        nextItem,
+        itemElement,
+        _handleItemChange,
+        handleTransitionClass
+    ])
 
     return {
         start,
         move,
         end
-    }
-}
+    };
+};
