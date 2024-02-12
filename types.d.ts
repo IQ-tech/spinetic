@@ -7,7 +7,7 @@ export interface TypesConfigOptional {
   arrowLeftPosition?: number;
   arrowRightPosition?: number;
   hideArrows?: boolean;
-  
+
   dots?: boolean;
   dotsModel?: TypesDotsModel;
   indexInDots?: boolean;
@@ -25,7 +25,7 @@ export interface TypesConfigOptional {
   autoWidth?: boolean;
   fullHeightItems?: boolean;
   verticalAlign?: boolean;
-  
+
   responsive?: TypesReponsiveSettings[];
 }
 
@@ -75,11 +75,11 @@ export interface TypesEventDragEnd {
 export interface TypesUseDragSpinetic {
   _sb: boolean | undefined;
   config: TypesConfigOptional,
-  currentConfig: TypesConfig, 
-  remainingIndexes: number[], 
-  spineticContainer: React.RefObject<HTMLDivElement>, 
-  _carouselItemsWidths: number[], 
-  currentIndex: number; 
+  currentConfig: TypesConfig,
+  remainingIndexes: number[],
+  spineticContainer: React.RefObject<HTMLDivElement>,
+  _carouselItemsWidths: number[],
+  currentIndex: number;
   _setCarouselContainerTransform: (key: number) => void;
   previousItem: () => void;
   nextItem: () => void;
@@ -88,36 +88,38 @@ export interface TypesUseDragSpinetic {
 //#endregion Drag
 
 //#region Components
+type TypeChildren = ReactNode | ReactNode[] | object | null | undefined | any;
 export interface TypesSpinetic {
-  children: ReactNode | ReactNode[];
+  children: TypeChildren;
   config?: TypesConfigOptional;
-  change?: (e: SpineticChangeEvent) => void; 
+  change?: (e: SpineticChangeEvent) => void;
 }
 
 export interface TypesReturnSpinetic {
-  currentConfig: TypesConfig,
-  currentIndex: number,
-  spineticMain: React.RefObject<HTMLDivElement>,
-  spineticContainer: React.RefObject<HTMLDivElement>,
-  maxCarouselItems: number,
-  remainingIndexes: number[],
-  goToItem: (p0: number) => void,
-  previousItem: () => void,
-  nextItem: () => void,
+  currentConfig: TypesConfig;
+  currentIndex: number;
+  spineticMain: React.RefObject<HTMLDivElement>;
+  spineticContainer: React.RefObject<HTMLDivElement>;
+  prevChildren: TypeChildren
+  maxCarouselItems: number;
+  remainingIndexes: number[];
+  goToItem: (p0: number) => void;
+  previousItem: () => void;
+  nextItem: () => void;
 
-  start: (p0: TypesEventDragStart | any) => void,
-  move: (p0: TypesEventDragMove | any) => void,
+  start: (p0: TypesEventDragStart | any) => void;
+  move: (p0: TypesEventDragMove | any) => void;
   end: (ep0: TypesEventDragEnd) => void
 }
 
 export interface TypesUseSpinetic {
-  children: ReactNode | ReactNode[], 
-  config?: TypesConfigOptional,
+  children: TypeChildren
+  config?: TypesConfigOptional;
   change?: (e: SpineticChangeEvent) => void;
 }
 
 export interface TypesArrows {
-  children: ReactNode;
+  children: TypeChildren;
   currentConfig: TypesConfig;
   currentIndex: number;
   remainingIndexes: number[];
