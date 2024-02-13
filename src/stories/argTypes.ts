@@ -308,7 +308,21 @@ ________________________________________________________________________________
         description: `<span id="autoWidth">Automatically adjusts the width of the carousel, has the effect of showing half of the next card</span>`,
         control: "boolean",
         table: {
-            type: { summary: "boolean" },
+            type: { 
+                summary: "boolean",
+            detail: `
+autoWidth is a boolean property that, when set to true, dynamically adjusts the width of the 
+carousel, eliminating the ability to manually specify the number of visible items. In this 
+mode, the carousel automatically calculates and allocates the available width to showcase 
+consecutive items side by side. If the total width is not entirely filled by the cards, the 
+subsequent card will be displayed with half of its content, creating a visually seamless 
+transition between items. This feature provides a fluid and responsive carousel experience,
+ optimizing the use of available space for a more dynamic presentation of content.
+ 
+ 
+ _________________________________________________________________________________________________
+ `
+            },
             defaultValue: { summary: _defaultConfig.autoWidth },
         },
     },
@@ -361,7 +375,7 @@ ________________________________________________________________________________
     },
 
 
-    
+
     responsive: {
         description: `<span id="responsive">
           An array of objects representing responsive settings, controlling configuration changes in the carousel based on specified breakpoints.
