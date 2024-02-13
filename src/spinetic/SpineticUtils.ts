@@ -71,8 +71,17 @@ export const arraysAreEqual = (array1: number[], array2: number[]) => {
   return array1?.every((element: any, index: number) => element === array2[index]);
 };
 
-type Obj = { [key: string]: any };
+// 
+export function validateNumber(value: number) {
+  if (typeof value !== 'number' || isNaN(value) || !isFinite(value)) {
+    return 1;
+  }
 
+  return value;
+}
+
+type Obj = { [key: string]: any };
+// 
 function countTotalElements(obj: Obj, visited: Set<object>): number {
   let count = 0;
 
@@ -127,8 +136,6 @@ function isObjEqual(obj1: Obj, obj2: Obj, maxElements = 500, visited = new Set<o
 
   return true;
 }
-
-
 
 type PropsChildren = { props?: { children?: { props?: Obj } } }[] | undefined | null | any;
 export function childrenIsEqual(
