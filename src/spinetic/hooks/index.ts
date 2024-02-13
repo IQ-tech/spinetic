@@ -268,7 +268,6 @@ export const useSpinetic = ({
     }
   }
 
-
   const _handleItemChange = (): void => {
     setIsProcessingClick(false);
 
@@ -283,14 +282,6 @@ export const useSpinetic = ({
     }, currentConfig.msPerClicks);
   }
 
-
-  const _handleResize = useCallback((): void => {
-    if (_initialWindowWidth !== window?.innerWidth) {
-      setInitialWindowWidth(window?.innerWidth);
-      _setConfigs(config);
-    }
-  }, [window?.innerWidth, window?.innerHeight, config]);
-
   const checkAndSetConfigs = useCallback(() => {
     const childrenAreEqual = SpineticUtils.childrenIsEqual(children, prevChildren.current);
 
@@ -299,6 +290,13 @@ export const useSpinetic = ({
       _setConfigs(config);
     }
   }, [children, config]);
+
+  const _handleResize = useCallback((): void => {
+    if (_initialWindowWidth !== window?.innerWidth) {
+      setInitialWindowWidth(window?.innerWidth);
+      _setConfigs(config);
+    }
+  }, [window?.innerWidth, window?.innerHeight, config]);
 
   const { start, move, end } = useDragSpinetic({
     _sb,
@@ -314,19 +312,23 @@ export const useSpinetic = ({
     _handleItemChange
   })
 
-
   useEffect(() => checkIsSb(), []);
   useEffect(() => _handleItemChange(), [remainingIndexes, currentIndex]);
-
   useEffect(() => { if (!!change && remainingIndexes?.length > 1) change(elementsChange) }, [currentIndex]);
+  useEffect(() => { if (_sb) _setConfigs(config) }, [config, _sb, children, prevChildren.current]);
+  useEffect(() => checkAndSetConfigs(), [checkAndSetConfigs]);
 
   useEffect(() => {
     _setConfigs(config);
     window.addEventListener('resize', _handleResize);
 
     return () => window.removeEventListener('resize', _handleResize);
-  }, [spineticContainer.current?.offsetWidth, _initialWindowWidth, window?.innerWidth]);
-
+  }, [
+    spineticContainer.current?.offsetWidth,
+    window?.innerWidth,
+    _initialWindowWidth,
+    currentConfig.verticalAlign
+  ]);
 
   useEffect(() => {
     if (currentConfig.autoRotate) {
@@ -347,9 +349,6 @@ export const useSpinetic = ({
       return () => clearInterval(autoRotateIntervalId);
     }
   }, [remainingIndexes, currentConfig.autoRotate]);
-
-  useEffect(() => checkAndSetConfigs(), [checkAndSetConfigs]);
-  useEffect(() => { if (_sb) _setConfigs(config) }, [config, _sb, children, prevChildren.current]);
 
   return {
     currentConfig,
