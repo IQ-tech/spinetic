@@ -44,30 +44,40 @@ export const useSpinetic = ({
     return setSb(isSb);
   }
 
-  const _setConfigs = (config?: TypesConfigOptional) => {
-    const currentOrDefaultConfig: TypesConfig = SpineticConfig.validConfig(config);
 
-    const breakpoints = currentOrDefaultConfig.responsive
-      ? [...currentOrDefaultConfig.responsive.map((item) => item.breakpoint)]
-      : [];
-
-    const screenWidth = window?.innerWidth;
-
-    breakpoints.forEach((breakpoint, i) => {
-      if (screenWidth <= breakpoint) {
-        const responsiveCurrentSettings =
-          currentOrDefaultConfig?.responsive[i]?.settings;
-
-        Object.keys(responsiveCurrentSettings).forEach((key) => {
-          currentOrDefaultConfig[key as keyof TypesConfigOptional] =
-            responsiveCurrentSettings[key as keyof TypesConfigOptional] as never;
-        });
-      }
-    });
-
-    setCurrentConfig(SpineticConfig.validConfig(currentOrDefaultConfig));
-    _setCarouselWidth();
-  }
+  const _getCarouselItemsWidth = (): number[] | null => {
+    const container = spineticContainer.current;
+    const main = spineticMain.current;
+  
+    if (!container || !main) return null;
+    
+    const carouselItems: NodeListOf<HTMLElement> | null = container.querySelectorAll(".spinetic-item");
+    const { autoWidth, showItems, fullHeightItems } = _sb ? SpineticConfig.validConfig(config) : currentConfig;
+    const widths: number[] = [];
+    
+     if (carouselItems !== null) {
+      carouselItems?.forEach((item: HTMLElement) => {
+        if (autoWidth) {
+          item.style.width = "";
+          widths.push(item.offsetWidth);
+        } else {
+          item.style.width = main.offsetWidth / showItems + "px";
+          widths.push(main.offsetWidth / showItems);
+        }
+  
+        if (fullHeightItems) {
+          window.requestAnimationFrame(() => {
+            item.style.height = container.offsetHeight + "px";
+          });
+        } else {
+          item.style.height = "";
+        }
+      });
+  };
+  
+    setCarouselItemsWidths(widths);
+    return widths;
+  };
 
   const _setCarouselWidth = (): void => {
     if (currentConfig.verticalAlign) return;
@@ -83,12 +93,12 @@ export const useSpinetic = ({
     let totalVisibleWidth = 0;
     let maxScrollIndex = 0;
 
-    const spineticMainWidtth = spineticMain?.current?.offsetWidth ?? 0;
+    const spineticMainWidth = spineticMain?.current?.offsetWidth ?? 0;
 
     _carouselItemsWidths.some((width) => {
       totalVisibleWidth += width;
 
-      if (totalVisibleWidth <= spineticMainWidtth) {
+      if (totalVisibleWidth <= spineticMainWidth) {
         numVisibleCards++;
       } else return width;
     });
@@ -108,7 +118,7 @@ export const useSpinetic = ({
 
     if (scrollToIndex > maxScrollIndex) {
       scrollToIndex = maxScrollIndex;
-      scrollAmount = totalWidth - spineticMainWidtth;
+      scrollAmount = totalWidth - spineticMainWidth;
     } else {
       scrollSum(_carouselItemsWidths);
     }
@@ -140,12 +150,10 @@ export const useSpinetic = ({
     if (!remainingidxIsEquals) setCurrentIndex(0);
 
     const draggable = _sb ? sbConfig.draggable : currentConfig.draggable;
-
     const hasDraggable = draggable && remainingIndexes?.length > 1
     spineticContainer.current?.classList.toggle("hasDraggable", hasDraggable);
 
     const offsetWidth = spineticMain?.current?.offsetWidth ?? 0;
-
     if (totalWidth <= offsetWidth) {
       _setCarouselContainerTransform(0);
     } else {
@@ -154,44 +162,29 @@ export const useSpinetic = ({
 
   };
 
-  const _getCarouselItemsWidth = (): number[] | null => {
-    const carouselItems: NodeListOf<HTMLElement> | null =
-      spineticContainer.current?.querySelectorAll(".spinetic-item") ?? null;
+  const _setConfigs = (config?: TypesConfigOptional) => {
+    const currentOrDefaultConfig: TypesConfig = SpineticConfig.validConfig(config);
 
-    const mainWidth = spineticMain?.current?.offsetWidth ?? 0;
-    const containerHeight = spineticContainer?.current?.offsetHeight;
-    const widths: number[] = [];
+    const breakpoints = currentOrDefaultConfig.responsive
+      ? [...currentOrDefaultConfig.responsive.map((item) => item.breakpoint)]
+      : [];
 
-    const sbConfig = _sb ? SpineticConfig.validConfig(config) : SpineticConfig._defaultConfig;
+    const screenWidth = window?.innerWidth;
 
-    if (carouselItems !== null) {
-      carouselItems.forEach((item: HTMLElement, i) => {
+    breakpoints.forEach((breakpoint, i) => {
+      if (screenWidth <= breakpoint) {
+        const responsiveCurrentSettings =
+          currentOrDefaultConfig?.responsive[i]?.settings;
 
-        const autoWidth = _sb ? sbConfig.autoWidth : currentConfig.autoWidth;
-        if (autoWidth) {
-          widths.push(item.offsetWidth)
-          item.style.width = "";
+        Object.keys(responsiveCurrentSettings).forEach((key) => {
+          currentOrDefaultConfig[key as keyof TypesConfigOptional] =
+            responsiveCurrentSettings[key as keyof TypesConfigOptional] as never;
+        });
+      }
+    });
 
-        } else {
-          const showItems = _sb ? sbConfig.showItems : currentConfig.showItems;
-          widths.push(mainWidth / showItems);
-          item.style.width = mainWidth / showItems + "px";
-        }
-
-        const fullHeightItems = _sb ? sbConfig.fullHeightItems : currentConfig.fullHeightItems;
-
-        if (fullHeightItems) {
-          window.requestAnimationFrame(() => {
-            item.style.height = containerHeight + "px";
-          });
-        } else {
-          item.style.height = "";
-        }
-      });
-    }
-
-    setCarouselItemsWidths(widths);
-    return widths;
+    setCurrentConfig(SpineticConfig.validConfig(currentOrDefaultConfig));
+    _setCarouselWidth();
   }
 
   const _updateElementsChange = (updateElements: SpineticChangeEvent) => {
