@@ -16,6 +16,8 @@ import documentation from "./docs/Playground.mdx";
 
 export default {
   title: "Pages/Playground",
+  component: Spinetic,
+  argTypes: argTypes,
   parameters: {
     docs: {
       page: documentation,
@@ -24,10 +26,7 @@ export default {
       },
     },
   },
-  tags: ["autodocs"],
-
-  component: Spinetic,
-  argTypes: argTypes,
+  tags: ["autodocs"]
 } as Meta;
 
 const Template: StoryFn = (args: TypesConfigOptional | any) => {
@@ -38,30 +37,6 @@ const Template: StoryFn = (args: TypesConfigOptional | any) => {
   delete args.change;
 
   const config = { ...args };
-
-  // const [items, setItems] = useState<any>(childrens);
-  // console.log("🚀 ~ items:", items)
-  // const totalTimeInMilliseconds = 10 * 60 * 1000; // 10 minutos
-  // const intervalTime = 5 * 1000; // 10 segundos
-
-  // useEffect(() => {
-  //   let elapsedTime = 0;
-
-  //   const addItemInterval = setInterval(() => {
-  //     if (elapsedTime < totalTimeInMilliseconds) {
-  //       // Adiciona um novo item ao array
-  //      // setItems((prevItems: any) => [...prevItems, `Novo Item ${prevItems.length + 1}`]);// add
-  //       setItems((prevItems: any) => [...prevItems]);
-  //       elapsedTime += intervalTime;
-  //     } else {
-  //       // Se o tempo total for atingido, limpa o intervalo
-  //       clearInterval(addItemInterval);
-  //     }
-  //   }, intervalTime);
-
-  //   // Limpa o intervalo quando o componente é desmontado
-  //   return () => clearInterval(addItemInterval);
-  // }, [totalTimeInMilliseconds, intervalTime]);
 
   return (
     <Spinetic config={config} change={change ? handleChange : undefined}>
@@ -79,25 +54,12 @@ export const Default = Template.bind({});
 export const AutoWidth = Template.bind({});
 AutoWidth.args = {
   autoWidth: true,
-  dotsModel: "long-rounded",
-  fullHeightItems: true,
 };
 
 export const AutoRotate = Template.bind({});
 AutoRotate.args = {
   autoRotate: true,
-  dotsModel: "long-rounded",
-  hideArrows: true,
-  msPerAutoRotate: 2000,
-  showItems: 1,
-  // responsive: [
-  //   {
-  //     breakpoint: 450,
-  //     settings: {
-  //       showItems: 1,
-  //     },
-  //   },
-  // ],
+  msPerAutoRotate: 2000
 };
 
 // export const Responsive = Template.bind({});

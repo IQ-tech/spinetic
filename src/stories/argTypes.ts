@@ -51,7 +51,7 @@ const exampleItems = [
 Always remember to wrap your component with a SpineticItem.
 
 
-.
+_________________________________________________________________________________________________
 `
             },
         },
@@ -121,12 +121,14 @@ The provided example showcases how to use the config prop to enable auto-width a
 responsive settings for different breakpoints, including adjusting arrow and 
 dot visibility, auto-width behavior, and full-height item display.
 
-.
+_________________________________________________________________________________________________
 `
             },
 
         }
     },
+
+
 
     arrows: {
         description: `<span id="arrows">Specifies whether to display arrows for navigation</span>`,
@@ -159,7 +161,18 @@ dot visibility, auto-width behavior, and full-height item display.
         description: `<span id="hideArrows">Controls the visibility of arrows</span>`,
         control: "boolean",
         table: {
-            type: { summary: "boolean" },
+            type: {
+                summary: "boolean",
+                detail: `
+The hideArrows property determines whether the navigation arrows are visible or hidden. 
+When set to true, the arrows disappear when there is no possibility of navigation, providing
+a clean and intuitive user interface. This feature enhances the user experience by
+dynamically adjusting the arrow visibility based on the availability of navigation options.
+
+
+_________________________________________________________________________________________________
+`
+            },
             defaultValue: { summary: _defaultConfig.hideArrows },
         },
     },
@@ -216,12 +229,21 @@ dot visibility, auto-width behavior, and full-height item display.
 
 
 
-
     clickTransitionCtrl: {
         description: `<span id="clickTransitionCtrl">Enables control over transitions on clicks</span>`,
         control: "boolean",
         table: {
-            type: { summary: "boolean" },
+            type: {
+                summary: "boolean",
+                detail: `
+When set to true, this property allows users to switch between items only after a specific duration
+defined by the msPerClicks property. The msPerClicks property determines the time interval a user
+must wait before being allowed to transition to the next item. On the other hand, if set to false 
+(default), the transition between items is immediate upon clicking, without any enforced delay.
+
+_________________________________________________________________________________________________
+`
+            },
             defaultValue: { summary: _defaultConfig.clickTransitionCtrl },
         },
     },
@@ -251,22 +273,31 @@ dot visibility, auto-width behavior, and full-height item display.
         control: {
             type: 'range',
             min: 1,
-            max: 400, 
-          },
+            max: 400,
+        },
         table: {
-            type: { summary: "number" },
+            type: {
+                summary: "number",
+                detail: `
+The touchThreshold property establishes the area that is recognized as a change of item when navigating 
+through dragging. Specifically, it defines the threshold for the drag gesture, ensuring that only 
+movements beyond this designated threshold are interpreted as intended item changes. Fine-tuning this 
+threshold allows for a responsive and controlled dragging experience, preventing accidental item switches 
+during minor touch movements.
+
+
+_________________________________________________________________________________________________
+                `
+            },
             defaultValue: { summary: 50 },
         },
     },
 
+
+
     showItems: {
         description: `<span id="showItems">Defines the number of items to show</span>`,
-        control: {
-            type: 'number', // range
-            min: 1,
-            max: 15, 
-            // step: 1,
-          },
+        control: {type: 'number' },
         table: {
             type: { summary: "number" },
             defaultValue: { summary: 1 },
@@ -286,11 +317,22 @@ dot visibility, auto-width behavior, and full-height item display.
         description: `<span id="fullHeightItems">Adjusts item height to full height</span>`,
         control: "boolean",
         table: {
-            type: { summary: "boolean" },
+            type: {
+                summary: "boolean",
+                detail: `
+When fullHeightItems is set to true, SpineticItem adapts its height to occupy 100% of the 
+carousel's height. This allows users to utilize the CSS property height: 100%, providing 
+flexibility for a variety of layout designs. It's essential to note that enabling this
+property only adjusts the SpineticItem's height, and users must ensure that their 
+component structure supports this behavior to achieve the desired full-height carousel items.
+
+
+_________________________________________________________________________________________________
+                `
+            },
             defaultValue: { summary: _defaultConfig.fullHeightItems },
         },
     },
-
 
     verticalAlign: {
         description: `<span id="verticalAlign">Aligns items vertically.</span>`,
@@ -310,7 +352,7 @@ When set to true, the following properties are automatically configured:
     fullHeightItems: false,
 }
 
-.
+_________________________________________________________________________________________________
             `,
             },
             defaultValue: { summary: false },
@@ -319,6 +361,7 @@ When set to true, the following properties are automatically configured:
     },
 
 
+    
     responsive: {
         description: `<span id="responsive">
           An array of objects representing responsive settings, controlling configuration changes in the carousel based on specified breakpoints.
@@ -380,7 +423,7 @@ If the screen size is less than 400, the configuration applied is:
 }            
 
 
-.
+_________________________________________________________________________________________________
             `,
             },
             defaultValue: {
@@ -438,7 +481,9 @@ If the screen size is less than 400, the configuration applied is:
             Current State: JSON.stringify(currentState)}
         ');
       };
-            `,
+
+_________________________________________________________________________________________________
+           `,
             },
 
             defaultValue: {
@@ -456,6 +501,8 @@ If the screen size is less than 400, the configuration applied is:
         totalItems: 0
     }
 }
+
+_________________________________________________________________________________________________
                 `,
             },
         },
