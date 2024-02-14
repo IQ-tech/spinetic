@@ -277,7 +277,10 @@ export const useSpinetic = ({
     if (currentConfig.verticalAlign) return;
 
     if (spineticContainer?.current) {
-      spineticContainer.current.style.transform = `translateX(${scrollAmount}px)`;
+      const { groupScroll, groupItemsScroll } = currentConfig;
+      const nItemsScroll = groupItemsScroll > 1 && groupItemsScroll <= visibleItems ? groupItemsScroll : visibleItems
+      const scroll = groupScroll ? (scrollAmount * nItemsScroll) : scrollAmount;
+      spineticContainer.current.style.transform = `translateX(${scroll}px)`;
     }
   }
 
@@ -289,11 +292,7 @@ export const useSpinetic = ({
       currentIndex
     );
 
-
-    const { groupScroll, groupItemsScroll } = currentConfig;
-    const nItemsScroll = groupItemsScroll > 1 && groupItemsScroll <= visibleItems ? groupItemsScroll : visibleItems
-    const scroll = groupScroll ? (scrollAmount * nItemsScroll) : scrollAmount;
-    _setCarouselContainerTransform(scroll);
+    _setCarouselContainerTransform(scrollAmount);
 
     setTimeout(() => {
       setIsProcessingClick(true);
@@ -324,18 +323,20 @@ export const useSpinetic = ({
   })
 
   useEffect(() => checkIsSb(), []);
-  useEffect(() => _handleItemChange(), [remainingIndexes, currentIndex]);
+  useEffect(() => { if (_sb) _setConfigs(config)}, [
+    config, 
+    _sb, 
+    children, 
+    prevChildren.current, 
+    spineticContainer, 
+    currentConfig.autoWidth
+  ]);
+
   useEffect(() => { if (!!change && remainingIndexes?.length > 1) change(elementsChange) }, [currentIndex]);
+  useEffect(() => _handleItemChange(), [remainingIndexes, currentIndex]);
+  useEffect(() => checkAndSetConfigs(), [checkAndSetConfigs]);
 
-  useEffect(() => {
-    if (_sb) {
-      _setConfigs(config)
-    }
-  }, [config, _sb, children, prevChildren.current, spineticContainer, currentConfig.autoWidth]);
-
-  useEffect(() => {
-    _setConfigs(config);
-  }, [
+  useEffect(() => _setConfigs(config), [
     spineticContainer.current,
     window?.innerWidth,
     currentConfig.verticalAlign,
@@ -363,9 +364,6 @@ export const useSpinetic = ({
       return () => clearInterval(autoRotateIntervalId);
     }
   }, [remainingIndexes, currentConfig.autoRotate]);
-
-
-  useEffect(() => checkAndSetConfigs(), [checkAndSetConfigs]);
 
   return {
     currentConfig,
