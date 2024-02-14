@@ -22,6 +22,9 @@ export const _defaultConfig: TypesConfig = {
   fullHeightItems: false,
   verticalAlign: false,
 
+  groupScroll: false,
+  groupItemsScroll: 1,
+
   clickTransitionCtrl: false,
   msPerClicks: 1500,
 
@@ -80,6 +83,9 @@ export const validConfig = (config?: TypesConfigOptional): TypesConfig => {
     fullHeightItems: C?.fullHeightItems ?? DC.fullHeightItems,
     autoWidth: validAutoWidth(C?.autoWidth),
     verticalAlign: C?.verticalAlign ?? DC.verticalAlign,
+
+    groupScroll: C?.groupScroll ?? DC.groupScroll,
+    groupItemsScroll: C?.groupItemsScroll ?? DC.groupItemsScroll,
 
     clickTransitionCtrl: C?.clickTransitionCtrl ?? DC.clickTransitionCtrl,
     msPerClicks: C?.msPerClicks ?? DC.msPerClicks,

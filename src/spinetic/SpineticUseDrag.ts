@@ -24,8 +24,6 @@ export const useDragSpinetic = ({
     const [itemElement, setItemElement] = useState<HTMLElement | null>(null);
     const [finalDist, setFinalDist] = useState<number | null>(null);
 
-    const sbConfig = _sb ? SpineticConfig.validConfig(config) : SpineticConfig._defaultConfig;
-
     const detectTouchScreen = () => {
         const touchSupport = "ontouchstart" in window || navigator?.maxTouchPoints > 0;
 
@@ -45,7 +43,7 @@ export const useDragSpinetic = ({
 
     const start = useCallback((e: TypesEventDragStart): void => {
         if (
-            _sb && !sbConfig.draggable ||
+            _sb && !currentConfig.draggable ||
             remainingIndexes?.length <= 1 ||
             cancelDraggable ||
             currentConfig.verticalAlign
@@ -67,14 +65,14 @@ export const useDragSpinetic = ({
     }, [
         currentConfig,
         _sb,
-        sbConfig.draggable,
+        currentConfig.draggable,
         remainingIndexes?.length,
         cancelDraggable,
         handleTransitionClass
     ])
 
     const move = useCallback((e: TypesEventDragMove): void => {
-        if (_sb && !sbConfig.draggable || !isDragging || cancelDraggable || currentConfig.verticalAlign) {
+        if (_sb && !currentConfig.draggable || !isDragging || cancelDraggable || currentConfig.verticalAlign) {
             return;
         }
 
@@ -109,7 +107,7 @@ export const useDragSpinetic = ({
     },
         [
             _sb,
-            sbConfig.draggable,
+            currentConfig.draggable,
             isDragging,
             cancelDraggable,
             currentConfig.verticalAlign,
@@ -124,7 +122,7 @@ export const useDragSpinetic = ({
     )
 
     const end = useCallback((e: TypesEventDragEnd): void => {
-        if (_sb && !sbConfig.draggable || cancelDraggable || currentConfig.verticalAlign) {
+        if (_sb && !currentConfig.draggable || cancelDraggable || currentConfig.verticalAlign) {
             return;
         }
 
@@ -141,7 +139,7 @@ export const useDragSpinetic = ({
         handleTransitionClass(false);
     }, [
         _sb,
-        sbConfig.draggable,
+        currentConfig.draggable,
         cancelDraggable,
         currentConfig.verticalAlign,
         finalDist,

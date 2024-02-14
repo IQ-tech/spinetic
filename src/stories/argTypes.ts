@@ -229,36 +229,6 @@ ________________________________________________________________________________
 
 
 
-    clickTransitionCtrl: {
-        description: `<span id="clickTransitionCtrl">Enables control over transitions on clicks</span>`,
-        control: "boolean",
-        table: {
-            type: {
-                summary: "boolean",
-                detail: `
-When set to true, this property allows users to switch between items only after a specific duration
-defined by the msPerClicks property. The msPerClicks property determines the time interval a user
-must wait before being allowed to transition to the next item. On the other hand, if set to false 
-(default), the transition between items is immediate upon clicking, without any enforced delay.
-
-_________________________________________________________________________________________________
-`
-            },
-            defaultValue: { summary: _defaultConfig.clickTransitionCtrl },
-        },
-    },
-
-    msPerClicks: {
-        description: `<span id="msPerClicks">Sets the time interval for click transitions</span>`,
-        control: "number",
-        table: {
-            type: { summary: "number" },
-            defaultValue: { summary: _defaultConfig.msPerClicks },
-        },
-    },
-
-
-
     draggable: {
         description: `<span id="draggable">Enables dragging functionality</span>`,
         control: "boolean",
@@ -297,9 +267,20 @@ ________________________________________________________________________________
 
     showItems: {
         description: `<span id="showItems">Defines the number of items to show</span>`,
-        control: {type: 'number' },
+        control: { type: 'number' },
         table: {
-            type: { summary: "number" },
+            type: {
+                summary: "number",
+                detail: `
+The "showItems" property determines the number of items to be displayed simultaneously in the carousel. 
+However, it is important to note that this property is not valid when the "autoWidth" option is enabled.
+When the "autoWidth" property is enabled, the count of items displayed is automatically adjusted based 
+on the size of the carousel, bypassing the manual setting of "showItems".
+                
+
+_________________________________________________________________________________________________
+                `
+            },
             defaultValue: { summary: 1 },
         },
     },
@@ -308,9 +289,9 @@ ________________________________________________________________________________
         description: `<span id="autoWidth">Automatically adjusts the width of the carousel, has the effect of showing half of the next card</span>`,
         control: "boolean",
         table: {
-            type: { 
+            type: {
                 summary: "boolean",
-            detail: `
+                detail: `
 autoWidth is a boolean property that, when set to true, dynamically adjusts the width of the 
 carousel, eliminating the ability to manually specify the number of visible items. In this 
 mode, the carousel automatically calculates and allocates the available width to showcase 
@@ -366,11 +347,88 @@ When set to true, the following properties are automatically configured:
     fullHeightItems: false,
 }
 
+
 _________________________________________________________________________________________________
             `,
             },
-            defaultValue: { summary: false },
+            defaultValue: { summary: _defaultConfig.verticalAlign },
 
+        },
+    },
+
+
+
+    groupScroll: {
+        description: `<span id="groupScroll">Simplifies carousel navigation by allowing precise definition of the number of items moved at a time.</span>`,
+        control: "boolean",
+
+        table: {
+            type: {
+                summary: "boolean",
+                detail: `
+The groupScroll feature considerably increases the flexibility of navigation in the carousel, allowing 
+precise control over the number of items moved during scrolling.
+
+When set to true and no item number is specified for scrolling in "groupItemsScroll", the scroll value 
+becomes the number of items currently visible in the carousel.
+                
+For example, if there are 3 items visible in the carousel and no specific item number is provided, the 
+carousel will scroll consistently every 3 items. In addition, the pagination points will be organized 
+based on the total number of items divided by 3, ensuring a simple and easy-to-use scrolling experience.
+
+
+_________________________________________________________________________________________________
+            `,
+            },
+            defaultValue: { summary: _defaultConfig.groupScroll },
+
+        },
+    },
+
+    groupItemsScroll: {
+        description: `<span id="groupItemsScroll">The quantity of items scrolled simultaneously when the groupScroll feature is enabled.</span>`,
+        control: { type: 'number' },
+        table: {
+            type: {
+                summary: "number",
+                detail: `
+The "groupItemsScroll" property specifies the number of items that will be scrolled when the "groupScroll"
+feature is enabled. If a scroll number greater than the count of visible items is provided, the count of
+visible items is automatically assigned as the scroll value.
+  
+  
+  _________________________________________________________________________________________________
+  `},
+            defaultValue: { summary: _defaultConfig.groupItemsScroll },
+        },
+    },
+
+
+    clickTransitionCtrl: {
+        description: `<span id="clickTransitionCtrl">Enables control over transitions on clicks</span>`,
+        control: "boolean",
+        table: {
+            type: {
+                summary: "boolean",
+                detail: `
+When set to true, this property allows users to switch between items only after a specific duration
+defined by the msPerClicks property. The msPerClicks property determines the time interval a user
+must wait before being allowed to transition to the next item. On the other hand, if set to false 
+(default), the transition between items is immediate upon clicking, without any enforced delay.
+
+_________________________________________________________________________________________________
+`
+            },
+            defaultValue: { summary: _defaultConfig.clickTransitionCtrl },
+        },
+    },
+
+    msPerClicks: {
+        description: `<span id="msPerClicks">Sets the time interval for click transitions</span>`,
+        control: "number",
+        table: {
+            type: { summary: "number" },
+            defaultValue: { summary: _defaultConfig.msPerClicks },
         },
     },
 
