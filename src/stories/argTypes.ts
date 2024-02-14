@@ -92,8 +92,11 @@ interface TypesConfigOptional {
     fullHeightItems?: boolean;
     verticalAlign?: boolean;
   
+    groupScroll?: boolean;
+    groupItemsScroll?: number;
+  
     responsive?: TypesReponsiveSettings[];
-  }
+}
   
 interface TypesReponsiveSettings {
 breakpoint: number;
