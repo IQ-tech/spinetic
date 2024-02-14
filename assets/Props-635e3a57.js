@@ -1,5 +1,5 @@
-import{j as e,a as i,F as c,G as d}from"./CardExample-d31eb566.js";import{M as l}from"./index-9973ace2.js";import{a as t}from"./argTypes-c1f4974d.js";import{u as a}from"./index-a1cf9e47.js";import"./index-76fb7be0.js";import"./_commonjsHelpers-de833af9.js";import"./iframe-825454ab.js";import"../sb-preview/runtime.js";import"./index-d3ea75b5.js";import"./index-11d98b33.js";import"./index-8fd8397b.js";import"./index-356e4a49.js";function o(r){const n=Object.assign({h1:"h1",h2:"h2",code:"code",em:"em",p:"p",pre:"pre",ul:"ul",li:"li",a:"a",strong:"strong",h3:"h3"},a(),r.components);return i(c,{children:[e(d,{}),`
-`,e(l,{title:"pages/Props"}),`
+import{j as e,a as i,F as l,G as c}from"./CardExample-d31eb566.js";import{M as d}from"./index-55f3e704.js";import{a as t}from"./argTypes-fa25b57b.js";import{u as a}from"./index-a1cf9e47.js";import"./index-76fb7be0.js";import"./_commonjsHelpers-de833af9.js";import"./iframe-fb0732a4.js";import"../sb-preview/runtime.js";import"./index-d3ea75b5.js";import"./index-11d98b33.js";import"./index-8fd8397b.js";import"./index-356e4a49.js";function o(r){const n=Object.assign({h1:"h1",h2:"h2",code:"code",em:"em",p:"p",pre:"pre",ul:"ul",li:"li",a:"a",strong:"strong",h3:"h3"},a(),r.components);return i(l,{children:[e(c,{}),`
+`,e(d,{title:"pages/Props"}),`
 `,e(n.h1,{id:"spinetic",children:"Spinetic"}),`
 `,e("br",{}),`
 `,e(n.h2,{id:"props",children:"Props"}),`
@@ -68,12 +68,6 @@ interface TypesReponsiveSettings {
 `,i(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#msPerAutoRotate",children:"msPerAutoRotate"}),": ",e("span",{dangerouslySetInnerHTML:{__html:t.msPerAutoRotate.description}})]}),`
 `]}),`
 `,i(n.li,{children:[`
-`,i(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#clickTransitionCtrl",children:"clickTransitionCtrl"}),": ",e("span",{dangerouslySetInnerHTML:{__html:t.clickTransitionCtrl.description}})]}),`
-`]}),`
-`,i(n.li,{children:[`
-`,i(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#msPerClicks",children:"msPerClicks"}),": ",e("span",{dangerouslySetInnerHTML:{__html:t.msPerClicks.description}})]}),`
-`]}),`
-`,i(n.li,{children:[`
 `,i(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#draggable",children:"draggable"}),": ",e("span",{dangerouslySetInnerHTML:{__html:t.draggable.description}})]}),`
 `]}),`
 `,i(n.li,{children:[`
@@ -90,6 +84,18 @@ interface TypesReponsiveSettings {
 `]}),`
 `,i(n.li,{children:[`
 `,i(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#verticalAlign",children:"verticalAlign"}),": ",e("span",{dangerouslySetInnerHTML:{__html:t.verticalAlign.description}})]}),`
+`]}),`
+`,i(n.li,{children:[`
+`,i(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#groupScroll",children:"groupScroll"}),": ",e("span",{dangerouslySetInnerHTML:{__html:t.groupScroll.description}})]}),`
+`]}),`
+`,i(n.li,{children:[`
+`,i(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#groupItemsScroll",children:"groupItemsScroll"}),": ",e("span",{dangerouslySetInnerHTML:{__html:t.groupItemsScroll.description}})]}),`
+`]}),`
+`,i(n.li,{children:[`
+`,i(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#clickTransitionCtrl",children:"clickTransitionCtrl"}),": ",e("span",{dangerouslySetInnerHTML:{__html:t.clickTransitionCtrl.description}})]}),`
+`]}),`
+`,i(n.li,{children:[`
+`,i(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#msPerClicks",children:"msPerClicks"}),": ",e("span",{dangerouslySetInnerHTML:{__html:t.msPerClicks.description}})]}),`
 `]}),`
 `,i(n.li,{children:[`
 `,i(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#verticalAlign",children:"responsive"}),": ",e("span",{dangerouslySetInnerHTML:{__html:t.responsive.description}})]}),`
@@ -175,4 +181,4 @@ default App;
 `,e("br",{}),`
 `,e("br",{}),`
 `,e("br",{}),`
-`,e("br",{})]})}function _(r={}){const{wrapper:n}=Object.assign({},a(),r.components);return n?e(n,Object.assign({},r,{children:e(o,r)})):o(r)}export{_ as default};
+`,e("br",{})]})}function v(r={}){const{wrapper:n}=Object.assign({},a(),r.components);return n?e(n,Object.assign({},r,{children:e(o,r)})):o(r)}export{v as default};
