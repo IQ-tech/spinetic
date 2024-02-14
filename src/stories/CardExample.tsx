@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
 export const exampleItems = [
   "useState: Adds state to functional components. Allows components to have internal state.",
@@ -85,6 +85,10 @@ const GoToTheTop: React.FC<GoToTheTopProps> = () => {
   );
 };
 
-export { GoToTheTop };
+const SpineticItem = ({ children }: { children: ReactNode | ReactNode[] }) => {
+  return <div className="spinetic-item">{children}</div>;
+};
+
+export { GoToTheTop, SpineticItem };
 
 export default CardExample;

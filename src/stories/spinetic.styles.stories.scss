@@ -132,3 +132,12 @@ $hoverColor: #0056b3; // A darker shade for hover effect
     justify-content: flex-end;
   }
 }
+
+.spinetic-item {
+	scroll-snap-align: start;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	user-select: none;
+	touch-action: pan-y;
+}

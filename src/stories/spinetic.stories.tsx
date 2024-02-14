@@ -7,9 +7,8 @@ import "../styles.scss";
 import { TypesConfigOptional } from "types";
 
 import Spinetic from "../Spinetic";
-import SpineticItem from "../Spinetic/SpineticItem";
 
-import CardExample, { generateItems } from "./CardExample";
+import CardExample, { generateItems, SpineticItem } from "./CardExample";
 
 import { argTypes, handleChange } from "./argTypes";
 import documentation from "./docs/Playground.mdx";
