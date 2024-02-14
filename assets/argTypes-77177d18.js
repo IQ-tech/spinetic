@@ -1,4 +1,4 @@
-const i={arrows:!0,arrowLeftPosition:0,arrowRightPosition:0,hideArrows:!1,dots:!0,dotsModel:"default",indexInDots:!1,autoRotate:!1,msPerAutoRotate:3e3,draggable:!0,touchThreshold:100,showItems:1,autoWidth:!1,fullHeightItems:!1,verticalAlign:!1,groupScroll:!1,groupItemsScroll:1,clickTransitionCtrl:!1,msPerClicks:1500,responsive:[{breakpoint:0,settings:{}}]},n=t=>!t||!(t!=null&&t.length)?i.responsive:(t==null?void 0:t.sort((e,o)=>o.breakpoint-e.breakpoint))??i.responsive,a=t=>{const _=window.innerWidth,e=t>_/2;return t===void 0||e?i.touchThreshold:t},s=t=>!t||t<1?i.showItems:t,r=t=>typeof t!="boolean"?i.autoWidth:t,l=t=>{const _=t,e=i,o={arrows:(_==null?void 0:_.arrows)??e.arrows,arrowLeftPosition:(_==null?void 0:_.arrowLeftPosition)??e.arrowLeftPosition,arrowRightPosition:(_==null?void 0:_.arrowRightPosition)??e.arrowRightPosition,hideArrows:(_==null?void 0:_.hideArrows)??e.hideArrows,dots:(_==null?void 0:_.dots)??e.dots,dotsModel:(_==null?void 0:_.dotsModel)??e.dotsModel,indexInDots:(_==null?void 0:_.indexInDots)??e.indexInDots,autoRotate:(_==null?void 0:_.autoRotate)??e.autoRotate,msPerAutoRotate:(_==null?void 0:_.msPerAutoRotate)??e.msPerAutoRotate,draggable:(_==null?void 0:_.draggable)??e.draggable,touchThreshold:a((_==null?void 0:_.touchThreshold)??e.touchThreshold),showItems:s((_==null?void 0:_.showItems)??e.showItems),fullHeightItems:(_==null?void 0:_.fullHeightItems)??e.fullHeightItems,autoWidth:r(_==null?void 0:_.autoWidth),verticalAlign:(_==null?void 0:_.verticalAlign)??e.verticalAlign,groupScroll:(_==null?void 0:_.groupScroll)??e.groupScroll,groupItemsScroll:(_==null?void 0:_.groupItemsScroll)??e.groupItemsScroll,clickTransitionCtrl:(_==null?void 0:_.clickTransitionCtrl)??e.clickTransitionCtrl,msPerClicks:(_==null?void 0:_.msPerClicks)??e.msPerClicks,responsive:n(_==null?void 0:_.responsive)};return o.verticalAlign?{...o,arrows:!1,dots:!1,draggable:!1,fullHeightItems:!1}:o},d={children:{description:'<span id="children">Children elements to be rendered inside the Spinetic component.</span>',control:"number",table:{type:{summary:"ReactNode | ReactNode[]",detail:`
+const i={arrows:!0,arrowLeftPosition:0,arrowRightPosition:0,hideArrows:!1,dots:!0,dotsModel:"default",indexInDots:!1,autoRotate:!1,msPerAutoRotate:3e3,draggable:!0,touchThreshold:100,showItems:1,autoWidth:!1,fullHeightItems:!1,verticalAlign:!1,groupScroll:!1,groupItemsScroll:1,clickTransitionCtrl:!1,msPerClicks:1500,responsive:[{breakpoint:0,settings:{}}]},n=t=>!t||!(t!=null&&t.length)?i.responsive:(t==null?void 0:t.sort((e,o)=>o.breakpoint-e.breakpoint))??i.responsive,a=t=>{const _=window.innerWidth,e=t>_/2;return t===void 0||e?i.touchThreshold:t},s=t=>!t||t<1?i.showItems:t,r=t=>typeof t!="boolean"?i.autoWidth:t,l=t=>{const _=t,e=i,o={arrows:(_==null?void 0:_.arrows)??e.arrows,arrowLeftPosition:(_==null?void 0:_.arrowLeftPosition)??e.arrowLeftPosition,arrowRightPosition:(_==null?void 0:_.arrowRightPosition)??e.arrowRightPosition,hideArrows:(_==null?void 0:_.hideArrows)??e.hideArrows,dots:(_==null?void 0:_.dots)??e.dots,dotsModel:(_==null?void 0:_.dotsModel)??e.dotsModel,indexInDots:(_==null?void 0:_.indexInDots)??e.indexInDots,autoRotate:(_==null?void 0:_.autoRotate)??e.autoRotate,msPerAutoRotate:(_==null?void 0:_.msPerAutoRotate)??e.msPerAutoRotate,draggable:(_==null?void 0:_.draggable)??e.draggable,touchThreshold:a((_==null?void 0:_.touchThreshold)??e.touchThreshold),showItems:s((_==null?void 0:_.showItems)??e.showItems),fullHeightItems:(_==null?void 0:_.fullHeightItems)??e.fullHeightItems,autoWidth:r(_==null?void 0:_.autoWidth),verticalAlign:(_==null?void 0:_.verticalAlign)??e.verticalAlign,groupScroll:(_==null?void 0:_.groupScroll)??e.groupScroll,groupItemsScroll:(_==null?void 0:_.groupItemsScroll)??e.groupItemsScroll,clickTransitionCtrl:(_==null?void 0:_.clickTransitionCtrl)??e.clickTransitionCtrl,msPerClicks:(_==null?void 0:_.msPerClicks)??e.msPerClicks,responsive:n(_==null?void 0:_.responsive)};return o.verticalAlign?{...o,arrows:!1,dots:!1,draggable:!1,fullHeightItems:!1}:o},u={children:{description:'<span id="children">Children elements to be rendered inside the Spinetic component.</span>',control:"number",table:{type:{summary:"ReactNode | ReactNode[]",detail:`
                 
 The "children" property represents the child items of the Spinetic component to be rendered.
  For example:
@@ -69,8 +69,11 @@ interface TypesConfigOptional {
     fullHeightItems?: boolean;
     verticalAlign?: boolean;
   
+    groupScroll?: boolean;
+    groupItemsScroll?: number;
+  
     responsive?: TypesReponsiveSettings[];
-  }
+}
   
 interface TypesReponsiveSettings {
 breakpoint: number;
@@ -294,7 +297,7 @@ ________________________________________________________________________________
 }
 
 _________________________________________________________________________________________________
-                `}}}},u=t=>{const _=t.current,e=t.previous;alert(` change
+                `}}}},d=t=>{const _=t.current,e=t.previous;alert(` change
       { 
         current: {
           index: ${JSON.stringify(_.index)},
@@ -307,4 +310,4 @@ ________________________________________________________________________________
             totalItems: ${JSON.stringify(e.totalItems)}
         }
     }
-  `)};export{i as _,d as a,u as h,l as v};
+  `)};export{i as _,u as a,d as h,l as v};
