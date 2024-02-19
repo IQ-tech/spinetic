@@ -46,7 +46,7 @@ export const useDragSpinetic = ({
             _sb && !currentConfig.draggable ||
             remainingIndexes?.length <= 1 ||
             cancelDraggable ||
-            currentConfig.verticalAlign
+            currentConfig.layout === "verticalAlign"
         ) return;
 
         e.stopPropagation();
@@ -72,7 +72,7 @@ export const useDragSpinetic = ({
     ])
 
     const move = useCallback((e: TypesEventDragMove): void => {
-        if (_sb && !currentConfig.draggable || !isDragging || cancelDraggable || currentConfig.verticalAlign) {
+        if (_sb && !currentConfig.draggable || !isDragging || cancelDraggable || currentConfig.layout === "verticalAlign") {
             return;
         }
 
@@ -110,7 +110,7 @@ export const useDragSpinetic = ({
             currentConfig.draggable,
             isDragging,
             cancelDraggable,
-            currentConfig.verticalAlign,
+            currentConfig.layout === "verticalAlign",
             startTX,
             startTY,
             startX,
@@ -122,7 +122,7 @@ export const useDragSpinetic = ({
     )
 
     const end = useCallback((e: TypesEventDragEnd): void => {
-        if (_sb && !currentConfig.draggable || cancelDraggable || currentConfig.verticalAlign) {
+        if (_sb && !currentConfig.draggable || cancelDraggable || currentConfig.layout === "verticalAlign") {
             return;
         }
 
@@ -141,7 +141,7 @@ export const useDragSpinetic = ({
         _sb,
         currentConfig.draggable,
         cancelDraggable,
-        currentConfig.verticalAlign,
+        currentConfig.layout === "verticalAlign",
         finalDist,
         previousItem,
         nextItem,

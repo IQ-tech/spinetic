@@ -83,16 +83,16 @@ AutoRotate.args = {
   msPerAutoRotate: 2000
 };
 
-// export const Responsive = Template.bind({});
-// Responsive.args = {
-//   autoWidth: true,
-//   responsive: [
-//     {
-//       breakpoint: 768,
-//       settings: {
-//         dots: false,
-//         verticalAlign: true,
-//       },
-//     },
-//   ],
-// };
+export const Responsive = Template.bind({});
+Responsive.args = {
+  children: 3,
+  autoWidth: true,
+  responsive: [
+    {
+      breakpoint: 768,
+      settings: {
+        layout: "verticalAlign",
+      },
+    },
+  ],
+};

@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 
 //#region config
+type TypesLayout = 'default' | 'controlsInLine' | 'verticalAlign' ;
 export interface TypesConfigOptional {
   arrows?: boolean;
   arrowLeftPosition?: number;
@@ -21,10 +22,10 @@ export interface TypesConfigOptional {
   draggable?: boolean;
   touchThreshold?: number;
 
+  layout?: TypesLayout,
   showItems?: number;
   autoWidth?: boolean;
   fullHeightItems?: boolean;
-  verticalAlign?: boolean;
 
   groupScroll?: boolean;
   groupItemsScroll?: number;
@@ -122,7 +123,7 @@ export interface TypesUseSpinetic {
 }
 
 export interface TypesArrows {
-  children: TypeChildren;
+  children?: TypeChildren;
   currentConfig: TypesConfig;
   currentIndex: number;
   remainingIndexes: number[];
@@ -136,8 +137,6 @@ export interface TypesDots {
   remainingIndexes: number[];
   goToItem: (p0: number) => void;
 }
-
-
 export interface SpineticChangeEvent {
   previous: {
     index: number;

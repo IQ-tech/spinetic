@@ -276,6 +276,15 @@ ________________________________________________________________________________
     },
 
 
+    layout: {
+        description: `<span id="layout">The layout property is responsible for specifying which layout should be rendered.</span>`,
+        control: "radio",
+        options: ["default", "controlsInLine", "verticalAlign"],
+        table: {
+            type: { summary: "string" },
+            defaultValue: { summary: _defaultConfig.layout }
+        }
+    },
 
     showItems: {
         description: `<span id="showItems">Defines the number of items to show</span>`,
@@ -340,34 +349,6 @@ ________________________________________________________________________________
             defaultValue: { summary: _defaultConfig.fullHeightItems },
         },
     },
-
-    verticalAlign: {
-        description: `<span id="verticalAlign">Aligns items vertically.</span>`,
-        control: "boolean",
-
-        table: {
-            type: {
-                summary: "boolean",
-                detail: `
-The "verticalAlign" property ensures vertical alignment for all carousel items. 
-When set to true, the following properties are automatically configured:
-
-{    
-    arrows: false,
-    dots: false,
-    draggable: false,
-    fullHeightItems: false,
-}
-
-
-_________________________________________________________________________________________________
-            `,
-            },
-            defaultValue: { summary: _defaultConfig.verticalAlign },
-
-        },
-    },
-
 
 
     groupScroll: {

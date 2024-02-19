@@ -2,47 +2,98 @@ $spinetic-blue: #135df5;
 $spinetic-white: white;
 
 .spinetic-main {
-	display: block;
-	position: relative;
+  display: block;
+  position: relative;
 }
 
 .spinetic-wrapper {
-	display: flex;
-	overflow: hidden;
-	-webkit-overflow-scrolling: touch;
-	scroll-snap-type: x mandatory;
+  display: flex;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
 }
 
 .spinetic-container {
-	display: flex;
-	flex-wrap: nowrap;
-	align-items: flex-start;
-	-webkit-transition: -webkit-transform 0.5s ease;
-	transition: transform 0.5s ease;
-	-webkit-position: relative;
-	position: relative;
-	overflow: hidden;
-}
-
-.spinetic-no-transition {
-	-webkit-transition: none;
-	transition: none;
-}
-
-.spinetic-vertical-align {
-	touch-action: unset;
-
-	div.spinetic-wrapper {
-		overflow: unset;
-	}
-
-	div.spinetic-container {
-		flex-direction: column;
-		width: 100%;
-	}
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  -webkit-transition: -webkit-transform 0.5s ease;
+  transition: transform 0.5s ease;
+  -webkit-position: relative;
+  position: relative;
+  overflow: hidden;
 }
 
 .hasDraggable {
-	cursor: grab;
+  cursor: grab;
 }
 
+.spinetic-no-transition {
+  -webkit-transition: none;
+  transition: none;
+}
+
+.controls-in-line {
+  .spinetic-dots {
+    justify-content: flex-start;
+    gap: 8px;
+    margin-top: 25px;
+    padding-bottom: 20px;
+
+    .spinetic-dot {
+      width: 8px;
+      height: 8px;
+
+      &.spinetic-dot-active {
+        width: 38px;
+      }
+    }
+  }
+
+  .spinetic-navigation-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: unset;
+    right: unset;
+    color: $spinetic-blue;
+    background-color: transparent;
+    border: 1.25px solid $spinetic-blue;
+    transition: transform 0.6s;
+
+    svg {
+      height: 20px;
+      width: 10px;
+    }
+
+    path {
+      stroke: $spinetic-blue;
+      stroke-width: 2.5px;
+    }
+  }
+
+  .spinetic-btn-prev {
+    bottom: 0;
+    right: 50px;
+    left: unset;
+    transform: translateY(-7%);
+  }
+
+  .spinetic-btn-next {
+    bottom: 0;
+    transform: translateY(-7%);
+  }
+}
+
+.spinetic-vertical-align {
+  touch-action: unset;
+
+  div.spinetic-wrapper {
+    overflow: unset;
+  }
+
+  div.spinetic-container {
+    flex-direction: column;
+    width: 100%;
+  }
+}

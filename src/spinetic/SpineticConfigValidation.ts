@@ -18,10 +18,10 @@ export const _defaultConfig: TypesConfig = {
   draggable: true,
   touchThreshold: 30,
 
+  layout: "default",
   showItems: 1,
   autoWidth: false,
   fullHeightItems: false,
-  verticalAlign: false,
 
   groupScroll: false,
   groupItemsScroll: 1,
@@ -81,10 +81,10 @@ export const validConfig = (config?: TypesConfigOptional): TypesConfig => {
     draggable: C?.draggable ?? DC.draggable,
     touchThreshold: _validTouchLimit(C?.touchThreshold ?? DC.touchThreshold),
 
+    layout: C?.layout ?? DC.layout,
     showItems: validShowItems(C?.showItems ?? DC.showItems),
     fullHeightItems: C?.fullHeightItems ?? DC.fullHeightItems,
     autoWidth: validAutoWidth(C?.autoWidth),
-    verticalAlign: C?.verticalAlign ?? DC.verticalAlign,
 
     groupScroll: C?.groupScroll ?? DC.groupScroll,
     groupItemsScroll: C?.groupItemsScroll ?? DC.groupItemsScroll,
@@ -94,17 +94,6 @@ export const validConfig = (config?: TypesConfigOptional): TypesConfig => {
 
     responsive: _validResponsive(C?.responsive)
   };
-
-
-  if (currentOrDefaultConfig.verticalAlign) {
-    return {
-      ...currentOrDefaultConfig,
-      arrows: false,
-      dots: false,
-      draggable: false,
-      fullHeightItems: false,
-    };
-  }
 
   return currentOrDefaultConfig;
 }
