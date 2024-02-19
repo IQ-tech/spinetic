@@ -1,4 +1,4 @@
-import{j as e,a as t,F as l,G as c}from"./CardExample-ddb75f59.js";import{M as d}from"./index-67159854.js";import{a as i}from"./argTypes-77177d18.js";import{u as a}from"./index-a1cf9e47.js";import"./index-76fb7be0.js";import"./_commonjsHelpers-de833af9.js";import"./iframe-b5cda6ee.js";import"../sb-preview/runtime.js";import"./index-d3ea75b5.js";import"./index-11d98b33.js";import"./index-8fd8397b.js";import"./index-356e4a49.js";function o(r){const n=Object.assign({h1:"h1",h2:"h2",code:"code",em:"em",p:"p",pre:"pre",ul:"ul",li:"li",a:"a",strong:"strong",h3:"h3"},a(),r.components);return t(l,{children:[e(c,{}),`
+import{j as e,a as t,F as c,G as l}from"./CardExample-ddb75f59.js";import{M as d}from"./index-30642b5c.js";import{a as i}from"./argTypes-c25653a6.js";import{u as a}from"./index-a1cf9e47.js";import"./index-76fb7be0.js";import"./_commonjsHelpers-de833af9.js";import"./iframe-9ccc0517.js";import"../sb-preview/runtime.js";import"./index-d3ea75b5.js";import"./index-11d98b33.js";import"./index-8fd8397b.js";import"./index-356e4a49.js";function o(r){const n=Object.assign({h1:"h1",h2:"h2",code:"code",em:"em",p:"p",pre:"pre",ul:"ul",li:"li",a:"a",strong:"strong",h3:"h3"},a(),r.components);return t(c,{children:[e(l,{}),`
 `,e(d,{title:"pages/Props"}),`
 `,e(n.h1,{id:"spinetic",children:"Spinetic"}),`
 `,e("br",{}),`
@@ -14,7 +14,8 @@ import{j as e,a as t,F as l,G as c}from"./CardExample-ddb75f59.js";import{M as d
   hideArrows?: boolean;
 
   dots?: boolean;
-  dotsModel?: TypesDotsModel;
+  dotsStyle?: object;
+  dotsStyleActive?: object;
   indexInDots?: boolean;
 
   autoRotate?: boolean;
@@ -29,7 +30,6 @@ import{j as e,a as t,F as l,G as c}from"./CardExample-ddb75f59.js";import{M as d
   showItems?: number;
   autoWidth?: boolean;
   fullHeightItems?: boolean;
-  verticalAlign?: boolean;
 
   groupScroll?: boolean;
   groupItemsScroll?: number;
@@ -59,7 +59,10 @@ interface TypesReponsiveSettings {
 `,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#dots",children:"dots"}),": ",e("span",{dangerouslySetInnerHTML:{__html:i.dots.description}})]}),`
 `]}),`
 `,t(n.li,{children:[`
-`,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#dotsModel",children:"dotsModel"}),": ",e("span",{dangerouslySetInnerHTML:{__html:i.dotsModel.description}})]}),`
+`,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#dotsStyle",children:"dotsStyle"}),": ",e("span",{dangerouslySetInnerHTML:{__html:i.dotsStyle.description}})]}),`
+`]}),`
+`,t(n.li,{children:[`
+`,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#dotsStyleActive",children:"dotsStyleActive"}),": ",e("span",{dangerouslySetInnerHTML:{__html:i.dotsStyleActive.description}})]}),`
 `]}),`
 `,t(n.li,{children:[`
 `,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#indexInDots",children:"indexInDots"}),": ",e("span",{dangerouslySetInnerHTML:{__html:i.indexInDots.description}})]}),`
@@ -86,9 +89,6 @@ interface TypesReponsiveSettings {
 `,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#fullHeightItems",children:"fullHeightItems"}),": ",e("span",{dangerouslySetInnerHTML:{__html:i.fullHeightItems.description}})]}),`
 `]}),`
 `,t(n.li,{children:[`
-`,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#verticalAlign",children:"verticalAlign"}),": ",e("span",{dangerouslySetInnerHTML:{__html:i.verticalAlign.description}})]}),`
-`]}),`
-`,t(n.li,{children:[`
 `,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#groupScroll",children:"groupScroll"}),": ",e("span",{dangerouslySetInnerHTML:{__html:i.groupScroll.description}})]}),`
 `]}),`
 `,t(n.li,{children:[`
@@ -99,9 +99,6 @@ interface TypesReponsiveSettings {
 `]}),`
 `,t(n.li,{children:[`
 `,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#msPerClicks",children:"msPerClicks"}),": ",e("span",{dangerouslySetInnerHTML:{__html:i.msPerClicks.description}})]}),`
-`]}),`
-`,t(n.li,{children:[`
-`,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#verticalAlign",children:"responsive"}),": ",e("span",{dangerouslySetInnerHTML:{__html:i.responsive.description}})]}),`
 `]}),`
 `]}),`
 `,t(n.h2,{id:"change-function",children:[e(n.code,{children:"change"}),": ",e(n.em,{children:"function"})]}),`
@@ -184,4 +181,4 @@ default App;
 `,e("br",{}),`
 `,e("br",{}),`
 `,e("br",{}),`
-`,e("br",{})]})}function v(r={}){const{wrapper:n}=Object.assign({},a(),r.components);return n?e(n,Object.assign({},r,{children:e(o,r)})):o(r)}export{v as default};
+`,e("br",{})]})}function _(r={}){const{wrapper:n}=Object.assign({},a(),r.components);return n?e(n,Object.assign({},r,{children:e(o,r)})):o(r)}export{_ as default};
