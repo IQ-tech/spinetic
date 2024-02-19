@@ -1,5 +1,5 @@
 
-import { TypesConfig, TypesReponsiveSettings, TypesConfigOptional } from "types"
+import { TypesConfig, TypesReponsiveSettings, TypesConfigOptional } from "types";
 
 export const _defaultConfig: TypesConfig = {
   arrows: true,
@@ -8,14 +8,15 @@ export const _defaultConfig: TypesConfig = {
   hideArrows: false,
 
   dots: true,
-  dotsModel: "default",
+  dotsStyle: {},
+  dotsStyleActive: {},
   indexInDots: false,
 
   autoRotate: false,
   msPerAutoRotate: 3000,
 
   draggable: true,
-  touchThreshold: 100,
+  touchThreshold: 30,
 
   showItems: 1,
   autoWidth: false,
@@ -70,7 +71,8 @@ export const validConfig = (config?: TypesConfigOptional): TypesConfig => {
     hideArrows: C?.hideArrows ?? DC.hideArrows,
 
     dots: C?.dots ?? DC.dots,
-    dotsModel: C?.dotsModel ?? DC.dotsModel,
+    dotsStyle: C?.dotsStyle ?? DC.dotsStyle,
+    dotsStyleActive: C?.dotsStyleActive ?? DC.dotsStyleActive,
     indexInDots: C?.indexInDots ?? DC.indexInDots,
 
     autoRotate: C?.autoRotate ?? DC.autoRotate,

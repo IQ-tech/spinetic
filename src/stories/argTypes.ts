@@ -75,7 +75,8 @@ interface TypesConfigOptional {
     hideArrows?: boolean;
   
     dots?: boolean;
-    dotsModel?: TypesDotsModel;
+    dotsStyle?: object;
+    dotsStyleActive?: object;
     indexInDots?: boolean;
   
     autoRotate?: boolean;
@@ -191,14 +192,22 @@ ________________________________________________________________________________
         },
     },
 
-    dotsModel: {
-        description: `<span id="dotsModel">Defines the model for the dots</span>`,
-        control: "radio",
-        options: ["default", "long-rounded"],
+    dotsStyle: {
+        description: `<span id="dotsStyle">Defines the styles for the dots</span>`,
+        control: "object",
         table: {
-            type: { summary: "string" },
-            defaultValue: { summary: _defaultConfig.dotsModel },
+            type: { summary: "object" },
+            defaultValue: { summary: `{}` }
         },
+    },
+
+    dotsStyleActive: {
+        description: `<span id="dotsStyleActive">Defines the styles for the dots in the active state</span>`,
+        control: "object",
+        table: {
+            type: { summary: "object" },
+            defaultValue: { summary: `{}` }
+        }
     },
 
     indexInDots: {
@@ -262,7 +271,7 @@ during minor touch movements.
 _________________________________________________________________________________________________
                 `
             },
-            defaultValue: { summary: 50 },
+            defaultValue: { summary: _defaultConfig.touchThreshold },
         },
     },
 
@@ -584,27 +593,3 @@ ________________________________________________________________________________
     },
 
 }
-
-
-
-export const handleChange = (event: SpineticChangeEvent) => {
-    const currentState = event.current;
-    const previousState = event.previous;
-
-    alert(
-        ` change
-      { 
-        current: {
-          index: ${JSON.stringify(currentState.index)},
-          remainingIndexes: ${JSON.stringify(previousState.remainingIndexes)}
-          totalItems: ${JSON.stringify(previousState.totalItems)}
-        },
-        previous: {
-            index: ${JSON.stringify(previousState.index)},
-            remainingIndexes: ${JSON.stringify(previousState.remainingIndexes)}
-            totalItems: ${JSON.stringify(previousState.totalItems)}
-        }
-    }
-  `
-    );
-};

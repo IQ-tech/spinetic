@@ -1,5 +1,5 @@
 import * as React from "react";
-import { TypesDots } from "types"
+import { TypesDots } from "types";
 
 const SpineticDots = ({
   currentConfig,
@@ -16,14 +16,18 @@ const SpineticDots = ({
         <div className="spinetic-dots">
           {remainingIndexes?.map((_item: number, i: number) => (
             <span
-              key={i}
-              className={`${currentConfig.dotsModel} ${
-                i === currentIndex ? `active-${currentConfig.dotsModel}` : ""
+              className={`spinetic-dot ${
+                i === currentIndex ? "spinetic-dot-active" : ""
               }`}
+              style={{
+                ...currentConfig.dotsStyle,
+                ...(i === currentIndex ? currentConfig.dotsStyleActive : null),
+              }}
+              key={i}
               onClick={() => goToItem(i)}
             >
               {currentConfig.indexInDots && (
-                <span>
+                <span className="spinetic-dot-index">
                   {i + 1 + (maxCarouselItems - remainingIndexes?.length)}
                 </span>
               )}

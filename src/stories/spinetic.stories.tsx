@@ -4,14 +4,36 @@ import type { Meta, StoryFn } from "@storybook/react";
 import "./Spinetic.styles.stories.scss";
 import "../styles.scss";
 
-import { TypesConfigOptional } from "types";
+import { SpineticChangeEvent, TypesConfigOptional } from "types";
 
 import Spinetic from "../Spinetic";
 
 import CardExample, { generateItems, SpineticItem } from "./CardExample";
 
-import { argTypes, handleChange } from "./argTypes";
+import { argTypes } from "./argTypes";
 import documentation from "./docs/Playground.mdx";
+
+const handleChange = (event: SpineticChangeEvent) => {
+  const currentState = event.current;
+  const previousState = event.previous;
+
+  alert(
+      ` change
+    { 
+      current: {
+        index: ${JSON.stringify(currentState.index)},
+        remainingIndexes: ${JSON.stringify(previousState.remainingIndexes)}
+        totalItems: ${JSON.stringify(previousState.totalItems)}
+      },
+      previous: {
+          index: ${JSON.stringify(previousState.index)},
+          remainingIndexes: ${JSON.stringify(previousState.remainingIndexes)}
+          totalItems: ${JSON.stringify(previousState.totalItems)}
+      }
+  }
+`
+  );
+};
 
 export default {
   title: "Pages/Playground",
@@ -64,7 +86,6 @@ AutoRotate.args = {
 // export const Responsive = Template.bind({});
 // Responsive.args = {
 //   autoWidth: true,
-//   dotsModel: "long-rounded",
 //   responsive: [
 //     {
 //       breakpoint: 768,

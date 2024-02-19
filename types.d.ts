@@ -1,7 +1,6 @@
 import { ReactNode } from "react";
 
 //#region config
-export type TypesDotsModel = "default" | "long-rounded";
 export interface TypesConfigOptional {
   arrows?: boolean;
   arrowLeftPosition?: number;
@@ -9,7 +8,8 @@ export interface TypesConfigOptional {
   hideArrows?: boolean;
 
   dots?: boolean;
-  dotsModel?: TypesDotsModel;
+  dotsStyle?: object,
+  dotsStyleActive?: object,
   indexInDots?: boolean;
 
   autoRotate?: boolean;

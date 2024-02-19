@@ -329,7 +329,8 @@ export const useSpinetic = ({
     children, 
     prevChildren.current, 
     spineticContainer, 
-    currentConfig.autoWidth
+    currentConfig.autoWidth,
+    window?.innerWidth
   ]);
 
   useEffect(() => { if (!!change && remainingIndexes?.length > 1) change(elementsChange) }, [currentIndex]);
