@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState, Children, useCallback, ReactNode, RefObject, useLayoutEffect } from "react";
+import { useRef, useEffect, useState, Children, useCallback, ReactNode, RefObject } from "react";
 import { useDragSpinetic } from "../SpineticUseDrag";
 import * as SpineticUtils from "../SpineticUtils";
 import * as SpineticConfig from "../SpineticConfigValidation";
@@ -20,32 +20,13 @@ export const useSpinetic = ({
   const [remainingIndexes, setRemainingIndexes] = useState<number[]>([]);
 
   const [_carouselItemsWidths, setCarouselItemsWidths] = useState<number[]>([]);
-  const [_isProcessingClick, setIsProcessingClick] = useState(true);
+  const [_isProcessingClick, setIsProcessingClick] = useState<boolean>(true);
   const [_sb, setSb] = useState<boolean | undefined>(undefined);
 
-  const [elementsChange, setElementsChange] = useState<SpineticChangeEvent>({
-    previous: {
-      index: currentIndex,
-      remainingIndexes: remainingIndexes,
-      totalItems: Children.count(children)
-    },
-    current: {
-      index: currentIndex,
-      remainingIndexes: remainingIndexes,
-      totalItems: Children.count(children)
-    }
-  })
-
-  const checkIsSb = () => {
-    const currentUrl = window?.location?.href;
-    const hasStoreInLS = !!localStorage?.getItem("@storybook/manager/store");
-    const isSb = currentUrl?.includes("pages-playground") && hasStoreInLS;
-
-    return setSb(isSb);
-  }
+  const [elementsChange, setElementsChange] = useState<SpineticChangeEvent>(SpineticUtils.elementsChangeDefault)
 
 
-  const _getCarouselItemsWidth = useCallback((CConfig: TypesConfig): number[] | null => {
+  const _handleCarouselItemsWidth = useCallback((CConfig: TypesConfig): number[] | null => {
     const container = spineticContainer.current;
     const main = spineticMain.current;
 
@@ -84,13 +65,14 @@ export const useSpinetic = ({
     config,
     currentConfig,
     spineticMain.current,
-    spineticContainer.current
+    spineticContainer.current,
+    children
   ])
 
-  const _setCarouselWidth = useCallback((CConfig: TypesConfig): void => {
+  const _handleCarouselWidth = useCallback((CConfig: TypesConfig): void => {
     if (CConfig.layout === "verticalAlign") return;
 
-    _getCarouselItemsWidth(CConfig)
+    _handleCarouselItemsWidth(CConfig)
     const totalWidth = SpineticUtils.sumCarouselItemsWidths(
       _carouselItemsWidths
     );
@@ -141,7 +123,7 @@ export const useSpinetic = ({
       { length: maxScroll + 1 },
       (_, index) => remainingIdx(index)
     )
-
+  
     _updateElementsChange({
       current: {
         index: 0,
@@ -178,10 +160,11 @@ export const useSpinetic = ({
     config,
     currentConfig,
     spineticMain.current,
-    spineticContainer.current
+    spineticContainer.current,
+    children
   ])
 
-  const _setConfigs = (config?: TypesConfigOptional) => {
+  const _handleConfigs = (config?: TypesConfigOptional) => {
     const currentOrDefaultConfig: TypesConfig = SpineticConfig.validConfig(config);
 
     const breakpoints = currentOrDefaultConfig.responsive
@@ -204,7 +187,7 @@ export const useSpinetic = ({
 
     const CConfig = SpineticConfig.validConfig(currentOrDefaultConfig);
     setCurrentConfig(CConfig);
-    _setCarouselWidth(CConfig);
+    _handleCarouselWidth(CConfig);
   }
 
   const _updateElementsChange = (updateElements: SpineticChangeEvent) => {
@@ -228,9 +211,8 @@ export const useSpinetic = ({
       additionalConditionalForTransition;
   }
 
-  const _hasPreviousItem = currentIndex > 0;
   const previousItem = (): void => {
-    if (_hasClickTransitionCtrl(_hasPreviousItem)) {
+    if (_hasClickTransitionCtrl(currentIndex > 0)) {
       const newIdx = currentIndex - 1
 
       setCurrentIndex(newIdx);
@@ -242,9 +224,8 @@ export const useSpinetic = ({
     }
   }
 
-  const _hasNextItem = currentIndex < remainingIndexes?.length - 1;
   const nextItem = (): void => {
-    if (_hasClickTransitionCtrl(_hasNextItem)) {
+    if (_hasClickTransitionCtrl(currentIndex < remainingIndexes?.length - 1)) {
       const newIdx = currentIndex + 1;
 
       setCurrentIndex(newIdx);
@@ -256,9 +237,8 @@ export const useSpinetic = ({
     }
   }
 
-  const maxCarouselItems = Children.count(children);
   const _isValidIndex = (index: number): boolean => {
-    return index >= 0 && index < maxCarouselItems;
+    return index >= 0 && index < Children.count(children);
   }
 
   const goToItem = (index: number): void => {
@@ -284,7 +264,7 @@ export const useSpinetic = ({
     }
   }
 
-  const _handleItemChange = (): void => {
+  const _handleItemChange = useCallback((): void => {
     setIsProcessingClick(false);
 
     const scrollAmount = SpineticUtils.calculateScrollAmount(
@@ -297,56 +277,18 @@ export const useSpinetic = ({
     setTimeout(() => {
       setIsProcessingClick(true);
     }, currentConfig.msPerClicks);
-  }
+  }, [remainingIndexes, currentIndex])
 
-  const checkAndSetConfigs = useCallback(() => {
+  const _checkAndSetConfigs = useCallback(() => {
     const childrenAreEqual = SpineticUtils.childrenIsEqual(children, prevChildren.current);
 
     if (!childrenAreEqual) {
       prevChildren.current = children;
-      _setConfigs(config);
+      _handleConfigs(config);
     }
   }, [children, config]);
 
-  const { start, move, end } = useDragSpinetic({
-    _sb,
-    config,
-    currentConfig,
-    remainingIndexes,
-    spineticContainer,
-    _carouselItemsWidths,
-    currentIndex,
-    _setCarouselContainerTransform,
-    previousItem,
-    nextItem,
-    _handleItemChange
-  })
-
-  useEffect(() => checkIsSb(), []);
-  useEffect(() => { if (_sb) _setConfigs(config)}, [
-    config, 
-    _sb, 
-    children, 
-    prevChildren.current, 
-    spineticContainer, 
-    currentConfig.autoWidth,
-    window?.innerWidth
-  ]);
-
-  useEffect(() => { if (!!change && remainingIndexes?.length > 1) change(elementsChange) }, [currentIndex]);
-  useEffect(() => _handleItemChange(), [remainingIndexes, currentIndex]);
-  useEffect(() => checkAndSetConfigs(), [checkAndSetConfigs]);
-
-  useEffect(() => _setConfigs(config), [
-    spineticContainer.current,
-    window?.innerWidth,
-    currentConfig.layout,
-    config,
-    prevChildren.current,
-
-  ]);
-
-  useEffect(() => {
+  const _handleAutoRotate = useCallback(() => {
     if (currentConfig.autoRotate) {
       const autoRotateIntervalId = setInterval(() => {
         setCurrentIndex((prevIndex) => {
@@ -364,15 +306,56 @@ export const useSpinetic = ({
 
       return () => clearInterval(autoRotateIntervalId);
     }
-  }, [remainingIndexes, currentConfig.autoRotate]);
+  }, [remainingIndexes, currentConfig.autoRotate])
+
+  const { start, move, end } = useDragSpinetic({
+    _sb,
+    config,
+    currentConfig,
+    remainingIndexes,
+    spineticContainer,
+    _carouselItemsWidths,
+    currentIndex,
+    _setCarouselContainerTransform,
+    previousItem,
+    nextItem,
+    _handleItemChange
+  })
+
+  useEffect(() => { if (!!change && remainingIndexes?.length > 1) change(elementsChange) }, [currentIndex]);
+  useEffect(() => _handleAutoRotate(), [_handleAutoRotate]);
+  useEffect(() => _handleItemChange(), [_handleItemChange]);
+  useEffect(() => _checkAndSetConfigs(), [_checkAndSetConfigs]);
+  useEffect(() => _handleConfigs(config), [spineticContainer, prevChildren.current, window.innerWidth]);
+
+
+  const checkIsSb = () => {
+    const currentUrl = window?.location?.href;
+    const hasStoreInLS = !!localStorage?.getItem("@storybook/manager/store");
+    const isSb = currentUrl?.includes("pages-playground") && hasStoreInLS;
+
+    return setSb(isSb);
+  }
+  
+  useEffect(() => checkIsSb(), []);
+  useEffect(() => { if (_sb) _handleConfigs(config) }, [
+    _sb,
+    config,
+    children,
+    window.innerWidth,
+    prevChildren,
+    spineticMain,
+    spineticContainer,
+    currentConfig.autoWidth,
+    currentConfig.layout
+  ]);
 
   return {
     currentConfig,
     currentIndex,
     spineticMain,
-    prevChildren,
     spineticContainer,
-    maxCarouselItems,
+    maxCarouselItems: Children.count(children),
     remainingIndexes,
     goToItem,
     previousItem,

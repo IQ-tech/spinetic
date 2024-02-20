@@ -104,7 +104,6 @@ export interface TypesReturnSpinetic {
   currentIndex: number;
   spineticMain: React.RefObject<HTMLDivElement>;
   spineticContainer: React.RefObject<HTMLDivElement>;
-  prevChildren: TypeChildren
   maxCarouselItems: number;
   remainingIndexes: number[];
   goToItem: (p0: number) => void;
