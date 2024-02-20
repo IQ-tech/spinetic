@@ -1,4 +1,17 @@
 
+export const elementsChangeDefault = {
+  previous: {
+    index: 0,
+    remainingIndexes: [0],
+    totalItems: 0
+  },
+  current: {
+    index: 0,
+    remainingIndexes: [0],
+    totalItems: 0
+  }
+}
+
 /**
  * @param target HTMLElement | null
  * @description This method, called findElement, takes an HTMLElement or null as a parameter and returns an HTMLElement or null. It searches for a specific element with the class name "ls-carousel-item" by traversing up the DOM tree from the given target element. If the element is found, it is returned; otherwise, null is returned.
