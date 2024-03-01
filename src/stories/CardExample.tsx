@@ -26,7 +26,6 @@ export const  generateItems = (quantity: number) => {
   return result;
 }
 
-
 const LogoReact = () => {
   return (
     <svg

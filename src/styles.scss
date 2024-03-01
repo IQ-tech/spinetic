@@ -1,5 +1,7 @@
-@import "./Spinetic/Spinetic.styles.scss";
-@import "./Spinetic/SpineticArrows/SpineticArrows.styles.scss";
-@import "./Spinetic/SpineticDots/SpineticDots.styles.scss";
-@import "./Spinetic/SpineticItem/SpineticItem.styles.scss";
-@import "./Spinetic/layouts.styles.scss";
+@import "./Spinetic/components/Arrows/styles.scss";
+@import "./Spinetic/components/Dots/styles.scss";
+@import "./Spinetic/components/Item/styles.scss";
+@import "./Spinetic/styles.scss";
+
+@import "./Spinetic/styles/colors.scss";
+@import "./Spinetic/styles/layouts.styles.scss";

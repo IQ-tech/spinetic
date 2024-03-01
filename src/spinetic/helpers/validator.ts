@@ -1,51 +1,14 @@
+import * as D from "./defaults";
+import * as T from "types";
 
-import { TypesConfig, TypesReponsiveSettings, TypesConfigOptional } from "types";
-
-const defaultArrowsStyle = {
-  container: {},
-  btnPrev: {},
-  btnNext: {},
-};
-
-export const _defaultConfig: TypesConfig = {
-  arrows: true,
-  arrowsStyle: defaultArrowsStyle,
-  hideArrows: false,
-
-  dots: true,
-  dotsStyle: {},
-  dotsStyleActive: {},
-  indexInDots: false,
-
-  autoRotate: false,
-  msPerAutoRotate: 3000,
-
-  draggable: true,
-  touchThreshold: 30,
-
-  layout: "default",
-  showItems: 1,
-  autoWidth: false,
-  fullHeightItems: false,
-
-  groupScroll: false,
-  groupItemsScroll: 1,
-
-  clickTransitionCtrl: false,
-  msPerClicks: 1500,
-
-  responsive: [{ breakpoint: 0, settings: {} }],
-};
-
-
-export const _validResponsive = (responsive?: TypesReponsiveSettings[]) => {
-  if (!responsive || !responsive?.length) return _defaultConfig.responsive;
+export const _validResponsive = (responsive?: T.TypesReponsiveSettings[]) => {
+  if (!responsive || !responsive?.length) return D._defaultConfig.responsive;
 
   const sortBreakPoints = responsive?.sort(
     (a: { breakpoint: number }, b: { breakpoint: number }) =>
       b.breakpoint - a.breakpoint
   );
-  return sortBreakPoints ?? _defaultConfig.responsive;
+  return sortBreakPoints ?? D._defaultConfig.responsive;
 }
 
 export const _validTouchLimit = (touchThreshold: number) => {
@@ -53,23 +16,23 @@ export const _validTouchLimit = (touchThreshold: number) => {
   const greaterThanHalfScreen = touchThreshold > screenWidth / 2;
 
   return touchThreshold === undefined || greaterThanHalfScreen
-    ? _defaultConfig.touchThreshold
+    ? D._defaultConfig.touchThreshold
     : touchThreshold;
 }
 
 export const validShowItems = (showItems: number) => {
-  return !showItems || showItems < 1 ? _defaultConfig.showItems : showItems;
+  return !showItems || showItems < 1 ? D._defaultConfig.showItems : showItems;
 }
 
 export const validAutoWidth = (autoWidth: boolean | undefined) => {
-  return typeof autoWidth !== "boolean" ? _defaultConfig.autoWidth : autoWidth;
+  return typeof autoWidth !== "boolean" ? D._defaultConfig.autoWidth : autoWidth;
 }
 
-export const validConfig = (config?: TypesConfigOptional): TypesConfig => {
+export const validConfig = (config?: T.TypesConfigOptional): T.TypesConfig => {
   const C = config;
-  const DC = _defaultConfig;
+  const DC = D._defaultConfig;
 
-  const currentOrDefaultConfig: TypesConfig = {
+  const currentOrDefaultConfig: T.TypesConfig = {
     arrows: C?.arrows ?? DC.arrows,
     arrowsStyle: C?.arrowsStyle ?? DC.arrowsStyle,
     hideArrows: C?.hideArrows ?? DC.hideArrows,

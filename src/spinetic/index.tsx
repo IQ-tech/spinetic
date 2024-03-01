@@ -1,11 +1,11 @@
 import React from "react";
 
-import SpineticArrows from "./SpineticArrows";
-import SpineticDots from "./SpineticDots";
+import Arrows from "./components/Arrows";
+import Dots from "./components/Dots";
 import { useSpinetic } from "./hooks";
-import { TypesSpinetic } from "types";
+import * as T from "types";
 
-const Spinetic = ({ children, config, change }: TypesSpinetic) => {
+const Spinetic = ({ children, config, change }: T.TypesSpinetic) => {
   const {
     currentConfig,
     prevChildren,
@@ -44,14 +44,14 @@ const Spinetic = ({ children, config, change }: TypesSpinetic) => {
               </div>
             </div>
           </div>
-          <SpineticArrows
+          <Arrows
             currentConfig={currentConfig}
             currentIndex={currentIndex}
             remainingIndexes={remainingIndexes}
             onClickPreviousItem={previousItem}
             onClickNextItem={nextItem}
           />
-            <SpineticDots
+            <Dots
               currentConfig={currentConfig}
               currentIndex={currentIndex}
               maxCarouselItems={maxCarouselItems}

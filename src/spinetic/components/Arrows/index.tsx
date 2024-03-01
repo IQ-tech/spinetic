@@ -1,16 +1,62 @@
 import * as React from "react";
-import ArrowLeft from "./ArrowLeft";
-import ArrowRight from "./ArrowRight";
-import { TypesArrows } from "types";
+import * as T from "types";
 
-const SpineticArrows = ({
+const ArrowLeft = React.memo(() => {
+  return (
+    <svg
+      style={{ marginRight: "2px" }}
+      xmlns="http://www.w3.org/2000/svg"
+      height="21"
+      width="13"
+      viewBox="0 0 13 21"
+    >
+      <g transform="matrix(-1 0 0 -1 12.828 21.657)">
+        <g transform="translate(-9.672 -5.234)">
+          <path
+            d="M12.5,24.062l8-8-8-8"
+            fill="none"
+            stroke="#ffffff"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="4"
+          />
+        </g>
+      </g>
+    </svg>
+  );
+});
+
+const ArrowRight = React.memo(() => {
+  return (
+    <svg
+      style={{ marginLeft: "2px" }}
+      xmlns="http://www.w3.org/2000/svg"
+      height="21"
+      width="13"
+      viewBox="0 0 13 21"
+    >
+      <g transform="translate(-9.672 -5.234)">
+        <path
+          d="M12.5,24.062l8-8-8-8"
+          fill="none"
+          stroke="#ffffff"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="4"
+        />
+      </g>
+    </svg>
+  );
+});
+
+const Arrows = ({
   children,
   currentConfig,
   currentIndex,
   remainingIndexes,
   onClickPreviousItem,
   onClickNextItem,
-}: TypesArrows) => {
+}: T.TypesArrows) => {
   const visibleArrows = currentConfig.arrows && remainingIndexes?.length > 1;
 
   const isFirstItem = currentIndex === 0;
@@ -55,4 +101,4 @@ const SpineticArrows = ({
   );
 };
 
-export default SpineticArrows;
+export default Arrows;

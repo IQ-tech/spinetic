@@ -1,11 +1,9 @@
 import { useState, useCallback, useEffect } from "react";
-import * as SpineticUtils from "./SpineticUtils";
-import * as SpineticConfig from "./SpineticConfigValidation";
-import { TypesUseDragSpinetic, TypesEventDragStart, TypesEventDragMove, TypesEventDragEnd } from "types";
+import * as T from "types";
+import * as U from "../helpers/utils";
 
-export const useDragSpinetic = ({
+export const useDrag = ({
     _sb,
-    config,
     currentConfig,
     remainingIndexes,
     spineticContainer,
@@ -15,7 +13,7 @@ export const useDragSpinetic = ({
     previousItem,
     nextItem,
     _handleItemChange
-}: TypesUseDragSpinetic) => {
+}: T.TypesUseDragSpinetic) => {
     const [startX, setStartX] = useState<number>(0);
     const [startTX, setStartTX] = useState<number>(0);
     const [startTY, setStartTY] = useState<number>(0);
@@ -41,7 +39,7 @@ export const useDragSpinetic = ({
         }
     }, [spineticContainer]);
 
-    const start = useCallback((e: TypesEventDragStart): void => {
+    const start = useCallback((e: T.TypesEventDragStart): void => {
         if (
             _sb && !currentConfig.draggable ||
             remainingIndexes?.length <= 1 ||
@@ -57,7 +55,7 @@ export const useDragSpinetic = ({
         setStartTY(touchStart?.clientY || 0);
 
         setIsDragging(true);
-        setItemElement(SpineticUtils.findElement(e.target));
+        setItemElement(U.findElement(e.target));
 
         if (!cancelDraggable) {
             handleTransitionClass(true);
@@ -71,7 +69,7 @@ export const useDragSpinetic = ({
         handleTransitionClass
     ])
 
-    const move = useCallback((e: TypesEventDragMove): void => {
+    const move = useCallback((e: T.TypesEventDragMove): void => {
         if (_sb && !currentConfig.draggable ||
             !isDragging ||
             cancelDraggable ||
@@ -98,7 +96,7 @@ export const useDragSpinetic = ({
 
             setFinalDist(dist);
 
-            const scrollAmountDrag = SpineticUtils.calculateScrollAmount(_carouselItemsWidths, currentIndex) + dist;
+            const scrollAmountDrag = U.calculateScrollAmount(_carouselItemsWidths, currentIndex) + dist;
 
             if (deltaX > 20 || !touchMove) {
                 _setCarouselContainerTransform(scrollAmountDrag);
@@ -125,7 +123,7 @@ export const useDragSpinetic = ({
             _setCarouselContainerTransform],
     )
 
-    const end = useCallback((e: TypesEventDragEnd): void => {
+    const end = useCallback((e: T.TypesEventDragEnd): void => {
         if (_sb && !currentConfig.draggable || cancelDraggable || currentConfig.layout === "vertical-align") {
             return;
         }

@@ -1,13 +1,13 @@
 import * as React from "react";
-import { TypesDots } from "types";
+import * as T from "types";
 
-const SpineticDots = ({
+const Dots = ({
   currentConfig,
   currentIndex,
   maxCarouselItems,
   remainingIndexes,
   goToItem,
-}: TypesDots) => {
+}: T.TypesDots) => {
   const visibleDots = currentConfig.dots && remainingIndexes?.length > 1;
 
   return (
@@ -39,4 +39,4 @@ const SpineticDots = ({
   );
 };
 
-export default SpineticDots;
+export default Dots;

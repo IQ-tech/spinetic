@@ -1,20 +1,24 @@
 import { useRef, useEffect, useState, Children, useCallback, ReactNode, RefObject } from "react";
-import { useDragSpinetic } from "../SpineticUseDrag";
-import * as SpineticUtils from "../SpineticUtils";
-import * as SpineticConfig from "../SpineticConfigValidation";
-import { TypesUseSpinetic, TypesReturnSpinetic, TypesConfig, TypesConfigOptional, SpineticChangeEvent } from "types"
+
+import * as D from "../helpers/defaults"
+import * as T from "types"
+import * as U from "../helpers/utils";
+import * as V from "../helpers/validator";
+
+import { useDrag } from "./useDrag";
+
 
 export const useSpinetic = ({
   children,
-  config = SpineticConfig._defaultConfig,
-  change }: TypesUseSpinetic
-): TypesReturnSpinetic => {
+  config = D._defaultConfig,
+  change }: T.TypesUseSpinetic
+): T.TypesReturnSpinetic => {
 
   const spineticMain: RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null);
   const spineticContainer: RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null);
   const prevChildren = useRef<ReactNode | ReactNode[]>(children);
 
-  const [currentConfig, setCurrentConfig] = useState<TypesConfig>(SpineticConfig.validConfig(config));
+  const [currentConfig, setCurrentConfig] = useState<T.TypesConfig>(V.validConfig(config));
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [visibleItems, setVisibleItems] = useState<number>(1)
   const [remainingIndexes, setRemainingIndexes] = useState<number[]>([]);
@@ -23,10 +27,10 @@ export const useSpinetic = ({
   const [_isProcessingClick, setIsProcessingClick] = useState<boolean>(true);
   const [_sb, setSb] = useState<boolean | undefined>(undefined);
 
-  const [elementsChange, setElementsChange] = useState<SpineticChangeEvent>(SpineticUtils.elementsChangeDefault)
+  const [elementsChange, setElementsChange] = useState<T.SpineticChangeEvent>(D.elementsChangeDefault)
 
 
-  const _handleCarouselItemsWidth = useCallback((CConfig: TypesConfig): number[] | null => {
+  const _handleCarouselItemsWidth = useCallback((CConfig: T.TypesConfig): number[] | null => {
     const container = spineticContainer.current;
     const main = spineticMain.current;
 
@@ -69,11 +73,11 @@ export const useSpinetic = ({
     children
   ])
 
-  const _handleCarouselWidth = useCallback((CConfig: TypesConfig): void => {
+  const _handleCarouselWidth = useCallback((CConfig: T.TypesConfig): void => {
     if (CConfig.layout === "vertical-align") return;
 
     _handleCarouselItemsWidth(CConfig)
-    const totalWidth = SpineticUtils.sumCarouselItemsWidths(
+    const totalWidth = U.sumCarouselItemsWidths(
       _carouselItemsWidths
     );
 
@@ -115,7 +119,7 @@ export const useSpinetic = ({
     const { groupScroll, groupItemsScroll } = CConfig;
 
     const nItemsScroll = groupItemsScroll > 1 && groupItemsScroll <= numVisibleCards ? groupItemsScroll : numVisibleCards
-    const idxScrollPage = Math.ceil(SpineticUtils.validateNumber(maxScrollIndex / nItemsScroll))
+    const idxScrollPage = Math.ceil(U.validateNumber(maxScrollIndex / nItemsScroll))
     const maxScroll = groupScroll ? idxScrollPage : maxScrollIndex;
     const remainingIdx = (index: number) => groupScroll ? (index + 1) * numVisibleCards : (index + numVisibleCards) - 1;
 
@@ -141,7 +145,7 @@ export const useSpinetic = ({
 
     setRemainingIndexes(currentRemainingIdx);
 
-    const remainingidxIsEquals = SpineticUtils.arraysAreEqual(
+    const remainingidxIsEquals = U.arraysAreEqual(
       elementsChange?.current?.remainingIndexes,
       currentRemainingIdx)
 
@@ -166,8 +170,8 @@ export const useSpinetic = ({
     children
     ])
 
-  const _handleConfigs = useCallback((config?: TypesConfigOptional) => {
-    const currentOrDefaultConfig: TypesConfig = SpineticConfig.validConfig(config);
+  const _handleConfigs = useCallback((config?: T.TypesConfigOptional) => {
+    const currentOrDefaultConfig: T.TypesConfig = V.validConfig(config);
 
     const breakpoints = currentOrDefaultConfig.responsive
       ? [...currentOrDefaultConfig.responsive.map((item) => item.breakpoint)]
@@ -181,13 +185,13 @@ export const useSpinetic = ({
           currentOrDefaultConfig?.responsive[i]?.settings;
 
         Object.keys(responsiveCurrentSettings).forEach((key) => {
-          currentOrDefaultConfig[key as keyof TypesConfigOptional] =
-            responsiveCurrentSettings[key as keyof TypesConfigOptional] as never;
+          currentOrDefaultConfig[key as keyof T.TypesConfigOptional] =
+            responsiveCurrentSettings[key as keyof T.TypesConfigOptional] as never;
         });
       }
     });
 
-    const CConfig = SpineticConfig.validConfig(currentOrDefaultConfig);
+    const CConfig = V.validConfig(currentOrDefaultConfig);
     setCurrentConfig(CConfig);
     _handleCarouselWidth(CConfig);
   }, [
@@ -203,8 +207,8 @@ export const useSpinetic = ({
       currentConfig.fullHeightItems] : [])
   ])
 
-  const _updateElementsChange = (updateElements: SpineticChangeEvent) => {
-    setElementsChange((prevElementsChange: SpineticChangeEvent) => {
+  const _updateElementsChange = (updateElements: T.SpineticChangeEvent) => {
+    setElementsChange((prevElementsChange: T.SpineticChangeEvent) => {
       return {
         previous: {
           ...prevElementsChange.previous,
@@ -280,7 +284,7 @@ export const useSpinetic = ({
   const _handleItemChange = useCallback((): void => {
     setIsProcessingClick(false);
 
-    const scrollAmount = SpineticUtils.calculateScrollAmount(
+    const scrollAmount = U.calculateScrollAmount(
       _carouselItemsWidths,
       currentIndex
     );
@@ -293,7 +297,7 @@ export const useSpinetic = ({
   }, [remainingIndexes, currentIndex])
 
   const _handleWhenChangeChildren = useCallback(() => {
-    const childrenAreEqual = SpineticUtils.childrenIsEqual(children, prevChildren.current);
+    const childrenAreEqual = U.childrenIsEqual(children, prevChildren.current);
 
     if (!childrenAreEqual) {
       _handleConfigs(config);
@@ -321,7 +325,7 @@ export const useSpinetic = ({
     }
   }, [remainingIndexes, currentConfig.autoRotate])
 
-  const { start, move, end } = useDragSpinetic({
+  const { start, move, end } = useDrag({
     _sb,
     config,
     currentConfig,

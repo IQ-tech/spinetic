@@ -1,4 +1,4 @@
-import { _defaultConfig } from "../Spinetic/SpineticConfigValidation";
+import * as D from "../Spinetic/helpers/defaults";
 
 export const argTypes = {
     children: {
@@ -136,7 +136,7 @@ ________________________________________________________________________________
         control: "boolean",
         table: {
             type: { summary: "boolean" },
-            defaultValue: { summary: _defaultConfig.arrows },
+            defaultValue: { summary: D._defaultConfig.arrows },
         },
     },
 
@@ -196,7 +196,7 @@ dynamically adjusting the arrow visibility based on the availability of navigati
 _________________________________________________________________________________________________
 `
             },
-            defaultValue: { summary: _defaultConfig.hideArrows },
+            defaultValue: { summary: D._defaultConfig.hideArrows },
         },
     },
 
@@ -207,7 +207,7 @@ ________________________________________________________________________________
         control: "boolean",
         table: {
             type: { summary: "boolean" },
-            defaultValue: { summary: _defaultConfig.dots },
+            defaultValue: { summary: D._defaultConfig.dots },
         },
     },
 
@@ -234,7 +234,7 @@ ________________________________________________________________________________
         control: "boolean",
         table: {
             type: { summary: "boolean" },
-            defaultValue: { summary: _defaultConfig.indexInDots },
+            defaultValue: { summary: D._defaultConfig.indexInDots },
         },
     },
 
@@ -245,7 +245,7 @@ ________________________________________________________________________________
         control: "boolean",
         table: {
             type: { summary: "boolean" },
-            defaultValue: { summary: _defaultConfig.autoRotate },
+            defaultValue: { summary: D._defaultConfig.autoRotate },
         },
     },
 
@@ -254,7 +254,7 @@ ________________________________________________________________________________
         control: "number",
         table: {
             type: { summary: "number" },
-            defaultValue: { summary: _defaultConfig.msPerAutoRotate },
+            defaultValue: { summary: D._defaultConfig.msPerAutoRotate },
         },
     },
 
@@ -265,7 +265,7 @@ ________________________________________________________________________________
         control: "boolean",
         table: {
             type: { summary: "boolean" },
-            defaultValue: { summary: _defaultConfig.draggable },
+            defaultValue: { summary: D._defaultConfig.draggable },
         },
     },
 
@@ -290,7 +290,7 @@ during minor touch movements.
 _________________________________________________________________________________________________
                 `
             },
-            defaultValue: { summary: _defaultConfig.touchThreshold },
+            defaultValue: { summary: D._defaultConfig.touchThreshold },
         },
     },
 
@@ -301,7 +301,7 @@ ________________________________________________________________________________
         options: ["default", "ctrls-in-line", "ctrls-in-line-2", "vertical-align"],
         table: {
             type: { summary: "string" },
-            defaultValue: { summary: _defaultConfig.layout }
+            defaultValue: { summary: D._defaultConfig.layout }
         }
     },
 
@@ -344,7 +344,7 @@ transition between items. This feature provides a fluid and responsive carousel 
  _________________________________________________________________________________________________
  `
             },
-            defaultValue: { summary: _defaultConfig.autoWidth },
+            defaultValue: { summary: D._defaultConfig.autoWidth },
         },
     },
 
@@ -365,7 +365,7 @@ component structure supports this behavior to achieve the desired full-height ca
 _________________________________________________________________________________________________
                 `
             },
-            defaultValue: { summary: _defaultConfig.fullHeightItems },
+            defaultValue: { summary: D._defaultConfig.fullHeightItems },
         },
     },
 
@@ -392,7 +392,7 @@ based on the total number of items divided by 3, ensuring a simple and easy-to-u
 _________________________________________________________________________________________________
             `,
             },
-            defaultValue: { summary: _defaultConfig.groupScroll },
+            defaultValue: { summary: D._defaultConfig.groupScroll },
 
         },
     },
@@ -411,7 +411,7 @@ visible items is automatically assigned as the scroll value.
   
   _________________________________________________________________________________________________
   `},
-            defaultValue: { summary: _defaultConfig.groupItemsScroll },
+            defaultValue: { summary: D._defaultConfig.groupItemsScroll },
         },
     },
 
@@ -431,7 +431,7 @@ must wait before being allowed to transition to the next item. On the other hand
 _________________________________________________________________________________________________
 `
             },
-            defaultValue: { summary: _defaultConfig.clickTransitionCtrl },
+            defaultValue: { summary: D._defaultConfig.clickTransitionCtrl },
         },
     },
 
@@ -440,7 +440,7 @@ ________________________________________________________________________________
         control: "number",
         table: {
             type: { summary: "number" },
-            defaultValue: { summary: _defaultConfig.msPerClicks },
+            defaultValue: { summary: D._defaultConfig.msPerClicks },
         },
     },
 

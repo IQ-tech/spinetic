@@ -1,2 +1,2 @@
 export { default as Spinetic } from './Spinetic';
-export { default as SpineticItem } from './Spinetic/SpineticItem';
+export { default as SpineticItem } from './Spinetic/components/Item';
