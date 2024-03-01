@@ -1,6 +1,4 @@
-import { SpineticChangeEvent } from "types";
 import { _defaultConfig } from "../Spinetic/SpineticConfigValidation";
-
 
 export const argTypes = {
     children: {
@@ -133,7 +131,6 @@ ________________________________________________________________________________
     },
 
 
-
     arrows: {
         description: `<span id="arrows">Specifies whether to display arrows for navigation</span>`,
         control: "boolean",
@@ -143,21 +140,43 @@ ________________________________________________________________________________
         },
     },
 
-    arrowLeftPosition: {
-        description: `<span id="arrowLeftPosition">Adjusts the position of the left arrow</span>`,
-        control: "number",
-        table: {
-            type: { summary: "number" },
-            defaultValue: { summary: _defaultConfig.arrowLeftPosition },
+    arrowsStyle: {
+        description: `<span id="arrowsStyle">Defines the styles for the arrows</span>`,
+        control: {
+            //type: 'object'
         },
-    },
-
-    arrowRightPosition: {
-        description: `<span id="arrowRightPosition">Adjusts the position of the right arrow</span>`,
-        control: "number",
         table: {
-            type: { summary: "number" },
-            defaultValue: { summary: _defaultConfig.arrowRightPosition },
+            type: { 
+                summary: "object",
+                detail: `
+Object that receives styles to be applied to the arrows
+Example:
+{
+    container: {
+      background: "red",
+    },
+    btnPrev: {
+      background: "yellow",
+    },
+    btnNext: {
+      background: "blue",
+    },
+}
+
+
+
+_________________________________________________________________________________________________`
+ },
+            defaultValue: { 
+                summary: `See default`,
+                detail: `
+{
+    container: {},
+    btnPrev: {},
+    btnNext: {},
+}`
+             },
+            
         },
     },
 
@@ -279,7 +298,7 @@ ________________________________________________________________________________
     layout: {
         description: `<span id="layout">The layout property is responsible for specifying which layout should be rendered.</span>`,
         control: "radio",
-        options: ["default", "controlsInLine", "verticalAlign"],
+        options: ["default", "ctrls-in-line", "ctrls-in-line-2", "vertical-align"],
         table: {
             type: { summary: "string" },
             defaultValue: { summary: _defaultConfig.layout }

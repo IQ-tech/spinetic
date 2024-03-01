@@ -1,7 +1,7 @@
 import * as React from "react";
 import ArrowLeft from "./ArrowLeft";
 import ArrowRight from "./ArrowRight";
-import { TypesArrows } from "types"
+import { TypesArrows } from "types";
 
 const SpineticArrows = ({
   children,
@@ -11,8 +11,8 @@ const SpineticArrows = ({
   onClickPreviousItem,
   onClickNextItem,
 }: TypesArrows) => {
-  const visibleArrows =  currentConfig.arrows && remainingIndexes?.length > 1;
-  
+  const visibleArrows = currentConfig.arrows && remainingIndexes?.length > 1;
+
   const isFirstItem = currentIndex === 0;
   const handleDisappearArrowLeft = isFirstItem && currentConfig?.hideArrows;
 
@@ -20,39 +20,36 @@ const SpineticArrows = ({
   const handleDisappearArrowRight = isLastItem && currentConfig?.hideArrows;
 
   return (
-    <div className="spinetic-container-arrows">
+    <div
+      className="spinetic-container-arrows"
+      style={{ ...currentConfig.arrowsStyle?.container }}
+    >
       {visibleArrows && (
-        <div className="spinetic-btn-prev">
-          <button
-            className="spinetic-navigation-button"
-            onClick={() => onClickPreviousItem()}
-            disabled={isFirstItem}
-            style={{
-              right: `${currentConfig.arrowLeftPosition}px`,
-              display: handleDisappearArrowLeft ? "none" : "flex",
-            }}
-          >
-            <ArrowLeft />
-          </button>
-        </div>
+        <button
+          className="spinetic-btn-prev"
+          onClick={() => onClickPreviousItem()}
+          disabled={isFirstItem}
+          style={{
+            display: handleDisappearArrowLeft ? "none" : "flex",
+            ...currentConfig.arrowsStyle?.btnPrev,
+          }}
+        >
+          <ArrowLeft />
+        </button>
       )}
-      { children }
+      {children}
       {visibleArrows && (
-        <div className="spinetic-btn-next">
-          <button
-            className="spinetic-navigation-button"
-            onClick={() => onClickNextItem()}
-            disabled={isLastItem}
-            style={{
-              left: currentConfig.autoWidth
-                ? `${currentConfig.arrowRightPosition + 4}px`
-                : `${currentConfig.arrowRightPosition}px`,
-              display: handleDisappearArrowRight ? "none" : "flex",
-            }}
-          >
-            <ArrowRight />
-          </button>
-        </div>
+        <button
+          className="spinetic-btn-next"
+          onClick={() => onClickNextItem()}
+          disabled={isLastItem}
+          style={{
+            display: handleDisappearArrowRight ? "none" : "flex",
+            ...currentConfig.arrowsStyle?.btnNext,
+          }}
+        >
+          <ArrowRight />
+        </button>
       )}
     </div>
   );

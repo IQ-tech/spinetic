@@ -1,10 +1,15 @@
 
 import { TypesConfig, TypesReponsiveSettings, TypesConfigOptional } from "types";
 
+const defaultArrowsStyle = {
+  container: {},
+  btnPrev: {},
+  btnNext: {},
+};
+
 export const _defaultConfig: TypesConfig = {
   arrows: true,
-  arrowLeftPosition: 0,
-  arrowRightPosition: 0,
+  arrowsStyle: defaultArrowsStyle,
   hideArrows: false,
 
   dots: true,
@@ -66,8 +71,7 @@ export const validConfig = (config?: TypesConfigOptional): TypesConfig => {
 
   const currentOrDefaultConfig: TypesConfig = {
     arrows: C?.arrows ?? DC.arrows,
-    arrowLeftPosition: C?.arrowLeftPosition ?? DC.arrowLeftPosition,
-    arrowRightPosition: C?.arrowRightPosition ?? DC.arrowRightPosition,
+    arrowsStyle: C?.arrowsStyle ?? DC.arrowsStyle,
     hideArrows: C?.hideArrows ?? DC.hideArrows,
 
     dots: C?.dots ?? DC.dots,
