@@ -101,6 +101,7 @@ export interface TypesSpinetic {
 
 export interface TypesReturnSpinetic {
   currentConfig: TypesConfig;
+  prevChildren: TypeChildren;
   currentIndex: number;
   spineticMain: React.RefObject<HTMLDivElement>;
   spineticContainer: React.RefObject<HTMLDivElement>;
@@ -141,11 +142,13 @@ export interface SpineticChangeEvent {
     index: number;
     remainingIndexes: number[];
     totalItems: number;
+    itemsPerScroll: nuember;
   };
   current: {
     index: number;
     remainingIndexes: number[];
     totalItems: number;
+    itemsPerScroll: number
   };
 };
 

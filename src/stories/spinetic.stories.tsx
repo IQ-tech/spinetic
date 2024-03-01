@@ -24,11 +24,13 @@ const handleChange = (event: SpineticChangeEvent) => {
         index: ${JSON.stringify(currentState.index)},
         remainingIndexes: ${JSON.stringify(previousState.remainingIndexes)}
         totalItems: ${JSON.stringify(previousState.totalItems)}
+        itemsPerScroll: ${JSON.stringify(previousState.itemsPerScroll)}
       },
       previous: {
-          index: ${JSON.stringify(previousState.index)},
-          remainingIndexes: ${JSON.stringify(previousState.remainingIndexes)}
-          totalItems: ${JSON.stringify(previousState.totalItems)}
+        index: ${JSON.stringify(previousState.index)},
+        remainingIndexes: ${JSON.stringify(previousState.remainingIndexes)}
+        totalItems: ${JSON.stringify(previousState.totalItems)}
+        itemsPerScroll: ${JSON.stringify(previousState.itemsPerScroll)}
       }
   }
 `

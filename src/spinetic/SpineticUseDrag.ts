@@ -72,7 +72,11 @@ export const useDragSpinetic = ({
     ])
 
     const move = useCallback((e: TypesEventDragMove): void => {
-        if (_sb && !currentConfig.draggable || !isDragging || cancelDraggable || currentConfig.layout === "verticalAlign") {
+        if (_sb && !currentConfig.draggable ||
+            !isDragging ||
+            cancelDraggable ||
+            currentConfig.layout === "verticalAlign"
+        ) {
             return;
         }
 
@@ -110,7 +114,7 @@ export const useDragSpinetic = ({
             currentConfig.draggable,
             isDragging,
             cancelDraggable,
-            currentConfig.layout === "verticalAlign",
+            currentConfig.layout,
             startTX,
             startTY,
             startX,
@@ -141,7 +145,7 @@ export const useDragSpinetic = ({
         _sb,
         currentConfig.draggable,
         cancelDraggable,
-        currentConfig.layout === "verticalAlign",
+        currentConfig.layout,
         finalDist,
         previousItem,
         nextItem,

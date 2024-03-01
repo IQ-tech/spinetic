@@ -3,12 +3,14 @@ export const elementsChangeDefault = {
   previous: {
     index: 0,
     remainingIndexes: [0],
-    totalItems: 0
+    totalItems: 0,
+    itemsPerScroll: 0
   },
   current: {
     index: 0,
     remainingIndexes: [0],
-    totalItems: 0
+    totalItems: 0,
+    itemsPerScroll: 0
   }
 }
 
