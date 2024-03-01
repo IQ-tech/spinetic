@@ -120,7 +120,7 @@ export const useSpinetic = ({
 
     const nItemsScroll = groupItemsScroll > 1 && groupItemsScroll <= numVisibleCards ? groupItemsScroll : numVisibleCards
     const idxScrollPage = Math.ceil(U.validateNumber(maxScrollIndex / nItemsScroll))
-    const maxScroll = maxScrollIndex > 0 && children?.length > 0 && groupScroll ? idxScrollPage : maxScrollIndex;
+    const maxScroll = children?.length > 0 && groupScroll ? idxScrollPage : maxScrollIndex;
     const remainingIdx = (index: number) => groupScroll ? (index + 1) * numVisibleCards : (index + numVisibleCards) - 1;
 
     const currentRemainingIdx = Array.from(
@@ -204,7 +204,8 @@ export const useSpinetic = ({
       children,
       currentConfig.layout,
       currentConfig.autoWidth,
-      currentConfig.fullHeightItems] : [])
+      currentConfig.fullHeightItems
+    ] : [])
   ])
 
   const _updateElementsChange = (updateElements: T.TypesSpineticChangeEvent) => {
