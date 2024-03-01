@@ -1,4 +1,4 @@
-const t={arrows:!0,arrowLeftPosition:0,arrowRightPosition:0,hideArrows:!1,dots:!0,dotsStyle:{},dotsStyleActive:{},indexInDots:!1,autoRotate:!1,msPerAutoRotate:3e3,draggable:!0,touchThreshold:30,layout:"default",showItems:1,autoWidth:!1,fullHeightItems:!1,groupScroll:!1,groupItemsScroll:1,clickTransitionCtrl:!1,msPerClicks:1500,responsive:[{breakpoint:0,settings:{}}]},n=o=>!o||!(o!=null&&o.length)?t.responsive:(o==null?void 0:o.sort((_,i)=>i.breakpoint-_.breakpoint))??t.responsive,a=o=>{const e=window.innerWidth,_=o>e/2;return o===void 0||_?t.touchThreshold:o},s=o=>!o||o<1?t.showItems:o,r=o=>typeof o!="boolean"?t.autoWidth:o,l=o=>{const e=o,_=t;return{arrows:(e==null?void 0:e.arrows)??_.arrows,arrowLeftPosition:(e==null?void 0:e.arrowLeftPosition)??_.arrowLeftPosition,arrowRightPosition:(e==null?void 0:e.arrowRightPosition)??_.arrowRightPosition,hideArrows:(e==null?void 0:e.hideArrows)??_.hideArrows,dots:(e==null?void 0:e.dots)??_.dots,dotsStyle:(e==null?void 0:e.dotsStyle)??_.dotsStyle,dotsStyleActive:(e==null?void 0:e.dotsStyleActive)??_.dotsStyleActive,indexInDots:(e==null?void 0:e.indexInDots)??_.indexInDots,autoRotate:(e==null?void 0:e.autoRotate)??_.autoRotate,msPerAutoRotate:(e==null?void 0:e.msPerAutoRotate)??_.msPerAutoRotate,draggable:(e==null?void 0:e.draggable)??_.draggable,touchThreshold:a((e==null?void 0:e.touchThreshold)??_.touchThreshold),layout:(e==null?void 0:e.layout)??_.layout,showItems:s((e==null?void 0:e.showItems)??_.showItems),fullHeightItems:(e==null?void 0:e.fullHeightItems)??_.fullHeightItems,autoWidth:r(e==null?void 0:e.autoWidth),groupScroll:(e==null?void 0:e.groupScroll)??_.groupScroll,groupItemsScroll:(e==null?void 0:e.groupItemsScroll)??_.groupItemsScroll,clickTransitionCtrl:(e==null?void 0:e.clickTransitionCtrl)??_.clickTransitionCtrl,msPerClicks:(e==null?void 0:e.msPerClicks)??_.msPerClicks,responsive:n(e==null?void 0:e.responsive)}},u={children:{description:'<span id="children">Children elements to be rendered inside the Spinetic component.</span>',control:"number",table:{type:{summary:"ReactNode | ReactNode[]",detail:`
+const e={container:{},btnPrev:{},btnNext:{}},t={container:{},dot:{},dotActive:{}},_={arrows:!0,arrowsStyle:e,hideArrows:!1,dots:!0,dotsStyle:t,itemNumberInDot:!1,autoRotate:!1,msPerAutoRotate:3e3,draggable:!0,touchThreshold:30,layout:"default",showItems:1,autoWidth:!1,fullHeightItems:!1,groupScroll:!1,groupItemsScroll:1,clickTransitionCtrl:!1,msPerClicks:1500,responsive:[{breakpoint:0,settings:{}}]},i={previous:{index:0,remainingIndexes:[0],totalItems:0,itemsPerScroll:0},current:{index:0,remainingIndexes:[0],totalItems:0,itemsPerScroll:0}},o={children:{description:'<span id="children">Children elements to be rendered inside the Spinetic component.</span>',control:"number",table:{type:{summary:"ReactNode | ReactNode[]",detail:`
                 
 The "children" property represents the child items of the Spinetic component to be rendered.
  For example:
@@ -45,16 +45,14 @@ ________________________________________________________________________________
         Here are the available types:`,control:" ",table:{type:{summary:"TypesConfigOptional",detail:`
 types:
 
-interface TypesConfigOptional {
+export interface TypesConfigOptional {
     arrows?: boolean;
-    arrowLeftPosition?: number;
-    arrowRightPosition?: number;
+    arrowsStyle?: TypesDefaultArrowsStyle;
     hideArrows?: boolean;
   
     dots?: boolean;
-    dotsStyle?: object;
-    dotsStyleActive?: object;
-    indexInDots?: boolean;
+    dotsStyle?: TypesDefaultDotsStyle,
+    itemNumberInDot?: boolean;
   
     autoRotate?: boolean;
     msPerAutoRotate?: number;
@@ -65,16 +63,16 @@ interface TypesConfigOptional {
     draggable?: boolean;
     touchThreshold?: number;
   
+    layout?: TypesLayout,
     showItems?: number;
     autoWidth?: boolean;
     fullHeightItems?: boolean;
-    verticalAlign?: boolean;
   
     groupScroll?: boolean;
     groupItemsScroll?: number;
   
     responsive?: TypesReponsiveSettings[];
-}
+  }
   
 interface TypesReponsiveSettings {
 breakpoint: number;
@@ -103,7 +101,29 @@ responsive settings for different breakpoints, including adjusting arrow and
 dot visibility, auto-width behavior, and full-height item display.
 
 _________________________________________________________________________________________________
-`}}},arrows:{description:'<span id="arrows">Specifies whether to display arrows for navigation</span>',control:"boolean",table:{type:{summary:"boolean"},defaultValue:{summary:t.arrows}}},arrowLeftPosition:{description:'<span id="arrowLeftPosition">Adjusts the position of the left arrow</span>',control:"number",table:{type:{summary:"number"},defaultValue:{summary:t.arrowLeftPosition}}},arrowRightPosition:{description:'<span id="arrowRightPosition">Adjusts the position of the right arrow</span>',control:"number",table:{type:{summary:"number"},defaultValue:{summary:t.arrowRightPosition}}},hideArrows:{description:'<span id="hideArrows">Controls the visibility of arrows</span>',control:"boolean",table:{type:{summary:"boolean",detail:`
+`}}},arrows:{description:'<span id="arrows">Specifies whether to display arrows for navigation</span>',control:"boolean",table:{type:{summary:"boolean"},defaultValue:{summary:_.arrows}}},arrowsStyle:{description:'<span id="arrowsStyle">Defines the styles for the arrows</span>',control:{},table:{type:{summary:"object",detail:`
+Object that receives styles to be applied to the arrows
+Example:
+{
+    container: {
+      background: "red",
+    },
+    btnPrev: {
+      background: "yellow",
+    },
+    btnNext: {
+      background: "blue",
+    },
+}
+
+
+
+_________________________________________________________________________________________________`},defaultValue:{summary:"See default",detail:`
+{
+    container: {},
+    btnPrev: {},
+    btnNext: {},
+}`}}},hideArrows:{description:'<span id="hideArrows">Controls the visibility of arrows</span>',control:"boolean",table:{type:{summary:"boolean",detail:`
 The hideArrows property determines whether the navigation arrows are visible or hidden. 
 When set to true, the arrows disappear when there is no possibility of navigation, providing
 a clean and intuitive user interface. This feature enhances the user experience by
@@ -111,7 +131,33 @@ dynamically adjusting the arrow visibility based on the availability of navigati
 
 
 _________________________________________________________________________________________________
-`},defaultValue:{summary:t.hideArrows}}},dots:{description:'<span id="dots">Determines whether to display navigation dots</span>',control:"boolean",table:{type:{summary:"boolean"},defaultValue:{summary:t.dots}}},dotsStyle:{description:'<span id="dotsStyle">Defines the styles for the dots</span>',control:"object",table:{type:{summary:"object"},defaultValue:{summary:"{}"}}},dotsStyleActive:{description:'<span id="dotsStyleActive">Defines the styles for the dots in the active state</span>',control:"object",table:{type:{summary:"object"},defaultValue:{summary:"{}"}}},indexInDots:{description:'<span id="indexInDots">Specifies whether to show the index in dots</span>',control:"boolean",table:{type:{summary:"boolean"},defaultValue:{summary:t.indexInDots}}},autoRotate:{description:'<span id="autoRotate">Enables automatic rotation of items</span>',control:"boolean",table:{type:{summary:"boolean"},defaultValue:{summary:t.autoRotate}}},msPerAutoRotate:{description:'<span id="msPerAutoRotate">Sets the time interval for auto rotation</span>',control:"number",table:{type:{summary:"number"},defaultValue:{summary:t.msPerAutoRotate}}},draggable:{description:'<span id="draggable">Enables dragging functionality</span>',control:"boolean",table:{type:{summary:"boolean"},defaultValue:{summary:t.draggable}}},touchThreshold:{description:'<span id="touchThreshold">Sets the touch threshold for dragging</span>',control:{type:"range",min:1,max:400},table:{type:{summary:"number",detail:`
+`},defaultValue:{summary:_.hideArrows}}},dots:{description:'<span id="dots">Determines whether to display navigation dots</span>',control:"boolean",table:{type:{summary:"boolean"},defaultValue:{summary:_.dots}}},dotsStyle:{description:'<span id="dotsStyle">Defines the styles for the dots</span>',control:{},table:{type:{summary:"object",detail:`
+Object that receives styles to be applied to the dots
+
+Example:
+{
+    container: { 
+        background: 'purple',
+        gap: 2
+    },
+    dot: {
+        height: 40,
+        width: 20,
+        background: 'black'
+    },
+    dotActive: {
+        width: 60
+    }
+}
+
+
+
+_________________________________________________________________________________________________`},defaultValue:{summary:"See default",detail:`
+{
+    container: {},
+    dot: {},
+    dotActive: {},
+}`}}},itemNumberInDot:{description:'<span id="itemNumberInDot">Specifies whether the item number should be displayed in the dot</span>',control:"boolean",table:{type:{summary:"boolean"},defaultValue:{summary:_.itemNumberInDot}}},autoRotate:{description:'<span id="autoRotate">Enables automatic rotation of items</span>',control:"boolean",table:{type:{summary:"boolean"},defaultValue:{summary:_.autoRotate}}},msPerAutoRotate:{description:'<span id="msPerAutoRotate">Sets the time interval for auto rotation</span>',control:"number",table:{type:{summary:"number"},defaultValue:{summary:_.msPerAutoRotate}}},draggable:{description:'<span id="draggable">Enables dragging functionality</span>',control:"boolean",table:{type:{summary:"boolean"},defaultValue:{summary:_.draggable}}},touchThreshold:{description:'<span id="touchThreshold">Sets the touch threshold for dragging</span>',control:{type:"range",min:1,max:400},table:{type:{summary:"number",detail:`
 The touchThreshold property establishes the area that is recognized as a change of item when navigating 
 through dragging. Specifically, it defines the threshold for the drag gesture, ensuring that only 
 movements beyond this designated threshold are interpreted as intended item changes. Fine-tuning this 
@@ -120,7 +166,7 @@ during minor touch movements.
 
 
 _________________________________________________________________________________________________
-                `},defaultValue:{summary:t.touchThreshold}}},layout:{description:'<span id="layout">The layout property is responsible for specifying which layout should be rendered.</span>',control:"radio",options:["default","controlsInLine","verticalAlign"],table:{type:{summary:"string"},defaultValue:{summary:t.layout}}},showItems:{description:'<span id="showItems">Defines the number of items to show</span>',control:{type:"number"},table:{type:{summary:"number",detail:`
+                `},defaultValue:{summary:_.touchThreshold}}},layout:{description:'<span id="layout">The layout property is responsible for specifying which layout should be rendered.</span>',control:"radio",options:["default","ctrls-in-line","ctrls-in-line-2","vertical-align"],table:{type:{summary:"string"},defaultValue:{summary:_.layout}}},showItems:{description:'<span id="showItems">Defines the number of items to show</span>',control:{type:"number"},table:{type:{summary:"number",detail:`
 The "showItems" property determines the number of items to be displayed simultaneously in the carousel. 
 However, it is important to note that this property is not valid when the "autoWidth" option is enabled.
 When the "autoWidth" property is enabled, the count of items displayed is automatically adjusted based 
@@ -139,7 +185,7 @@ transition between items. This feature provides a fluid and responsive carousel 
  
  
  _________________________________________________________________________________________________
- `},defaultValue:{summary:t.autoWidth}}},fullHeightItems:{description:'<span id="fullHeightItems">Adjusts item height to full height</span>',control:"boolean",table:{type:{summary:"boolean",detail:`
+ `},defaultValue:{summary:_.autoWidth}}},fullHeightItems:{description:'<span id="fullHeightItems">Adjusts item height to full height</span>',control:"boolean",table:{type:{summary:"boolean",detail:`
 When fullHeightItems is set to true, SpineticItem adapts its height to occupy 100% of the 
 carousel's height. This allows users to utilize the CSS property height: 100%, providing 
 flexibility for a variety of layout designs. It's essential to note that enabling this
@@ -148,7 +194,7 @@ component structure supports this behavior to achieve the desired full-height ca
 
 
 _________________________________________________________________________________________________
-                `},defaultValue:{summary:t.fullHeightItems}}},groupScroll:{description:'<span id="groupScroll">Simplifies carousel navigation by allowing precise definition of the number of items moved at a time.</span>',control:"boolean",table:{type:{summary:"boolean",detail:`
+                `},defaultValue:{summary:_.fullHeightItems}}},groupScroll:{description:'<span id="groupScroll">Simplifies carousel navigation by allowing precise definition of the number of items moved at a time.</span>',control:"boolean",table:{type:{summary:"boolean",detail:`
 The groupScroll feature considerably increases the flexibility of navigation in the carousel, allowing 
 precise control over the number of items moved during scrolling.
 
@@ -161,21 +207,21 @@ based on the total number of items divided by 3, ensuring a simple and easy-to-u
 
 
 _________________________________________________________________________________________________
-            `},defaultValue:{summary:t.groupScroll}}},groupItemsScroll:{description:'<span id="groupItemsScroll">The quantity of items scrolled simultaneously when the groupScroll feature is enabled.</span>',control:{type:"number"},table:{type:{summary:"number",detail:`
+            `},defaultValue:{summary:_.groupScroll}}},groupItemsScroll:{description:'<span id="groupItemsScroll">The quantity of items scrolled simultaneously when the groupScroll feature is enabled.</span>',control:{type:"number"},table:{type:{summary:"number",detail:`
 The "groupItemsScroll" property specifies the number of items that will be scrolled when the "groupScroll"
 feature is enabled. If a scroll number greater than the count of visible items is provided, the count of
 visible items is automatically assigned as the scroll value.
   
   
   _________________________________________________________________________________________________
-  `},defaultValue:{summary:t.groupItemsScroll}}},clickTransitionCtrl:{description:'<span id="clickTransitionCtrl">Enables control over transitions on clicks</span>',control:"boolean",table:{type:{summary:"boolean",detail:`
+  `},defaultValue:{summary:_.groupItemsScroll}}},clickTransitionCtrl:{description:'<span id="clickTransitionCtrl">Enables control over transitions on clicks</span>',control:"boolean",table:{type:{summary:"boolean",detail:`
 When set to true, this property allows users to switch between items only after a specific duration
 defined by the msPerClicks property. The msPerClicks property determines the time interval a user
 must wait before being allowed to transition to the next item. On the other hand, if set to false 
 (default), the transition between items is immediate upon clicking, without any enforced delay.
 
 _________________________________________________________________________________________________
-`},defaultValue:{summary:t.clickTransitionCtrl}}},msPerClicks:{description:'<span id="msPerClicks">Sets the time interval for click transitions</span>',control:"number",table:{type:{summary:"number"},defaultValue:{summary:t.msPerClicks}}},responsive:{description:`<span id="responsive">
+`},defaultValue:{summary:_.clickTransitionCtrl}}},msPerClicks:{description:'<span id="msPerClicks">Sets the time interval for click transitions</span>',control:"number",table:{type:{summary:"number"},defaultValue:{summary:_.msPerClicks}}},responsive:{description:`<span id="responsive">
           An array of objects representing responsive settings, controlling configuration changes in the carousel based on specified breakpoints.
           Each object should include a 'breakpoint' and optional 'settings' (refer to individual properties).
         </span>
@@ -285,4 +331,4 @@ ________________________________________________________________________________
 }
 
 _________________________________________________________________________________________________
-                `}}}};export{t as _,u as a,l as v};
+                `}}}};export{_,o as a,i as e};

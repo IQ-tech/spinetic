@@ -1,4 +1,4 @@
-import{j as e,a as t,F as c,G as l}from"./CardExample-ddb75f59.js";import{M as d}from"./index-30642b5c.js";import{a as i}from"./argTypes-c25653a6.js";import{u as a}from"./index-a1cf9e47.js";import"./index-76fb7be0.js";import"./_commonjsHelpers-de833af9.js";import"./iframe-9ccc0517.js";import"../sb-preview/runtime.js";import"./index-d3ea75b5.js";import"./index-11d98b33.js";import"./index-8fd8397b.js";import"./index-356e4a49.js";function o(r){const n=Object.assign({h1:"h1",h2:"h2",code:"code",em:"em",p:"p",pre:"pre",ul:"ul",li:"li",a:"a",strong:"strong",h3:"h3"},a(),r.components);return t(c,{children:[e(l,{}),`
+import{j as e,a as t,F as l,G as c}from"./CardExample-edf23076.js";import{M as d}from"./index-61b8e8ea.js";import{a as r}from"./argTypes-385e44c9.js";import{u as a}from"./index-a1cf9e47.js";import"./index-76fb7be0.js";import"./_commonjsHelpers-de833af9.js";import"./iframe-4a2dfc1c.js";import"../sb-preview/runtime.js";import"./index-d3ea75b5.js";import"./index-11d98b33.js";import"./index-8fd8397b.js";import"./index-356e4a49.js";function o(i){const n=Object.assign({h1:"h1",h2:"h2",code:"code",em:"em",p:"p",pre:"pre",ul:"ul",li:"li",a:"a",strong:"strong",h3:"h3"},a(),i.components);return t(l,{children:[e(c,{}),`
 `,e(d,{title:"pages/Props"}),`
 `,e(n.h1,{id:"spinetic",children:"Spinetic"}),`
 `,e("br",{}),`
@@ -7,16 +7,14 @@ import{j as e,a as t,F as c,G as l}from"./CardExample-ddb75f59.js";import{M as d
 `,t(n.p,{children:["Children elements to be rendered inside the Spinetic component. It can be a single ",e(n.code,{children:"ReactNode"})," or an ",e(n.em,{children:"array"})," of ",e(n.code,{children:"ReactNodes"}),"."]}),`
 `,t(n.h2,{id:"config-typesconfigoptional",children:[e(n.code,{children:"config"}),": ",e(n.em,{children:"TypesConfigOptional"})]}),`
 `,t(n.p,{children:["The ",e(n.code,{children:"config"})," prop accepts an object with optional settings for customizing the Spinetic component. To run tests and explore detailed information about each property and its functionality, navigate by clicking on individual properties and experiment with them in the playground:"]}),`
-`,e(n.pre,{children:e(n.code,{className:"language-tsx",children:`interface TypesConfigOptional {
+`,e(n.pre,{children:e(n.code,{className:"language-tsx",children:`export interface TypesConfigOptional {
   arrows?: boolean;
-  arrowLeftPosition?: number;
-  arrowRightPosition?: number;
+  arrowsStyle?: TypesDefaultArrowsStyle;
   hideArrows?: boolean;
 
   dots?: boolean;
-  dotsStyle?: object;
-  dotsStyleActive?: object;
-  indexInDots?: boolean;
+  dotsStyle?: TypesDefaultDotsStyle,
+  itemNumberInDot?: boolean;
 
   autoRotate?: boolean;
   msPerAutoRotate?: number;
@@ -27,6 +25,7 @@ import{j as e,a as t,F as c,G as l}from"./CardExample-ddb75f59.js";import{M as d
   draggable?: boolean;
   touchThreshold?: number;
 
+  layout?: TypesLayout,
   showItems?: number;
   autoWidth?: boolean;
   fullHeightItems?: boolean;
@@ -44,61 +43,55 @@ interface TypesReponsiveSettings {
 `})}),`
 `,t(n.ul,{children:[`
 `,t(n.li,{children:[`
-`,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#arrows",children:e(n.strong,{children:"arrows"})}),": ",e("span",{dangerouslySetInnerHTML:{__html:i.arrows.description}})]}),`
+`,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#arrows",children:e(n.strong,{children:"arrows"})}),": ",e("span",{dangerouslySetInnerHTML:{__html:r.arrows.description}})]}),`
 `]}),`
 `,t(n.li,{children:[`
-`,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#arrowLeftPosition",children:"arrowLeftPosition"}),": ",e("span",{dangerouslySetInnerHTML:{__html:i.arrowLeftPosition.description}})]}),`
+`,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#arrowsStyle",children:"arrowsStyle"}),": ",e("span",{dangerouslySetInnerHTML:{__html:r.arrowsStyle.description}})]}),`
 `]}),`
 `,t(n.li,{children:[`
-`,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#arrowRightPosition",children:"arrowRightPosition"}),": ",e("span",{dangerouslySetInnerHTML:{__html:i.arrowRightPosition.description}})]}),`
+`,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#hideArrows",children:"hideArrows"}),": ",e("span",{dangerouslySetInnerHTML:{__html:r.hideArrows.description}})]}),`
 `]}),`
 `,t(n.li,{children:[`
-`,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#hideArrows",children:"hideArrows"}),": ",e("span",{dangerouslySetInnerHTML:{__html:i.hideArrows.description}})]}),`
+`,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#dots",children:"dots"}),": ",e("span",{dangerouslySetInnerHTML:{__html:r.dots.description}})]}),`
 `]}),`
 `,t(n.li,{children:[`
-`,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#dots",children:"dots"}),": ",e("span",{dangerouslySetInnerHTML:{__html:i.dots.description}})]}),`
+`,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#dotsStyle",children:"dotsStyle"}),": ",e("span",{dangerouslySetInnerHTML:{__html:r.dotsStyle.description}})]}),`
 `]}),`
 `,t(n.li,{children:[`
-`,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#dotsStyle",children:"dotsStyle"}),": ",e("span",{dangerouslySetInnerHTML:{__html:i.dotsStyle.description}})]}),`
+`,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#itemNumberInDot",children:"itemNumberInDot"}),": ",e("span",{dangerouslySetInnerHTML:{__html:r.itemNumberInDot.description}})]}),`
 `]}),`
 `,t(n.li,{children:[`
-`,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#dotsStyleActive",children:"dotsStyleActive"}),": ",e("span",{dangerouslySetInnerHTML:{__html:i.dotsStyleActive.description}})]}),`
+`,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#autoRotate",children:"autoRotate"}),": ",e("span",{dangerouslySetInnerHTML:{__html:r.autoRotate.description}})]}),`
 `]}),`
 `,t(n.li,{children:[`
-`,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#indexInDots",children:"indexInDots"}),": ",e("span",{dangerouslySetInnerHTML:{__html:i.indexInDots.description}})]}),`
+`,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#msPerAutoRotate",children:"msPerAutoRotate"}),": ",e("span",{dangerouslySetInnerHTML:{__html:r.msPerAutoRotate.description}})]}),`
 `]}),`
 `,t(n.li,{children:[`
-`,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#autoRotate",children:"autoRotate"}),": ",e("span",{dangerouslySetInnerHTML:{__html:i.autoRotate.description}})]}),`
+`,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#draggable",children:"draggable"}),": ",e("span",{dangerouslySetInnerHTML:{__html:r.draggable.description}})]}),`
 `]}),`
 `,t(n.li,{children:[`
-`,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#msPerAutoRotate",children:"msPerAutoRotate"}),": ",e("span",{dangerouslySetInnerHTML:{__html:i.msPerAutoRotate.description}})]}),`
+`,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#touchThreshold",children:"touchThreshold"}),": ",e("span",{dangerouslySetInnerHTML:{__html:r.touchThreshold.description}})]}),`
 `]}),`
 `,t(n.li,{children:[`
-`,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#draggable",children:"draggable"}),": ",e("span",{dangerouslySetInnerHTML:{__html:i.draggable.description}})]}),`
+`,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#showItems",children:"showItems"}),": ",e("span",{dangerouslySetInnerHTML:{__html:r.showItems.description}})]}),`
 `]}),`
 `,t(n.li,{children:[`
-`,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#touchThreshold",children:"touchThreshold"}),": ",e("span",{dangerouslySetInnerHTML:{__html:i.touchThreshold.description}})]}),`
+`,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#autoWidth",children:"autoWidth"}),": ",e("span",{dangerouslySetInnerHTML:{__html:r.autoWidth.description}})]}),`
 `]}),`
 `,t(n.li,{children:[`
-`,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#showItems",children:"showItems"}),": ",e("span",{dangerouslySetInnerHTML:{__html:i.showItems.description}})]}),`
+`,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#fullHeightItems",children:"fullHeightItems"}),": ",e("span",{dangerouslySetInnerHTML:{__html:r.fullHeightItems.description}})]}),`
 `]}),`
 `,t(n.li,{children:[`
-`,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#autoWidth",children:"autoWidth"}),": ",e("span",{dangerouslySetInnerHTML:{__html:i.autoWidth.description}})]}),`
+`,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#groupScroll",children:"groupScroll"}),": ",e("span",{dangerouslySetInnerHTML:{__html:r.groupScroll.description}})]}),`
 `]}),`
 `,t(n.li,{children:[`
-`,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#fullHeightItems",children:"fullHeightItems"}),": ",e("span",{dangerouslySetInnerHTML:{__html:i.fullHeightItems.description}})]}),`
+`,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#groupItemsScroll",children:"groupItemsScroll"}),": ",e("span",{dangerouslySetInnerHTML:{__html:r.groupItemsScroll.description}})]}),`
 `]}),`
 `,t(n.li,{children:[`
-`,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#groupScroll",children:"groupScroll"}),": ",e("span",{dangerouslySetInnerHTML:{__html:i.groupScroll.description}})]}),`
+`,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#clickTransitionCtrl",children:"clickTransitionCtrl"}),": ",e("span",{dangerouslySetInnerHTML:{__html:r.clickTransitionCtrl.description}})]}),`
 `]}),`
 `,t(n.li,{children:[`
-`,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#groupItemsScroll",children:"groupItemsScroll"}),": ",e("span",{dangerouslySetInnerHTML:{__html:i.groupItemsScroll.description}})]}),`
-`]}),`
-`,t(n.li,{children:[`
-`,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#clickTransitionCtrl",children:"clickTransitionCtrl"}),": ",e("span",{dangerouslySetInnerHTML:{__html:i.clickTransitionCtrl.description}})]}),`
-`]}),`
-`,t(n.li,{children:[`
-`,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#msPerClicks",children:"msPerClicks"}),": ",e("span",{dangerouslySetInnerHTML:{__html:i.msPerClicks.description}})]}),`
+`,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#msPerClicks",children:"msPerClicks"}),": ",e("span",{dangerouslySetInnerHTML:{__html:r.msPerClicks.description}})]}),`
 `]}),`
 `]}),`
 `,t(n.h2,{id:"change-function",children:[e(n.code,{children:"change"}),": ",e(n.em,{children:"function"})]}),`
@@ -181,4 +174,4 @@ default App;
 `,e("br",{}),`
 `,e("br",{}),`
 `,e("br",{}),`
-`,e("br",{})]})}function _(r={}){const{wrapper:n}=Object.assign({},a(),r.components);return n?e(n,Object.assign({},r,{children:e(o,r)})):o(r)}export{_ as default};
+`,e("br",{})]})}function _(i={}){const{wrapper:n}=Object.assign({},a(),i.components);return n?e(n,Object.assign({},i,{children:e(o,i)})):o(i)}export{_ as default};
