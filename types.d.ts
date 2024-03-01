@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 
 //#region config
-export interface defaultArrowsStyle {
+export interface TypesDefaultArrowsStyle {
   container: object,
   btnPrev: object,
   btnNext: object,
@@ -142,7 +142,7 @@ export interface TypesDots {
   remainingIndexes: number[];
   goToItem: (p0: number) => void;
 }
-export interface SpineticChangeEvent {
+export interface TypesSpineticChangeEvent {
   previous: {
     index: number;
     remainingIndexes: number[];

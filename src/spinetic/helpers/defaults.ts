@@ -1,6 +1,6 @@
 import * as T from "types";
 
-const defaultArrowsStyle: T.defaultArrowsStyle = {
+const defaultArrowsStyle: T.TypesDefaultArrowsStyle = {
     container: {},
     btnPrev: {},
     btnNext: {},
@@ -37,7 +37,7 @@ export const _defaultConfig: T.TypesConfig = {
 };
 
 
-export const elementsChangeDefault: T.SpineticChangeEvent = {
+export const elementsChangeDefault: T.TypesSpineticChangeEvent = {
     previous: {
         index: 0,
         remainingIndexes: [0],

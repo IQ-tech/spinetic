@@ -27,7 +27,7 @@ export const useSpinetic = ({
   const [_isProcessingClick, setIsProcessingClick] = useState<boolean>(true);
   const [_sb, setSb] = useState<boolean | undefined>(undefined);
 
-  const [elementsChange, setElementsChange] = useState<T.SpineticChangeEvent>(D.elementsChangeDefault)
+  const [elementsChange, setElementsChange] = useState<T.TypesSpineticChangeEvent>(D.elementsChangeDefault)
 
 
   const _handleCarouselItemsWidth = useCallback((CConfig: T.TypesConfig): number[] | null => {
@@ -120,7 +120,7 @@ export const useSpinetic = ({
 
     const nItemsScroll = groupItemsScroll > 1 && groupItemsScroll <= numVisibleCards ? groupItemsScroll : numVisibleCards
     const idxScrollPage = Math.ceil(U.validateNumber(maxScrollIndex / nItemsScroll))
-    const maxScroll = groupScroll ? idxScrollPage : maxScrollIndex;
+    const maxScroll = maxScrollIndex > 0 && children?.length > 0 && groupScroll ? idxScrollPage : maxScrollIndex;
     const remainingIdx = (index: number) => groupScroll ? (index + 1) * numVisibleCards : (index + numVisibleCards) - 1;
 
     const currentRemainingIdx = Array.from(
@@ -207,8 +207,8 @@ export const useSpinetic = ({
       currentConfig.fullHeightItems] : [])
   ])
 
-  const _updateElementsChange = (updateElements: T.SpineticChangeEvent) => {
-    setElementsChange((prevElementsChange: T.SpineticChangeEvent) => {
+  const _updateElementsChange = (updateElements: T.TypesSpineticChangeEvent) => {
+    setElementsChange((prevElementsChange: T.TypesSpineticChangeEvent) => {
       return {
         previous: {
           ...prevElementsChange.previous,
