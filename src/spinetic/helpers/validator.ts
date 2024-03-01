@@ -39,8 +39,7 @@ export const validConfig = (config?: T.TypesConfigOptional): T.TypesConfig => {
 
     dots: C?.dots ?? DC.dots,
     dotsStyle: C?.dotsStyle ?? DC.dotsStyle,
-    dotsStyleActive: C?.dotsStyleActive ?? DC.dotsStyleActive,
-    indexInDots: C?.indexInDots ?? DC.indexInDots,
+    itemNumberInDot: C?.itemNumberInDot ?? DC.itemNumberInDot,
 
     autoRotate: C?.autoRotate ?? DC.autoRotate,
     msPerAutoRotate: C?.msPerAutoRotate ?? DC.msPerAutoRotate,
