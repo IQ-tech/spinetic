@@ -70,7 +70,7 @@ export const useSpinetic = ({
   ])
 
   const _handleCarouselWidth = useCallback((CConfig: TypesConfig): void => {
-    if (CConfig.layout === "verticalAlign") return;
+    if (CConfig.layout === "vertical-align") return;
 
     _handleCarouselItemsWidth(CConfig)
     const totalWidth = SpineticUtils.sumCarouselItemsWidths(
@@ -267,7 +267,7 @@ export const useSpinetic = ({
   }
 
   const _setCarouselContainerTransform = (scrollAmount: number): void => {
-    if (currentConfig.layout === "verticalAlign") return;
+    if (currentConfig.layout === "vertical-align") return;
 
     if (spineticContainer?.current) {
       const { groupScroll, groupItemsScroll } = currentConfig;

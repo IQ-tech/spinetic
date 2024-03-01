@@ -8,6 +8,7 @@ import { TypesSpinetic } from "types";
 const Spinetic = ({ children, config, change }: TypesSpinetic) => {
   const {
     currentConfig,
+    prevChildren,
     currentIndex,
     spineticMain,
     spineticContainer,
@@ -19,49 +20,13 @@ const Spinetic = ({ children, config, change }: TypesSpinetic) => {
 
     start,
     move,
-    end,
+    end
   } = useSpinetic({ children, config, change });
 
   return (
     <>
-      {currentConfig.layout === "default" && (
-        <div className="spinetic-main" ref={spineticMain}>
-          <div className="spinetic-wrapper">
-            <SpineticArrows
-              currentConfig={currentConfig}
-              currentIndex={currentIndex}
-              remainingIndexes={remainingIndexes}
-              onClickPreviousItem={previousItem}
-              onClickNextItem={nextItem}
-            >
-              <div
-                className="spinetic-container"
-                ref={spineticContainer}
-                onMouseDown={start}
-                onMouseMove={move}
-                onMouseUp={end}
-                onMouseLeave={end}
-                onTouchStart={start}
-                onTouchMove={move}
-                onTouchEnd={end}
-              >
-                {children}
-              </div>
-            </SpineticArrows>
-          </div>
-
-          <SpineticDots
-            currentConfig={currentConfig}
-            currentIndex={currentIndex}
-            maxCarouselItems={maxCarouselItems}
-            remainingIndexes={remainingIndexes}
-            goToItem={goToItem}
-          ></SpineticDots>
-        </div>
-      )}
-
-      {currentConfig.layout === "controlsInLine" && (
-        <div className="controls-in-line spinetic-main" ref={spineticMain}>
+      {currentConfig.layout !== "vertical-align" && (
+        <div className={`spinetic-main spinetic-layout-${currentConfig.layout}`} ref={spineticMain}>
           <div className="spinetic-wrapper">
             <div>
               <div
@@ -75,7 +40,7 @@ const Spinetic = ({ children, config, change }: TypesSpinetic) => {
                 onTouchMove={move}
                 onTouchEnd={end}
               >
-                {children}
+                {prevChildren.current}
               </div>
             </div>
           </div>
@@ -86,19 +51,18 @@ const Spinetic = ({ children, config, change }: TypesSpinetic) => {
             onClickPreviousItem={previousItem}
             onClickNextItem={nextItem}
           />
-
-          <SpineticDots
-            currentConfig={currentConfig}
-            currentIndex={currentIndex}
-            maxCarouselItems={maxCarouselItems}
-            remainingIndexes={remainingIndexes}
-            goToItem={goToItem}
-          />
+            <SpineticDots
+              currentConfig={currentConfig}
+              currentIndex={currentIndex}
+              maxCarouselItems={maxCarouselItems}
+              remainingIndexes={remainingIndexes}
+              goToItem={goToItem}
+            />
         </div>
       )}
 
-      {currentConfig.layout === "verticalAlign" && (
-        <div className="spinetic-vertical-align">
+      {currentConfig.layout === "vertical-align" && (
+        <div className="spinetic-layout-vertical-align">
           <div>{children}</div>
         </div>
       )}

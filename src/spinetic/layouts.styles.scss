@@ -1,0 +1,112 @@
+@import "./spinetic.styles.scss";
+
+.spinetic-layout-default {
+  .spinetic-navigation-button {
+    top: 39%;
+  }
+}
+
+.spinetic-layout-ctrls-in-line {
+  .spinetic-dots {
+    justify-content: flex-start;
+    gap: 8px;
+    margin-top: 25px;
+    padding-bottom: 20px;
+
+    .spinetic-dot {
+      width: 8px;
+      height: 8px;
+
+      &.spinetic-dot-active {
+        width: 38px;
+      }
+    }
+  }
+
+  .spinetic-navigation-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: unset;
+    right: unset;
+    color: $spinetic-blue;
+    background-color: transparent;
+    border: 2px solid $spinetic-blue;
+    transition: transform 0.6s;
+
+    svg {
+      height: 20px;
+      width: 10px;
+    }
+
+    path {
+      stroke: $spinetic-blue;
+      stroke-width: 2.5px;
+    }
+  }
+
+  .spinetic-btn-prev {
+    bottom: 0;
+    right: 50px;
+    left: unset;
+  }
+
+  .spinetic-btn-next {
+    bottom: 0;
+    right: 0px;
+  }
+}
+
+.spinetic-layout-ctrls-in-line-2 {
+  .spinetic-dots {
+    gap: 8px;
+    position: relative;
+    bottom: 35px;
+    height: unset;
+    align-items: unset;
+
+    .spinetic-dot {
+      width: 8px;
+      height: 8px;
+
+      &.spinetic-dot-active {
+        width: 38px;
+      }
+    }
+  }
+
+  .spinetic-container-arrows {
+    height: 50px;
+    margin-top: 10px;
+  }
+
+  .spinetic-navigation-button {
+    color: $spinetic-blue;
+    background-color: transparent;
+    border: 2px solid $spinetic-blue;
+    transition: transform 0.6s;
+
+    svg {
+      height: 20px;
+      width: 10px;
+    }
+
+    path {
+      stroke: $spinetic-blue;
+      stroke-width: 2.5px;
+    }
+  }
+}
+
+.spinetic-layout-vertical-align {
+  touch-action: unset;
+
+  div.spinetic-wrapper {
+    overflow: unset;
+  }
+
+  div.spinetic-container {
+    flex-direction: column;
+    width: 100%;
+  }
+}

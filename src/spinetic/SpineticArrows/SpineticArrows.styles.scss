@@ -5,18 +5,9 @@
   align-items: center;
 }
 
-.spinetic-btn-prev {
-  position: absolute;
-  left: 0px;
-}
-
-.spinetic-btn-next {
-  position: absolute;
-  right: 0px;
-}
-
 .spinetic-navigation-button {
-  position: relative;
+  position: absolute;
+
   z-index: 1;
   display: flex;
   align-items: center;
@@ -51,4 +42,16 @@
     transition: none;
     transform: none;
   }
+}
+
+
+.spinetic-btn-prev {
+  @extend .spinetic-navigation-button;
+  left: 0px;
+  
+}
+
+.spinetic-btn-next {
+  @extend .spinetic-navigation-button;
+  right: 0px;
 }
