@@ -66,15 +66,13 @@ ________________________________________________________________________________
                 detail: `
 types:
 
-interface TypesConfigOptional {
+export interface TypesConfigOptional {
     arrows?: boolean;
-    arrowLeftPosition?: number;
-    arrowRightPosition?: number;
+    arrowsStyle?: TypesDefaultArrowsStyle;
     hideArrows?: boolean;
   
     dots?: boolean;
-    dotsStyle?: object;
-    dotsStyleActive?: object;
+    dotsStyle?: TypesDefaultDotsStyle,
     itemNumberInDot?: boolean;
   
     autoRotate?: boolean;
@@ -86,16 +84,16 @@ interface TypesConfigOptional {
     draggable?: boolean;
     touchThreshold?: number;
   
+    layout?: TypesLayout,
     showItems?: number;
     autoWidth?: boolean;
     fullHeightItems?: boolean;
-    verticalAlign?: boolean;
   
     groupScroll?: boolean;
     groupItemsScroll?: number;
   
     responsive?: TypesReponsiveSettings[];
-}
+  }
   
 interface TypesReponsiveSettings {
 breakpoint: number;

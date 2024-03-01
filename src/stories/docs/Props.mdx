@@ -22,15 +22,13 @@ Children elements to be rendered inside the Spinetic component. It can be a sing
 The `config` prop accepts an object with optional settings for customizing the Spinetic component. To run tests and explore detailed information about each property and its functionality, navigate by clicking on individual properties and experiment with them in the playground:
 
 ```tsx
-interface TypesConfigOptional {
+export interface TypesConfigOptional {
   arrows?: boolean;
-  arrowLeftPosition?: number;
-  arrowRightPosition?: number;
+  arrowsStyle?: TypesDefaultArrowsStyle;
   hideArrows?: boolean;
 
   dots?: boolean;
-  dotsStyle?: object;
-  dotsStyleActive?: object;
+  dotsStyle?: TypesDefaultDotsStyle,
   itemNumberInDot?: boolean;
 
   autoRotate?: boolean;
@@ -42,6 +40,7 @@ interface TypesConfigOptional {
   draggable?: boolean;
   touchThreshold?: number;
 
+  layout?: TypesLayout,
   showItems?: number;
   autoWidth?: boolean;
   fullHeightItems?: boolean;

@@ -16,7 +16,7 @@ export interface TypesDefaultDotsStyle {
 type TypesLayout = "default" | "ctrls-in-line" | "ctrls-in-line-2" | "vertical-align";
 export interface TypesConfigOptional {
   arrows?: boolean;
-  arrowsStyle?: defaultArrowsStyle;
+  arrowsStyle?: TypesDefaultArrowsStyle;
   hideArrows?: boolean;
 
   dots?: boolean;
