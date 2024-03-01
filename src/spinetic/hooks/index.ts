@@ -117,23 +117,25 @@ export const useSpinetic = ({
     const nItemsScroll = groupItemsScroll > 1 && groupItemsScroll <= numVisibleCards ? groupItemsScroll : numVisibleCards
     const idxScrollPage = Math.ceil(SpineticUtils.validateNumber(maxScrollIndex / nItemsScroll))
     const maxScroll = groupScroll ? idxScrollPage : maxScrollIndex;
-    const remainingIdx = (index: number) => groupScroll ? (index + 1) * numVisibleCards : index + numVisibleCards;
+    const remainingIdx = (index: number) => groupScroll ? (index + 1) * numVisibleCards : (index + numVisibleCards) - 1;
 
     const currentRemainingIdx = Array.from(
       { length: maxScroll + 1 },
       (_, index) => remainingIdx(index)
     )
-  
+
     _updateElementsChange({
       current: {
         index: 0,
         remainingIndexes: currentRemainingIdx,
         totalItems: Children.count(children),
+        itemsPerScroll: nItemsScroll
       },
       previous: {
         index: 0,
         remainingIndexes: currentRemainingIdx,
-        totalItems: Children.count(children)
+        totalItems: Children.count(children),
+        itemsPerScroll: nItemsScroll
       }
     });
 
@@ -162,9 +164,9 @@ export const useSpinetic = ({
     spineticMain.current,
     spineticContainer.current,
     children
-  ])
+    ])
 
-  const _handleConfigs = (config?: TypesConfigOptional) => {
+  const _handleConfigs = useCallback((config?: TypesConfigOptional) => {
     const currentOrDefaultConfig: TypesConfig = SpineticConfig.validConfig(config);
 
     const breakpoints = currentOrDefaultConfig.responsive
@@ -188,7 +190,18 @@ export const useSpinetic = ({
     const CConfig = SpineticConfig.validConfig(currentOrDefaultConfig);
     setCurrentConfig(CConfig);
     _handleCarouselWidth(CConfig);
-  }
+  }, [
+    prevChildren.current,
+    spineticContainer.current,
+    window.innerWidth,
+
+    ...(_sb ? [
+      config,
+      children,
+      currentConfig.layout,
+      currentConfig.autoWidth,
+      currentConfig.fullHeightItems] : [])
+  ])
 
   const _updateElementsChange = (updateElements: SpineticChangeEvent) => {
     setElementsChange((prevElementsChange: SpineticChangeEvent) => {
@@ -279,14 +292,14 @@ export const useSpinetic = ({
     }, currentConfig.msPerClicks);
   }, [remainingIndexes, currentIndex])
 
-  const _checkAndSetConfigs = useCallback(() => {
+  const _handleWhenChangeChildren = useCallback(() => {
     const childrenAreEqual = SpineticUtils.childrenIsEqual(children, prevChildren.current);
 
     if (!childrenAreEqual) {
-      prevChildren.current = children;
       _handleConfigs(config);
+      prevChildren.current = children;
     }
-  }, [children, config]);
+  }, [config, children]);
 
   const _handleAutoRotate = useCallback(() => {
     if (currentConfig.autoRotate) {
@@ -322,11 +335,17 @@ export const useSpinetic = ({
     _handleItemChange
   })
 
-  useEffect(() => { if (!!change && remainingIndexes?.length > 1) change(elementsChange) }, [currentIndex]);
   useEffect(() => _handleAutoRotate(), [_handleAutoRotate]);
   useEffect(() => _handleItemChange(), [_handleItemChange]);
-  useEffect(() => _checkAndSetConfigs(), [_checkAndSetConfigs]);
-  useEffect(() => _handleConfigs(config), [spineticContainer, prevChildren.current, window.innerWidth]);
+  useEffect(() => { _handleConfigs(config) }, [_handleConfigs]);
+  useEffect(() => _handleWhenChangeChildren(), [_handleWhenChangeChildren]);
+  useEffect(() => { if (!!change && remainingIndexes?.length > 1) change(elementsChange) }, [currentIndex]);
+  useEffect(() => window.addEventListener('resize', () => _handleConfigs(config)), [
+    window.innerWidth,
+    spineticContainer.current,
+    config,
+  ]);
+
 
 
   const checkIsSb = () => {
@@ -336,22 +355,13 @@ export const useSpinetic = ({
 
     return setSb(isSb);
   }
-  
+
   useEffect(() => checkIsSb(), []);
-  useEffect(() => { if (_sb) _handleConfigs(config) }, [
-    _sb,
-    config,
-    children,
-    window.innerWidth,
-    prevChildren,
-    spineticMain,
-    spineticContainer,
-    currentConfig.autoWidth,
-    currentConfig.layout
-  ]);
+  useEffect(() => { if (_sb) _handleConfigs(config) }, [_sb, _handleConfigs]);
 
   return {
     currentConfig,
+    prevChildren,
     currentIndex,
     spineticMain,
     spineticContainer,
@@ -363,7 +373,7 @@ export const useSpinetic = ({
 
     start,
     move,
-    end
+    end,
   };
 
 }
