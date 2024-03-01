@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import type { Meta, StoryFn } from "@storybook/react";
 
-import "./Spinetic.styles.stories.scss";
+import "./styles.stories.scss";
 import "../styles.scss";
 
 import * as T from "types";
