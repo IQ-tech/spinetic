@@ -4,7 +4,7 @@ import type { Meta, StoryFn } from "@storybook/react";
 import "./Spinetic.styles.stories.scss";
 import "../styles.scss";
 
-import { SpineticChangeEvent, TypesConfigOptional } from "types";
+import * as T from "types";
 
 import Spinetic from "../Spinetic";
 
@@ -13,7 +13,7 @@ import CardExample, { generateItems, SpineticItem } from "./CardExample";
 import { argTypes } from "./argTypes";
 import documentation from "./docs/Playground.mdx";
 
-const handleChange = (event: SpineticChangeEvent) => {
+const handleChange = (event: T.TypesSpineticChangeEvent) => {
   const currentState = event.current;
   const previousState = event.previous;
 
@@ -52,7 +52,7 @@ export default {
   tags: ["autodocs"]
 } as Meta;
 
-const Template: StoryFn = (args: TypesConfigOptional | any) => {
+const Template: StoryFn = (args: T.TypesConfigOptional | any) => {
   const childrens = generateItems(args.children);
   const change = args.change;
 
@@ -89,11 +89,12 @@ export const Responsive = Template.bind({});
 Responsive.args = {
   children: 3,
   autoWidth: true,
+  layout: "ctrls-in-line-2",
   responsive: [
     {
       breakpoint: 768,
       settings: {
-        layout: "verticalAlign",
+        layout: "vertical-align",
       },
     },
   ],
