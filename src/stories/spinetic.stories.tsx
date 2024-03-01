@@ -88,7 +88,7 @@ AutoRotate.args = {
 export const Responsive = Template.bind({});
 Responsive.args = {
   children: 3,
-  autoWidth: true,
+  showItems: 2,
   layout: "ctrls-in-line-2",
   responsive: [
     {
