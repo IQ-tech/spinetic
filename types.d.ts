@@ -1,11 +1,16 @@
 import { ReactNode } from "react";
 
 //#region config
-type TypesLayout = 'default' | 'controlsInLine' | 'verticalAlign' ;
+export interface defaultArrowsStyle {
+  container: object,
+  btnPrev: object,
+  btnNext: object,
+}
+
+type TypesLayout = "default" | "ctrls-in-line" | "ctrls-in-line-2" | "vertical-align";
 export interface TypesConfigOptional {
   arrows?: boolean;
-  arrowLeftPosition?: number;
-  arrowRightPosition?: number;
+  arrowsStyle?: defaultArrowsStyle;
   hideArrows?: boolean;
 
   dots?: boolean;
