@@ -1,3 +1,13 @@
+/**
+ * Checks whether the environment is running in Storybook.
+ *
+ * @returns {boolean} Returns true if the environment is Storybook, otherwise returns false.
+ */
+export const isSBEnv = () => {
+  const currentUrl = window?.location?.href;
+  const hasStoreInLS = !!localStorage?.getItem("@storybook/manager/store");
+  return currentUrl?.includes("pages-playground") && hasStoreInLS;
+}
 
 /**
  * @param target HTMLElement | null

@@ -14,6 +14,8 @@ export const useSpinetic = ({
   change }: T.TypesUseSpinetic
 ): T.TypesReturnSpinetic => {
 
+  const [_sb] = useState<boolean>(U.isSBEnv());
+  
   const spineticMain: RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null);
   const spineticContainer: RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null);
   const prevChildren = useRef<ReactNode | ReactNode[]>(children);
@@ -25,7 +27,6 @@ export const useSpinetic = ({
 
   const [_carouselItemsWidths, setCarouselItemsWidths] = useState<number[]>([]);
   const [_isProcessingClick, setIsProcessingClick] = useState<boolean>(true);
-  const [_sb, setSb] = useState<boolean | undefined>(undefined);
 
   const [elementsChange, setElementsChange] = useState<T.TypesSpineticChangeEvent>(D.elementsChangeDefault)
 
@@ -351,17 +352,6 @@ export const useSpinetic = ({
     config,
   ]);
 
-
-
-  const checkIsSb = () => {
-    const currentUrl = window?.location?.href;
-    const hasStoreInLS = !!localStorage?.getItem("@storybook/manager/store");
-    const isSb = currentUrl?.includes("pages-playground") && hasStoreInLS;
-
-    return setSb(isSb);
-  }
-
-  useEffect(() => checkIsSb(), []);
   useEffect(() => { if (_sb) _handleConfigs(config) }, [_sb, _handleConfigs]);
 
   return {
