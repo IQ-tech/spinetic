@@ -7,6 +7,12 @@ export interface TypesDefaultArrowsStyle {
   btnNext: object,
 }
 
+export interface TypesDefaultDotsStyle {
+  container: object,
+  dot: object,
+  dotActive: object
+}
+
 type TypesLayout = "default" | "ctrls-in-line" | "ctrls-in-line-2" | "vertical-align";
 export interface TypesConfigOptional {
   arrows?: boolean;
@@ -14,9 +20,8 @@ export interface TypesConfigOptional {
   hideArrows?: boolean;
 
   dots?: boolean;
-  dotsStyle?: object,
-  dotsStyleActive?: object,
-  indexInDots?: boolean;
+  dotsStyle?: TypesDefaultDotsStyle,
+  itemNumberInDot?: boolean;
 
   autoRotate?: boolean;
   msPerAutoRotate?: number;

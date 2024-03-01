@@ -75,7 +75,7 @@ interface TypesConfigOptional {
     dots?: boolean;
     dotsStyle?: object;
     dotsStyleActive?: object;
-    indexInDots?: boolean;
+    itemNumberInDot?: boolean;
   
     autoRotate?: boolean;
     msPerAutoRotate?: number;
@@ -213,28 +213,54 @@ ________________________________________________________________________________
 
     dotsStyle: {
         description: `<span id="dotsStyle">Defines the styles for the dots</span>`,
-        control: "object",
+        control: {
+            //type: 'object'
+        },
         table: {
-            type: { summary: "object" },
-            defaultValue: { summary: `{}` }
+            type: { 
+                summary: "object",
+                detail: `
+Object that receives styles to be applied to the dots
+
+Example:
+{
+    container: { 
+        background: 'purple',
+        gap: 2
+    },
+    dot: {
+        height: 40,
+        width: 20,
+        background: 'black'
+    },
+    dotActive: {
+        width: 60
+    }
+}
+
+
+
+_________________________________________________________________________________________________`
+ },
+            defaultValue: { 
+                summary: `See default`,
+                detail: `
+{
+    container: {},
+    dot: {},
+    dotActive: {},
+}`
+             },
+            
         },
     },
 
-    dotsStyleActive: {
-        description: `<span id="dotsStyleActive">Defines the styles for the dots in the active state</span>`,
-        control: "object",
-        table: {
-            type: { summary: "object" },
-            defaultValue: { summary: `{}` }
-        }
-    },
-
-    indexInDots: {
-        description: `<span id="indexInDots">Specifies whether to show the index in dots</span>`,
+    itemNumberInDot: {
+        description: `<span id="itemNumberInDot">Specifies whether the item number should be displayed in the dot</span>`,
         control: "boolean",
         table: {
             type: { summary: "boolean" },
-            defaultValue: { summary: D._defaultConfig.indexInDots },
+            defaultValue: { summary: D._defaultConfig.itemNumberInDot },
         },
     },
 

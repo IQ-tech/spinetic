@@ -13,21 +13,21 @@ const Dots = ({
   return (
     <>
       {visibleDots && (
-        <div className="spinetic-dots">
+        <div className="spinetic-dots" style={{ ...currentConfig.dotsStyle?.container }}>
           {remainingIndexes?.map((_item: number, i: number) => (
             <span
               className={`spinetic-dot ${
                 i === currentIndex ? "spinetic-dot-active" : ""
               }`}
               style={{
-                ...currentConfig.dotsStyle,
-                ...(i === currentIndex ? currentConfig.dotsStyleActive : null),
+                ...currentConfig.dotsStyle?.dot,
+                ...(i === currentIndex ? currentConfig.dotsStyle?.dotActive : null),
               }}
               key={i}
               onClick={() => goToItem(i)}
             >
-              {currentConfig.indexInDots && (
-                <span className="spinetic-dot-index">
+              {currentConfig.itemNumberInDot && (
+                <span className="spinetic-dot-item-number">
                   {i + 1 + (maxCarouselItems - remainingIndexes?.length)}
                 </span>
               )}

@@ -6,15 +6,20 @@ const defaultArrowsStyle: T.TypesDefaultArrowsStyle = {
     btnNext: {},
 };
 
+const defaultDotsStyle: T.TypesDefaultDotsStyle = {
+    container: {},
+    dot: {},
+    dotActive: {}
+}
+
 export const _defaultConfig: T.TypesConfig = {
     arrows: true,
     arrowsStyle: defaultArrowsStyle,
     hideArrows: false,
 
     dots: true,
-    dotsStyle: {},
-    dotsStyleActive: {},
-    indexInDots: false,
+    dotsStyle: defaultDotsStyle,
+    itemNumberInDot: false,
 
     autoRotate: false,
     msPerAutoRotate: 3000,
