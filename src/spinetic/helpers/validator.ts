@@ -40,6 +40,7 @@ export const validConfig = (config?: T.TypesConfigOptional): T.TypesConfig => {
     dots: C?.dots ?? DC.dots,
     dotsStyle: C?.dotsStyle ?? DC.dotsStyle,
     itemNumberInDot: C?.itemNumberInDot ?? DC.itemNumberInDot,
+    maxDots: C?.maxDots ?? DC.maxDots,
 
     autoRotate: C?.autoRotate ?? DC.autoRotate,
     msPerAutoRotate: C?.msPerAutoRotate ?? DC.msPerAutoRotate,

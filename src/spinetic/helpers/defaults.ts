@@ -20,6 +20,7 @@ export const _defaultConfig: T.TypesConfig = {
     dots: true,
     dotsStyle: defaultDotsStyle,
     itemNumberInDot: false,
+    maxDots: false,
 
     autoRotate: false,
     msPerAutoRotate: 3000,

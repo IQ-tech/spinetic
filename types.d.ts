@@ -22,6 +22,7 @@ export interface TypesConfigOptional {
   dots?: boolean;
   dotsStyle?: TypesDefaultDotsStyle,
   itemNumberInDot?: boolean;
+  maxDots?: boolean;
 
   autoRotate?: boolean;
   msPerAutoRotate?: number;

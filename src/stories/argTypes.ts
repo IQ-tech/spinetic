@@ -262,6 +262,15 @@ ________________________________________________________________________________
         },
     },
 
+    maxDots: {
+        description: `<span id="maxDots">Sets the maximum number of 5 dots to be shown</span>`,
+        control: "boolean",
+        table: {
+            type: { summary: "boolean" },
+            defaultValue: { summary: D._defaultConfig.maxDots },
+        },
+    },
+
 
 
     autoRotate: {

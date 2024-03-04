@@ -1,13 +1,36 @@
 @import "../../styles/colors.scss";
 
+.spinetic-dots-main {
+  display: block;
+  position: relative;
+  margin: 0 auto;
+}
+
+.spinetic-dots-wrapper {
+  display: flex;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+
+  transition: all 0.7s ease;
+
+  .spinetic-dots {
+    flex-wrap: unset;
+  }
+}
+
 .spinetic-dots {
   display: flex;
   justify-content: center;
   margin-top: 10px;
-  gap: 20px;
+
+  //gap: 20px;
 
   flex-wrap: wrap;
-  line-height: 0.7;
+  // line-height: 0.7;
+
+  transition: all 0.7s ease;
+
   height: 35px;
   align-items: center;
 
@@ -20,6 +43,8 @@
     display: flex;
     justify-content: center;
     border-radius: 50px;
+
+    margin-right: 14px;
 
     &:hover {
       opacity: 0.8;

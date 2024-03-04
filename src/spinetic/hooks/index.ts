@@ -279,6 +279,7 @@ export const useSpinetic = ({
       const { groupScroll, groupItemsScroll } = currentConfig;
       const nItemsScroll = groupItemsScroll > 1 && groupItemsScroll <= visibleItems ? groupItemsScroll : visibleItems
       const scroll = groupScroll ? (scrollAmount * nItemsScroll) : scrollAmount;
+      
       spineticContainer.current.style.transform = `translateX(${scroll}px)`;
     }
   }
