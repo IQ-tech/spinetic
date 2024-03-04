@@ -40,7 +40,8 @@ const Spinetic = ({ children, config, change }: T.TypesSpinetic) => {
                 onTouchMove={move}
                 onTouchEnd={end}
               >
-                {prevChildren.current}
+                {/* {prevChildren.current} */}
+                {children}
               </div>
             </div>
           </div>
