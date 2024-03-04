@@ -21,6 +21,8 @@ const Dots = ({
   goToItem,
 }: T.TypesDots) => {
   const visibleDots = currentConfig.dots && remainingIndexes?.length > 1;
+  const numberDotsVisible = 5;
+  const hasMaxDots = remainingIndexes?.length > numberDotsVisible && currentConfig.maxDots;
 
   const dotsMainRef: RefObject<any> = useRef(null);
   const dotsContainerRef: RefObject<any> = useRef(null);
@@ -30,10 +32,10 @@ const Dots = ({
     dotActiveWidth: undefined,
   });
 
-  const numberDotsVisible = 5;
 
   const handleScrollDots = () => {
     const currentPosition = remainingIndexes?.indexOf(currentIndex);
+
 
     const isFirstItem = currentPosition === 0;
     const isSecondItemOrNext = currentPosition >= 1;
@@ -53,9 +55,11 @@ const Dots = ({
       wrapperDots.style.paddingLeft = `${2 * dotsConfig.dotWidth}px`;
     }
 
+    if(hasMaxDots) {
     dotsContainerRef.current.style.transform = `translateX(${
       -currentIndex * dotsConfig.dotWidth
     }px)`;
+  }
   };
 
   useEffect(() => {
@@ -92,7 +96,7 @@ const Dots = ({
 
   return (
     <>
-      {visibleDots && currentConfig.maxDots && (
+      {visibleDots && hasMaxDots && (
         <div className="spinetic-dots-main" ref={dotsMainRef}>
           <div className="spinetic-dots-wrapper">
             <div
@@ -126,7 +130,7 @@ const Dots = ({
         </div>
       )}
 
-      {visibleDots && !currentConfig.maxDots && (
+      {visibleDots && !hasMaxDots && (
         <div
           className="spinetic-dots"
           style={{ ...currentConfig.dotsStyle?.container }}
