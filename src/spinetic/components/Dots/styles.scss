@@ -2,8 +2,6 @@
 
 .spinetic-dots-main {
   display: block;
-  position: relative;
-  margin: 0 auto;
 }
 
 .spinetic-dots-wrapper {
@@ -22,12 +20,7 @@
 .spinetic-dots {
   display: flex;
   justify-content: center;
-  margin-top: 10px;
-
-  //gap: 20px;
-
   flex-wrap: wrap;
-  // line-height: 0.7;
 
   transition: all 0.7s ease;
 
@@ -43,8 +36,7 @@
     display: flex;
     justify-content: center;
     border-radius: 50px;
-
-    margin-right: 14px;
+    margin: 2px 8px 0px 0px;
 
     &:hover {
       opacity: 0.8;

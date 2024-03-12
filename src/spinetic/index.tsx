@@ -51,7 +51,7 @@ const Spinetic = ({ children, config, change }: T.TypesSpinetic) => {
             remainingIndexes={remainingIndexes}
             onClickPreviousItem={previousItem}
             onClickNextItem={nextItem}
-          />
+          >
             <Dots
               currentConfig={currentConfig}
               currentIndex={currentIndex}
@@ -59,6 +59,7 @@ const Spinetic = ({ children, config, change }: T.TypesSpinetic) => {
               remainingIndexes={remainingIndexes}
               goToItem={goToItem}
             />
+            </Arrows>
         </div>
       )}
 

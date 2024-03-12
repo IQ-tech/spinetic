@@ -3,11 +3,12 @@
 .spinetic-container-arrows {
   display: flex;
   align-items: center;
+  justify-content: center;
+  height: 40px;
 }
 
 .spinetic-navigation-button {
   position: absolute;
-
   z-index: 1;
   display: flex;
   align-items: center;
@@ -44,11 +45,9 @@
   }
 }
 
-
 .spinetic-btn-prev {
   @extend .spinetic-navigation-button;
   left: 0px;
-  
 }
 
 .spinetic-btn-next {

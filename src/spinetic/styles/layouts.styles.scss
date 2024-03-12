@@ -9,9 +9,6 @@
 .spinetic-layout-ctrls-in-line {
   .spinetic-dots {
     justify-content: flex-start;
-    margin-right: 8px;
-    margin-top: 25px;
-    padding-bottom: 20px;
 
     .spinetic-dot {
       width: 8px;
@@ -58,15 +55,6 @@
 }
 
 .spinetic-layout-ctrls-in-line-2 {
-  .spinetic-dots-main {
-    bottom: 40px;
-    margin-bottom: -35px;
-  }
-
-  .spinetic-dots {
-    height: unset;
-    align-items: unset;
-
     .spinetic-dot {
       width: 8px;
       height: 8px;
@@ -74,7 +62,6 @@
       &.spinetic-dot-active {
         width: 38px;
       }
-    }
   }
 
   .spinetic-container-arrows {
