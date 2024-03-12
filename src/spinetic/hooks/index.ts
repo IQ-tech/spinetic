@@ -205,7 +205,8 @@ export const useSpinetic = ({
       children,
       currentConfig.layout,
       currentConfig.autoWidth,
-      currentConfig.fullHeightItems
+      currentConfig.fullHeightItems,
+      currentConfig.maxDots
     ] : [])
   ])
 
