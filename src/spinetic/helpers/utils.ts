@@ -10,6 +10,23 @@ export const isSBEnv = () => {
 }
 
 /**
+ * Calculates the total width of an HTML element, including the element's width and its left and right margins.
+ * @param {HTMLElement} el - The HTML element for which the total width will be calculated.
+ * @returns {number} The total width of the element, considering the element's width and margins.
+ */
+export const sumWidthElemnt = (el: any) => {
+  if (!el) return 0;
+
+  const styleEl = window?.getComputedStyle(el);
+
+  return (
+    parseFloat(styleEl.width) +
+    parseFloat(styleEl.marginLeft) +
+    parseFloat(styleEl.marginRight)
+  );
+};
+
+/**
  * @param target HTMLElement | null
  * @description This method, called findElement, takes an HTMLElement or null as a parameter and returns an HTMLElement or null. It searches for a specific element with the class name "ls-carousel-item" by traversing up the DOM tree from the given target element. If the element is found, it is returned; otherwise, null is returned.
  * @return HTMLElement | null
