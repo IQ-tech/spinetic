@@ -8,9 +8,12 @@
   overflow: hidden;
   -webkit-overflow-scrolling: touch;
   scroll-snap-type: x mandatory;
+
+  margin: 16px 0px;
 }
 
 .spinetic-container {
+  content: "⚠️ Warning: The use of 'padding' in this class can cause presentation errors in the component when combined with the 'fullHeightItems' property.";
   display: flex;
   flex-wrap: nowrap;
   align-items: flex-start;
@@ -19,8 +22,6 @@
   -webkit-position: relative;
   position: relative;
   overflow: hidden;
-  
-  padding: 16px 0px;
 }
 
 .hasDraggable {
