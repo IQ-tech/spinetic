@@ -358,6 +358,29 @@ ________________________________________________________________________________
         },
     },
 
+    fullHeightItems: {
+        description: `<span id="fullHeightItems">Sets the height of all items to the height of the carousel container</span>`,
+        control: "boolean",
+        table: {
+            type: {
+                summary: "boolean",
+                detail: `
+When fullHeightItems is set to true, SpineticItem adjusts its height to occupy 100% 
+of the carousel container's height. This setting enables users to utilize the CSS 
+property height: 100%, offering flexibility for various layout designs. It is important 
+to emphasize that enabling this property affects the height of all SpineticItems,
+and users need to ensure that their component structure accommodates this behavior
+for achieving full-height carousel items.
+
+
+_________________________________________________________________________________________________
+                `
+            },
+            defaultValue: { summary: D._defaultConfig.fullHeightItems },
+        },
+    },
+
+
     autoWidth: {
         description: `<span id="autoWidth">Automatically adjusts the width of the carousel, has the effect of showing half of the next card</span>`,
         control: "boolean",
@@ -381,25 +404,16 @@ transition between items. This feature provides a fluid and responsive carousel 
         },
     },
 
-    fullHeightItems: {
-        description: `<span id="fullHeightItems">Sets the height of all items to the height of the carousel container</span>`,
+
+    centerSingleItemAW: {
+        description: `<span id="centerSingleItemAW">Centers the item when there is only one item and the autoWidth property is true.</span>`,
         control: "boolean",
         table: {
             type: {
                 summary: "boolean",
-                detail: `
-When fullHeightItems is set to true, SpineticItem adjusts its height to occupy 100% 
-of the carousel container's height. This setting enables users to utilize the CSS 
-property height: 100%, offering flexibility for various layout designs. It is important 
-to emphasize that enabling this property affects the height of all SpineticItems,
-and users need to ensure that their component structure accommodates this behavior
-for achieving full-height carousel items.
-
-
-_________________________________________________________________________________________________
-                `
+                
             },
-            defaultValue: { summary: D._defaultConfig.fullHeightItems },
+            defaultValue: { summary: D._defaultConfig.centerSingleItemAW },
         },
     },
 

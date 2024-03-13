@@ -51,7 +51,9 @@ export const validConfig = (config?: T.TypesConfigOptional): T.TypesConfig => {
     layout: C?.layout ?? DC.layout,
     showItems: validShowItems(C?.showItems ?? DC.showItems),
     fullHeightItems: C?.fullHeightItems ?? DC.fullHeightItems,
+
     autoWidth: validAutoWidth(C?.autoWidth),
+    centerSingleItemAW: C?.centerSingleItemAW ?? DC.centerSingleItemAW,
 
     groupScroll: C?.groupScroll ?? DC.groupScroll,
     groupItemsScroll: C?.groupItemsScroll ?? DC.groupItemsScroll,

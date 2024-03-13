@@ -30,8 +30,10 @@ export const _defaultConfig: T.TypesConfig = {
 
     layout: "default",
     showItems: 1,
-    autoWidth: false,
     fullHeightItems: false,
+
+    autoWidth: false,
+    centerSingleItemAW: false,
 
     groupScroll: false,
     groupItemsScroll: 1,

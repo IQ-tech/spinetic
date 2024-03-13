@@ -35,8 +35,10 @@ export interface TypesConfigOptional {
 
   layout?: TypesLayout,
   showItems?: number;
-  autoWidth?: boolean;
   fullHeightItems?: boolean;
+  
+  autoWidth?: boolean;
+  centerSingleItemAW?:  boolean;
 
   groupScroll?: boolean;
   groupItemsScroll?: number;

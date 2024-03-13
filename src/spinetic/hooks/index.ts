@@ -171,6 +171,18 @@ export const useSpinetic = ({
     children
   ])
 
+  const _handleSingleItemAutoWidth = useCallback((CConfig: T.TypesConfig) => {
+    const mainEl: HTMLDivElement | null = spineticMain.current;
+    if (!mainEl) return;
+
+    const wrapperEl: HTMLDivElement = mainEl.children[0] as HTMLDivElement;
+
+    const autoWidthSingleItem = CConfig.autoWidth && CConfig.centerSingleItemAW;
+    if (children?.length === 1 && autoWidthSingleItem) return (wrapperEl.style.justifyContent = 'center');
+
+    return wrapperEl.style.justifyContent = '';
+  }, [children, currentConfig.centerSingleItemAW]);
+
   const _handleConfigs = useCallback((config?: T.TypesConfigOptional) => {
     const currentOrDefaultConfig: T.TypesConfig = V.validConfig(config);
 
@@ -195,6 +207,7 @@ export const useSpinetic = ({
     const CConfig = V.validConfig(currentOrDefaultConfig);
     setCurrentConfig(CConfig);
     _handleCarouselWidth(CConfig);
+    _handleSingleItemAutoWidth(CConfig)
   }, [
     prevChildren.current,
     spineticContainer.current,
@@ -203,10 +216,11 @@ export const useSpinetic = ({
     ...(_sb ? [
       config,
       children,
-      currentConfig.layout,
-      currentConfig.autoWidth,
-      currentConfig.fullHeightItems,
-      currentConfig.maxDots
+      // currentConfig.layout,
+      // currentConfig.autoWidth,
+      // currentConfig.centerSingleItemAW,
+      // currentConfig.fullHeightItems,
+      // currentConfig.maxDots
     ] : [])
   ])
 
@@ -300,17 +314,6 @@ export const useSpinetic = ({
     }, currentConfig.msPerClicks);
   }, [remainingIndexes, currentIndex])
 
-  const handleAutoWidthOneItem = useCallback(() => {
-    const mainEl: HTMLDivElement | null = spineticMain.current;
-    if (!mainEl) return;
-
-    const wrapperEl: HTMLDivElement = mainEl.children[0] as HTMLDivElement;
-
-    if (children?.length === 1 && currentConfig.autoWidth) return (wrapperEl.style.justifyContent = 'center');
-
-    return wrapperEl.style.justifyContent = '';
-  }, [children, currentConfig.autoWidth]);
-
   const _handleWhenChangeChildren = useCallback(() => {
     const childrenAreEqual = U.childrenIsEqual(children, prevChildren.current);
     
@@ -318,8 +321,7 @@ export const useSpinetic = ({
       _handleConfigs(config);
       prevChildren.current = children;
     }
-    
-    handleAutoWidthOneItem();
+
   }, [config, children]);
 
   const _handleAutoRotate = useCallback(() => {
