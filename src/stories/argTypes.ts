@@ -382,17 +382,18 @@ transition between items. This feature provides a fluid and responsive carousel 
     },
 
     fullHeightItems: {
-        description: `<span id="fullHeightItems">Adjusts item height to full height</span>`,
+        description: `<span id="fullHeightItems">Sets the height of all items to the height of the carousel container</span>`,
         control: "boolean",
         table: {
             type: {
                 summary: "boolean",
                 detail: `
-When fullHeightItems is set to true, SpineticItem adapts its height to occupy 100% of the 
-carousel's height. This allows users to utilize the CSS property height: 100%, providing 
-flexibility for a variety of layout designs. It's essential to note that enabling this
-property only adjusts the SpineticItem's height, and users must ensure that their 
-component structure supports this behavior to achieve the desired full-height carousel items.
+When fullHeightItems is set to true, SpineticItem adjusts its height to occupy 100% 
+of the carousel container's height. This setting enables users to utilize the CSS 
+property height: 100%, offering flexibility for various layout designs. It is important 
+to emphasize that enabling this property affects the height of all SpineticItems,
+and users need to ensure that their component structure accommodates this behavior
+for achieving full-height carousel items.
 
 
 _________________________________________________________________________________________________
