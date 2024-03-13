@@ -216,11 +216,11 @@ export const useSpinetic = ({
     ...(_sb ? [
       config,
       children,
-      // currentConfig.layout,
-      // currentConfig.autoWidth,
-      // currentConfig.centerSingleItemAW,
-      // currentConfig.fullHeightItems,
-      // currentConfig.maxDots
+      currentConfig.layout,
+      currentConfig.autoWidth,
+      currentConfig.centerSingleItemAW,
+      currentConfig.fullHeightItems,
+      currentConfig.maxDots
     ] : [])
   ])
 
