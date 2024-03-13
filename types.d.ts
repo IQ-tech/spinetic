@@ -148,6 +148,18 @@ export interface TypesDots {
   remainingIndexes: number[];
   goToItem: (p0: number) => void;
 }
+
+export type TypesDotsConfig = {
+  dotWidth: number | undefined;
+  dotActiveWidth: number | undefined;
+  mainDotsWidth: number | undefined;
+};
+
+export interface TypesUseDots {
+  currentConfig: TypesConfig;
+  remainingIndexes: number[];
+  currentIndex: number
+}
 export interface TypesSpineticChangeEvent {
   previous: {
     index: number;
