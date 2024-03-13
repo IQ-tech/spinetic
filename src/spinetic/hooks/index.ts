@@ -15,7 +15,7 @@ export const useSpinetic = ({
 ): T.TypesReturnSpinetic => {
 
   const [_sb] = useState<boolean>(U.isSBEnv());
-  
+
   const spineticMain: RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null);
   const spineticContainer: RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null);
   const prevChildren = useRef<ReactNode | ReactNode[]>(children);
@@ -169,7 +169,7 @@ export const useSpinetic = ({
     spineticMain.current,
     spineticContainer.current,
     children
-    ])
+  ])
 
   const _handleConfigs = useCallback((config?: T.TypesConfigOptional) => {
     const currentOrDefaultConfig: T.TypesConfig = V.validConfig(config);
@@ -280,7 +280,7 @@ export const useSpinetic = ({
       const { groupScroll, groupItemsScroll } = currentConfig;
       const nItemsScroll = groupItemsScroll > 1 && groupItemsScroll <= visibleItems ? groupItemsScroll : visibleItems
       const scroll = groupScroll ? (scrollAmount * nItemsScroll) : scrollAmount;
-      
+
       spineticContainer.current.style.transform = `translateX(${scroll}px)`;
     }
   }
@@ -300,13 +300,26 @@ export const useSpinetic = ({
     }, currentConfig.msPerClicks);
   }, [remainingIndexes, currentIndex])
 
+  const handleAutoWidthOneItem = useCallback(() => {
+    const mainEl: HTMLDivElement | null = spineticMain.current;
+    if (!mainEl) return;
+
+    const wrapperEl: HTMLDivElement = mainEl.children[0] as HTMLDivElement;
+
+    if (children?.length === 1 && currentConfig.autoWidth) return (wrapperEl.style.justifyContent = 'center');
+
+    return wrapperEl.style.justifyContent = '';
+  }, [children, currentConfig.autoWidth]);
+
   const _handleWhenChangeChildren = useCallback(() => {
     const childrenAreEqual = U.childrenIsEqual(children, prevChildren.current);
-
+    
     if (!childrenAreEqual) {
       _handleConfigs(config);
       prevChildren.current = children;
     }
+    
+    handleAutoWidthOneItem();
   }, [config, children]);
 
   const _handleAutoRotate = useCallback(() => {
