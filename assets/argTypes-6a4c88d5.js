@@ -1,4 +1,4 @@
-const e={container:{},btnPrev:{},btnNext:{}},t={container:{},dot:{},dotActive:{}},_={arrows:!0,arrowsStyle:e,hideArrows:!1,dots:!0,dotsStyle:t,itemNumberInDot:!1,maxDots:!1,autoRotate:!1,msPerAutoRotate:3e3,draggable:!0,touchThreshold:30,layout:"default",showItems:1,autoWidth:!1,fullHeightItems:!1,groupScroll:!1,groupItemsScroll:1,clickTransitionCtrl:!1,msPerClicks:1500,responsive:[{breakpoint:0,settings:{}}]},i={previous:{index:0,remainingIndexes:[0],totalItems:0,itemsPerScroll:0},current:{index:0,remainingIndexes:[0],totalItems:0,itemsPerScroll:0}},o={children:{description:'<span id="children">Children elements to be rendered inside the Spinetic component.</span>',control:"number",table:{type:{summary:"ReactNode | ReactNode[]",detail:`
+const e={container:{},btnPrev:{},btnNext:{}},t={container:{},dot:{},dotActive:{}},_={arrows:!0,arrowsStyle:e,hideArrows:!1,dots:!0,dotsStyle:t,itemNumberInDot:!1,maxDots:!1,autoRotate:!1,msPerAutoRotate:3e3,draggable:!0,touchThreshold:30,layout:"default",showItems:1,fullHeightItems:!1,autoWidth:!1,centerSingleItemAW:!1,groupScroll:!1,groupItemsScroll:1,clickTransitionCtrl:!1,msPerClicks:1500,responsive:[{breakpoint:0,settings:{}}]},i={previous:{index:0,remainingIndexes:[0],totalItems:0,itemsPerScroll:0},current:{index:0,remainingIndexes:[0],totalItems:0,itemsPerScroll:0}},o={children:{description:'<span id="children">Children elements to be rendered inside the Spinetic component.</span>',control:"number",table:{type:{summary:"ReactNode | ReactNode[]",detail:`
                 
 The "children" property represents the child items of the Spinetic component to be rendered.
  For example:
@@ -174,7 +174,17 @@ on the size of the carousel, bypassing the manual setting of "showItems".
                 
 
 _________________________________________________________________________________________________
-                `},defaultValue:{summary:1}}},autoWidth:{description:'<span id="autoWidth">Automatically adjusts the width of the carousel, has the effect of showing half of the next card</span>',control:"boolean",table:{type:{summary:"boolean",detail:`
+                `},defaultValue:{summary:1}}},fullHeightItems:{description:'<span id="fullHeightItems">Sets the height of all items to the height of the carousel container</span>',control:"boolean",table:{type:{summary:"boolean",detail:`
+When fullHeightItems is set to true, SpineticItem adjusts its height to occupy 100% 
+of the carousel container's height. This setting enables users to utilize the CSS 
+property height: 100%, offering flexibility for various layout designs. It is important 
+to emphasize that enabling this property affects the height of all SpineticItems,
+and users need to ensure that their component structure accommodates this behavior
+for achieving full-height carousel items.
+
+
+_________________________________________________________________________________________________
+                `},defaultValue:{summary:_.fullHeightItems}}},autoWidth:{description:'<span id="autoWidth">Automatically adjusts the width of the carousel, has the effect of showing half of the next card</span>',control:"boolean",table:{type:{summary:"boolean",detail:`
 autoWidth is a boolean property that, when set to true, dynamically adjusts the width of the 
 carousel, eliminating the ability to manually specify the number of visible items. In this 
 mode, the carousel automatically calculates and allocates the available width to showcase 
@@ -185,16 +195,7 @@ transition between items. This feature provides a fluid and responsive carousel 
  
  
  _________________________________________________________________________________________________
- `},defaultValue:{summary:_.autoWidth}}},fullHeightItems:{description:'<span id="fullHeightItems">Adjusts item height to full height</span>',control:"boolean",table:{type:{summary:"boolean",detail:`
-When fullHeightItems is set to true, SpineticItem adapts its height to occupy 100% of the 
-carousel's height. This allows users to utilize the CSS property height: 100%, providing 
-flexibility for a variety of layout designs. It's essential to note that enabling this
-property only adjusts the SpineticItem's height, and users must ensure that their 
-component structure supports this behavior to achieve the desired full-height carousel items.
-
-
-_________________________________________________________________________________________________
-                `},defaultValue:{summary:_.fullHeightItems}}},groupScroll:{description:'<span id="groupScroll">Simplifies carousel navigation by allowing precise definition of the number of items moved at a time.</span>',control:"boolean",table:{type:{summary:"boolean",detail:`
+ `},defaultValue:{summary:_.autoWidth}}},centerSingleItemAW:{description:'<span id="centerSingleItemAW">Centers the item when there is only one item and the autoWidth property is true.</span>',control:"boolean",table:{type:{summary:"boolean"},defaultValue:{summary:_.centerSingleItemAW}}},groupScroll:{description:'<span id="groupScroll">Simplifies carousel navigation by allowing precise definition of the number of items moved at a time.</span>',control:"boolean",table:{type:{summary:"boolean",detail:`
 The groupScroll feature considerably increases the flexibility of navigation in the carousel, allowing 
 precise control over the number of items moved during scrolling.
 

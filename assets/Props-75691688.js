@@ -1,4 +1,4 @@
-import{j as e,a as t,F as l,G as c}from"./CardExample-edf23076.js";import{M as d}from"./index-e324d30d.js";import{a as r}from"./argTypes-1d4e171a.js";import{u as a}from"./index-a1cf9e47.js";import"./index-76fb7be0.js";import"./_commonjsHelpers-de833af9.js";import"./iframe-bdbeb1f4.js";import"../sb-preview/runtime.js";import"./index-d3ea75b5.js";import"./index-11d98b33.js";import"./index-8fd8397b.js";import"./index-356e4a49.js";function o(i){const n=Object.assign({h1:"h1",h2:"h2",code:"code",em:"em",p:"p",pre:"pre",ul:"ul",li:"li",a:"a",strong:"strong",h3:"h3"},a(),i.components);return t(l,{children:[e(c,{}),`
+import{j as e,a as t,F as l,G as c}from"./CardExample-edf23076.js";import{M as d}from"./index-3c53257b.js";import{a as r}from"./argTypes-6a4c88d5.js";import{u as a}from"./index-a1cf9e47.js";import"./index-76fb7be0.js";import"./_commonjsHelpers-de833af9.js";import"./iframe-5de2521a.js";import"../sb-preview/runtime.js";import"./index-d3ea75b5.js";import"./index-11d98b33.js";import"./index-8fd8397b.js";import"./index-356e4a49.js";function o(i){const n=Object.assign({h1:"h1",h2:"h2",code:"code",em:"em",p:"p",pre:"pre",ul:"ul",li:"li",a:"a",strong:"strong",h3:"h3"},a(),i.components);return t(l,{children:[e(c,{}),`
 `,e(d,{title:"pages/Props"}),`
 `,e(n.h1,{id:"spinetic",children:"Spinetic"}),`
 `,e("br",{}),`
@@ -76,10 +76,13 @@ interface TypesReponsiveSettings {
 `,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#showItems",children:"showItems"}),": ",e("span",{dangerouslySetInnerHTML:{__html:r.showItems.description}})]}),`
 `]}),`
 `,t(n.li,{children:[`
+`,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#fullHeightItems",children:"fullHeightItems"}),": ",e("span",{dangerouslySetInnerHTML:{__html:r.fullHeightItems.description}})]}),`
+`]}),`
+`,t(n.li,{children:[`
 `,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#autoWidth",children:"autoWidth"}),": ",e("span",{dangerouslySetInnerHTML:{__html:r.autoWidth.description}})]}),`
 `]}),`
 `,t(n.li,{children:[`
-`,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#fullHeightItems",children:"fullHeightItems"}),": ",e("span",{dangerouslySetInnerHTML:{__html:r.fullHeightItems.description}})]}),`
+`,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#centerSingleItemAW",children:"centerSingleItemAW"}),": ",e("span",{dangerouslySetInnerHTML:{__html:r.centerSingleItemAW.description}})]}),`
 `]}),`
 `,t(n.li,{children:[`
 `,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#groupScroll",children:"groupScroll"}),": ",e("span",{dangerouslySetInnerHTML:{__html:r.groupScroll.description}})]}),`
