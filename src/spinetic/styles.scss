@@ -17,8 +17,8 @@
   display: flex;
   flex-wrap: nowrap;
   align-items: flex-start;
-  -webkit-transition: -webkit-transform 0.5s ease;
-  transition: transform 0.5s ease;
+  -webkit-transition: -webkit-transform 1s ease-out;
+  transition: transform 1s ease-out;
   -webkit-position: relative;
   position: relative;
   overflow: hidden;
