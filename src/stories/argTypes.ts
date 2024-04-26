@@ -1,4 +1,4 @@
-import * as D from "../Spinetic/helpers/defaults";
+import * as D from "../spinetic/helpers/defaults";
 
 export const argTypes = {
     children: {
