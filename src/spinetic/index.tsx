@@ -4,15 +4,17 @@ import Arrows from "./components/Arrows";
 import Dots from "./components/Dots";
 import { useSpinetic } from "./hooks";
 import * as T from "types";
+import Scrollbar from "./components/Scrollbar";
 
 const Spinetic = ({ children, config, change }: T.TypesSpinetic) => {
   const {
     currentConfig,
-    prevChildren,
+    progressIndicatorType,
     currentIndex,
     spineticMain,
     spineticContainer,
     maxCarouselItems,
+    elementsChange,
     remainingIndexes,
     goToItem,
     previousItem,
@@ -20,13 +22,16 @@ const Spinetic = ({ children, config, change }: T.TypesSpinetic) => {
 
     start,
     move,
-    end
+    end,
   } = useSpinetic({ children, config, change });
 
   return (
     <>
       {currentConfig.layout !== "vertical-align" && (
-        <div className={`spinetic-main spinetic-layout-${currentConfig.layout}`} ref={spineticMain}>
+        <div
+          className={`spinetic-main spinetic-layout-${currentConfig.layout}`}
+          ref={spineticMain}
+        >
           <div className="spinetic-wrapper">
             <div>
               <div
@@ -52,14 +57,23 @@ const Spinetic = ({ children, config, change }: T.TypesSpinetic) => {
             onClickPreviousItem={previousItem}
             onClickNextItem={nextItem}
           >
-            <Dots
-              currentConfig={currentConfig}
-              currentIndex={currentIndex}
-              maxCarouselItems={maxCarouselItems}
-              remainingIndexes={remainingIndexes}
-              goToItem={goToItem}
-            />
-            </Arrows>
+            {progressIndicatorType === "dots" && (
+              <Dots
+                currentConfig={currentConfig}
+                currentIndex={currentIndex}
+                maxCarouselItems={maxCarouselItems}
+                remainingIndexes={remainingIndexes}
+                goToItem={goToItem}
+              />
+            )}
+
+            {progressIndicatorType === "scrollbar" && (
+              <Scrollbar
+                elementsChange={elementsChange}
+                remainingIndexes={remainingIndexes}
+              />
+            )}
+          </Arrows>
         </div>
       )}
 

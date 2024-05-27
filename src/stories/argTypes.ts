@@ -199,6 +199,14 @@ ________________________________________________________________________________
     },
 
 
+    progressIndicator: {
+        description: `<span id="dots">Determines the type of progress indicator used in the slider</span>`,
+        control: "string",
+        table: {
+            type: { summary: "string" },
+            defaultValue: { summary: D._defaultConfig.progressIndicator },
+        },
+    },
 
     dots: {
         description: `<span id="dots">Determines whether to display navigation dots</span>`,

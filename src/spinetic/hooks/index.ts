@@ -29,6 +29,7 @@ export const useSpinetic = ({
   const [_isProcessingClick, setIsProcessingClick] = useState<boolean>(true);
 
   const [elementsChange, setElementsChange] = useState<T.TypesSpineticChangeEvent>(D.elementsChangeDefault)
+  const progressIndicatorType = config?.progressIndicator || "dots";
 
 
   const _handleCarouselItemsWidth = useCallback((CConfig: T.TypesConfig): number[] | null => {
@@ -168,7 +169,7 @@ export const useSpinetic = ({
     currentConfig,
     spineticMain.current,
     spineticContainer.current,
-    children
+    children,
   ])
 
   const _handleSingleItemAutoWidth = useCallback((CConfig: T.TypesConfig) => {
@@ -386,6 +387,8 @@ export const useSpinetic = ({
     start,
     move,
     end,
+    progressIndicatorType,
+    elementsChange
   };
 
 }

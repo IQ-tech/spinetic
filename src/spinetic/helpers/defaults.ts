@@ -17,6 +17,7 @@ export const _defaultConfig: T.TypesConfig = {
     arrowsStyle: defaultArrowsStyle,
     hideArrows: false,
 
+    progressIndicator: "dots",
     dots: true,
     dotsStyle: defaultDotsStyle,
     itemNumberInDot: false,
