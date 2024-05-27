@@ -14,11 +14,13 @@ export interface TypesDefaultDotsStyle {
 }
 
 type TypesLayout = "default" | "ctrls-in-line" | "ctrls-in-line-2" | "vertical-align";
+type TypesProgressIndicator = "dots" | "scrollbar"
 export interface TypesConfigOptional {
   arrows?: boolean;
   arrowsStyle?: TypesDefaultArrowsStyle;
   hideArrows?: boolean;
 
+  progressIndicator?: TypesProgressIndicator;
   dots?: boolean;
   dotsStyle?: TypesDefaultDotsStyle,
   itemNumberInDot?: boolean;
@@ -120,6 +122,7 @@ export interface TypesReturnSpinetic {
   spineticContainer: React.RefObject<HTMLDivElement>;
   maxCarouselItems: number;
   remainingIndexes: number[];
+  progressIndicatorType: TypesProgressIndicator;
   goToItem: (p0: number) => void;
   previousItem: () => void;
   nextItem: () => void;

@@ -8,7 +8,7 @@ import * as T from "types";
 const Spinetic = ({ children, config, change }: T.TypesSpinetic) => {
   const {
     currentConfig,
-    prevChildren,
+    progressIndicatorType,
     currentIndex,
     spineticMain,
     spineticContainer,
@@ -20,13 +20,16 @@ const Spinetic = ({ children, config, change }: T.TypesSpinetic) => {
 
     start,
     move,
-    end
+    end,
   } = useSpinetic({ children, config, change });
 
   return (
     <>
       {currentConfig.layout !== "vertical-align" && (
-        <div className={`spinetic-main spinetic-layout-${currentConfig.layout}`} ref={spineticMain}>
+        <div
+          className={`spinetic-main spinetic-layout-${currentConfig.layout}`}
+          ref={spineticMain}
+        >
           <div className="spinetic-wrapper">
             <div>
               <div
@@ -52,14 +55,18 @@ const Spinetic = ({ children, config, change }: T.TypesSpinetic) => {
             onClickPreviousItem={previousItem}
             onClickNextItem={nextItem}
           >
-            <Dots
-              currentConfig={currentConfig}
-              currentIndex={currentIndex}
-              maxCarouselItems={maxCarouselItems}
-              remainingIndexes={remainingIndexes}
-              goToItem={goToItem}
-            />
-            </Arrows>
+            {progressIndicatorType === "dots" && (
+              <Dots
+                currentConfig={currentConfig}
+                currentIndex={currentIndex}
+                maxCarouselItems={maxCarouselItems}
+                remainingIndexes={remainingIndexes}
+                goToItem={goToItem}
+              />
+            )}
+
+            {progressIndicatorType === "scrollbar" && <p>progress bar</p>}
+          </Arrows>
         </div>
       )}
 
