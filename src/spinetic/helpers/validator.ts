@@ -37,6 +37,7 @@ export const validConfig = (config?: T.TypesConfigOptional): T.TypesConfig => {
     arrowsStyle: C?.arrowsStyle ?? DC.arrowsStyle,
     hideArrows: C?.hideArrows ?? DC.hideArrows,
 
+    progressIndicator: C?.progressIndicator ?? DC?.progressIndicator,
     dots: C?.dots ?? DC.dots,
     dotsStyle: C?.dotsStyle ?? DC.dotsStyle,
     itemNumberInDot: C?.itemNumberInDot ?? DC.itemNumberInDot,

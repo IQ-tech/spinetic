@@ -387,7 +387,8 @@ export const useSpinetic = ({
     start,
     move,
     end,
-    progressIndicatorType
+    progressIndicatorType,
+    elementsChange
   };
 
 }

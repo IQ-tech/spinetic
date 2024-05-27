@@ -123,6 +123,7 @@ export interface TypesReturnSpinetic {
   maxCarouselItems: number;
   remainingIndexes: number[];
   progressIndicatorType: TypesProgressIndicator;
+  elementsChange: TypesSpineticChangeEvent;
   goToItem: (p0: number) => void;
   previousItem: () => void;
   nextItem: () => void;
@@ -152,6 +153,11 @@ export interface TypesDots {
   maxCarouselItems: number;
   remainingIndexes: number[];
   goToItem: (p0: number) => void;
+}
+
+export interface TypesScrollbar {
+  elementsChange?: TypesSpineticChangeEvent;
+  remainingIndexes: number[];
 }
 
 export type TypesDotsConfig = {

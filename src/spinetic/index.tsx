@@ -4,6 +4,7 @@ import Arrows from "./components/Arrows";
 import Dots from "./components/Dots";
 import { useSpinetic } from "./hooks";
 import * as T from "types";
+import Scrollbar from "./components/Scrollbar";
 
 const Spinetic = ({ children, config, change }: T.TypesSpinetic) => {
   const {
@@ -13,6 +14,7 @@ const Spinetic = ({ children, config, change }: T.TypesSpinetic) => {
     spineticMain,
     spineticContainer,
     maxCarouselItems,
+    elementsChange,
     remainingIndexes,
     goToItem,
     previousItem,
@@ -65,7 +67,12 @@ const Spinetic = ({ children, config, change }: T.TypesSpinetic) => {
               />
             )}
 
-            {progressIndicatorType === "scrollbar" && <p>progress bar</p>}
+            {progressIndicatorType === "scrollbar" && (
+              <Scrollbar
+                elementsChange={elementsChange}
+                remainingIndexes={remainingIndexes}
+              />
+            )}
           </Arrows>
         </div>
       )}

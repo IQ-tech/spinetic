@@ -1,0 +1,15 @@
+.spinetic-scrollbar {
+  width: calc(100% - 164px);
+  background: #e2e4e9;
+  height: 8px;
+  border-radius: 500px;
+}
+
+.spinetic-scrollbar-scroll {
+  height: 100%;
+  width: 272px;
+  background-color: #0048db;
+  -webkit-transition: -webkit-transform 1s ease-out;
+  transition: transform 1s ease-out;
+  border-radius: 500px;
+}

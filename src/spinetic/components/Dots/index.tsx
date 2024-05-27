@@ -1,4 +1,4 @@
-import React, { RefObject, useEffect, useRef, useState } from "react";
+import React from "react";
 import * as T from "types";
 
 import useDots from "./hooks";
