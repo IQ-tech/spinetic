@@ -69,6 +69,7 @@ const Spinetic = ({ children, config, change }: T.TypesSpinetic) => {
 
             {progressIndicatorType === "scrollbar" && (
               <Scrollbar
+                currentIndex={currentIndex}
                 elementsChange={elementsChange}
                 remainingIndexes={remainingIndexes}
               />

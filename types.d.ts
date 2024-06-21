@@ -158,6 +158,7 @@ export interface TypesDots {
 export interface TypesScrollbar {
   elementsChange?: TypesSpineticChangeEvent;
   remainingIndexes: number[];
+  currentIndex: number;
 }
 
 export type TypesDotsConfig = {
