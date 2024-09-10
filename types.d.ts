@@ -45,6 +45,8 @@ export interface TypesConfigOptional {
   groupScroll?: boolean;
   groupItemsScroll?: number;
 
+  resetScrollOnUpdateChildrens?: boolean;
+  
   responsive?: TypesReponsiveSettings[];
 }
 

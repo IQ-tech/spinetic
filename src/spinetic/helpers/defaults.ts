@@ -42,6 +42,8 @@ export const _defaultConfig: T.TypesConfig = {
     clickTransitionCtrl: false,
     msPerClicks: 1500,
 
+    resetScrollOnUpdateChildrens: true,
+
     responsive: [{ breakpoint: 0, settings: {} }],
 };
 

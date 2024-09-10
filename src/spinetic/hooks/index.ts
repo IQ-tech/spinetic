@@ -151,7 +151,7 @@ export const useSpinetic = ({
       elementsChange?.current?.remainingIndexes,
       currentRemainingIdx)
 
-    if (!remainingidxIsEquals) setCurrentIndex(0);
+    if (!remainingidxIsEquals && currentConfig.resetScrollOnUpdateChildrens) setCurrentIndex(0);
 
     const hasDraggable = CConfig.draggable && remainingIndexes?.length > 1;
     spineticContainer.current?.classList.toggle("hasDraggable", hasDraggable);
