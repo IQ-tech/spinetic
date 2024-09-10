@@ -1,4 +1,4 @@
-import{j as e,a as t,F as l,G as c}from"./CardExample-edf23076.js";import{M as d}from"./index-3bf23a3a.js";import{a as r}from"./argTypes-6a4c88d5.js";import{u as a}from"./index-a1cf9e47.js";import"./index-76fb7be0.js";import"./_commonjsHelpers-de833af9.js";import"./iframe-2a55cddb.js";import"../sb-preview/runtime.js";import"./index-d3ea75b5.js";import"./index-11d98b33.js";import"./index-8fd8397b.js";import"./index-356e4a49.js";function o(i){const n=Object.assign({h1:"h1",h2:"h2",code:"code",em:"em",p:"p",pre:"pre",ul:"ul",li:"li",a:"a",strong:"strong",h3:"h3"},a(),i.components);return t(l,{children:[e(c,{}),`
+import{j as e,a as t,F as a,G as c}from"./CardExample-edf23076.js";import{M as d}from"./index-f6834f73.js";import{a as r}from"./argTypes-34b41db3.js";import{u as l}from"./index-a1cf9e47.js";import"./index-76fb7be0.js";import"./_commonjsHelpers-de833af9.js";import"./iframe-b679e5a2.js";import"../sb-preview/runtime.js";import"./index-d3ea75b5.js";import"./index-11d98b33.js";import"./index-8fd8397b.js";import"./index-356e4a49.js";function o(i){const n=Object.assign({h1:"h1",h2:"h2",code:"code",em:"em",p:"p",pre:"pre",ul:"ul",li:"li",a:"a",strong:"strong",h3:"h3"},l(),i.components);return t(a,{children:[e(c,{}),`
 `,e(d,{title:"pages/Props"}),`
 `,e(n.h1,{id:"spinetic",children:"Spinetic"}),`
 `,e("br",{}),`
@@ -12,6 +12,7 @@ import{j as e,a as t,F as l,G as c}from"./CardExample-edf23076.js";import{M as d
   arrowsStyle?: TypesDefaultArrowsStyle;
   hideArrows?: boolean;
 
+  progressIndicator?: TypesProgressIndicator;
   dots?: boolean;
   dotsStyle?: TypesDefaultDotsStyle,
   itemNumberInDot?: boolean;
@@ -33,7 +34,10 @@ import{j as e,a as t,F as l,G as c}from"./CardExample-edf23076.js";import{M as d
   groupScroll?: boolean;
   groupItemsScroll?: number;
 
+  resetScrollOnUpdateChildrens?: boolean;
+
   responsive?: TypesReponsiveSettings[];
+  
 }
 
 interface TypesReponsiveSettings {
@@ -52,6 +56,9 @@ interface TypesReponsiveSettings {
 `,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#hideArrows",children:"hideArrows"}),": ",e("span",{dangerouslySetInnerHTML:{__html:r.hideArrows.description}})]}),`
 `]}),`
 `,t(n.li,{children:[`
+`,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#progressIndicator",children:"progressIndicator"}),": ",e("span",{dangerouslySetInnerHTML:{__html:r.progressIndicator.description}})]}),`
+`]}),`
+`,t(n.li,{children:[`
 `,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#dots",children:"dots"}),": ",e("span",{dangerouslySetInnerHTML:{__html:r.dots.description}})]}),`
 `]}),`
 `,t(n.li,{children:[`
@@ -65,6 +72,9 @@ interface TypesReponsiveSettings {
 `]}),`
 `,t(n.li,{children:[`
 `,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#msPerAutoRotate",children:"msPerAutoRotate"}),": ",e("span",{dangerouslySetInnerHTML:{__html:r.msPerAutoRotate.description}})]}),`
+`]}),`
+`,t(n.li,{children:[`
+`,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#resetScrollOnUpdateChildrens",children:"resetScrollOnUpdateChildrens"}),": ",e("span",{dangerouslySetInnerHTML:{__html:r.resetScrollOnUpdateChildrens.description}})]}),`
 `]}),`
 `,t(n.li,{children:[`
 `,t(n.p,{children:[e(n.a,{href:"?path=/docs/pages-playground--documentation#draggable",children:"draggable"}),": ",e("span",{dangerouslySetInnerHTML:{__html:r.draggable.description}})]}),`
@@ -177,4 +187,4 @@ default App;
 `,e("br",{}),`
 `,e("br",{}),`
 `,e("br",{}),`
-`,e("br",{})]})}function _(i={}){const{wrapper:n}=Object.assign({},a(),i.components);return n?e(n,Object.assign({},i,{children:e(o,i)})):o(i)}export{_ as default};
+`,e("br",{})]})}function _(i={}){const{wrapper:n}=Object.assign({},l(),i.components);return n?e(n,Object.assign({},i,{children:e(o,i)})):o(i)}export{_ as default};
