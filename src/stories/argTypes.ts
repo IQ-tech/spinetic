@@ -299,6 +299,22 @@ ________________________________________________________________________________
         },
     },
 
+    resetScrollOnUpdateChildrens:  {
+        description: `<span id="resetScrollOnUpdateChildrens">Determines if the carousel should reset to the start position when child elements are updated.</span>`,
+        control: "boolean",
+        table: {
+            type: { 
+                summary: "boolean",
+                detail: `
+When enabled (true), the carousel returns to the start position whenever its child elements are modified. 
+If disabled (false), the carousel will maintain its current position even if the child elements are changed.
+                            
+_________________________________________________________________________________________________
+                                ` },
+            defaultValue: { summary: D._defaultConfig.resetScrollOnUpdateChildrens },
+        },
+    },
+
 
 
     draggable: {
