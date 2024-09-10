@@ -62,6 +62,8 @@ export const validConfig = (config?: T.TypesConfigOptional): T.TypesConfig => {
     clickTransitionCtrl: C?.clickTransitionCtrl ?? DC.clickTransitionCtrl,
     msPerClicks: C?.msPerClicks ?? DC.msPerClicks,
 
+    resetScrollOnUpdateChildrens: C?.resetScrollOnUpdateChildrens ?? DC?.resetScrollOnUpdateChildrens,
+
     responsive: _validResponsive(C?.responsive)
   };
 
