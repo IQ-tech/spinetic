@@ -114,7 +114,7 @@ export interface TypesSpinetic {
   children: TypeChildren;
   config?: TypesConfigOptional;
 
-  CustomChildrenDots?: any; // TODO: type
+  CustomChildrenDots?: (args: { currentIndex: number; remainingIndexes: number[] }) => ReactNode;
 
   change?: (e: SpineticChangeEvent) => void;
 }
@@ -159,7 +159,7 @@ export interface TypesDots {
   remainingIndexes: number[];
   goToItem: (p0: number) => void;
 
-  CustomChildrenDots: any // TODO: type
+  CustomChildrenDots?: (args: { currentIndex: number; remainingIndexes: number[] }) => ReactNode;
 }
 
 export interface TypesScrollbar {

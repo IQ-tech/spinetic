@@ -56,6 +56,36 @@ ________________________________________________________________________________
     },
 
 
+    CustomChildrenDots: {
+        description: `<span id="CustomChildrenDots">Component to customize the dots, receiving the current item's index (currentIndex) and the remaining items' indexes (remainingIndexes) as props.</span>`,
+        control: "ReactNode",
+        table: {
+            type: {
+                summary: "<currentIndex | remainingIndexes>ReactNode",
+                detail: `
+The "CustomChildrenDots" prop allows you to customize the rendering of the dots based on the current index and the remaining indexes.
+
+For example:
+
+<Spinetic CustomChildrenDots={({currentIndex, remainingIndexes}) => {
+    return <h1>Current item: {currentIndex+1} Remaining items: {remainingIndexes?.length}</h1>;
+}}>
+    {["content-1", "content-2", "content-3"].map((content, index) => (
+        <SpineticItem key={index}>
+            <div style={{ height: 200, width: 250, background: "blue", margin: 10 }}>
+                {content}
+            </div>
+        </SpineticItem>
+    ))}
+</Spinetic>
+`
+            },
+            defaultValue: { summary: undefined },
+        },
+    },
+
+
+
     config: {
         description: `The config prop accepts an object with optional settings to customize the Spinetic component. 
         Here are the available types:`,
