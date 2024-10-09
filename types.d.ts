@@ -113,6 +113,9 @@ type TypeChildren = ReactNode | ReactNode[] | object | null | undefined | any;
 export interface TypesSpinetic {
   children: TypeChildren;
   config?: TypesConfigOptional;
+
+  CustomChildrenDots?: (args: { currentIndex: number; remainingIndexes: number[] }) => ReactNode;
+
   change?: (e: SpineticChangeEvent) => void;
 }
 
@@ -155,6 +158,8 @@ export interface TypesDots {
   maxCarouselItems: number;
   remainingIndexes: number[];
   goToItem: (p0: number) => void;
+
+  CustomChildrenDots?: (args: { currentIndex: number; remainingIndexes: number[] }) => ReactNode;
 }
 
 export interface TypesScrollbar {

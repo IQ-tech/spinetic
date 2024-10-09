@@ -9,6 +9,8 @@ const Dots = ({
   maxCarouselItems,
   remainingIndexes,
   goToItem,
+
+  CustomChildrenDots,
 }: T.TypesDots) => {
   const { visibleDots, hasMaxDots, dotsMainRef, dotsContainerRef } = useDots({
     currentConfig,
@@ -18,7 +20,7 @@ const Dots = ({
 
   return (
     <>
-      {visibleDots && hasMaxDots && (
+      {visibleDots && hasMaxDots && !CustomChildrenDots && (
         <div className="spinetic-dots-main" ref={dotsMainRef}>
           <div className="spinetic-dots-wrapper">
             <div
@@ -52,7 +54,7 @@ const Dots = ({
         </div>
       )}
 
-      {visibleDots && !hasMaxDots && (
+      {visibleDots && !hasMaxDots && !CustomChildrenDots && (
         <div
           className="spinetic-dots"
           style={{ ...currentConfig.dotsStyle?.container }}
@@ -79,6 +81,13 @@ const Dots = ({
             </span>
           ))}
         </div>
+      )}
+
+      {visibleDots && CustomChildrenDots && (
+        <CustomChildrenDots
+          currentIndex={currentIndex}
+          remainingIndexes={remainingIndexes}
+        />
       )}
     </>
   );
