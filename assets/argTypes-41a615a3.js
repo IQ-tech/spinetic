@@ -1,4 +1,4 @@
-const e={container:{},btnPrev:{},btnNext:{}},t={container:{},dot:{},dotActive:{}},_={arrows:!0,arrowsStyle:e,hideArrows:!1,progressIndicator:"dots",dots:!0,dotsStyle:t,itemNumberInDot:!1,maxDots:!1,autoRotate:!1,msPerAutoRotate:3e3,draggable:!0,touchThreshold:30,layout:"default",showItems:1,fullHeightItems:!1,autoWidth:!1,centerSingleItemAW:!1,groupScroll:!1,groupItemsScroll:1,clickTransitionCtrl:!1,msPerClicks:1500,resetScrollOnUpdateChildrens:!0,responsive:[{breakpoint:0,settings:{}}]},i={previous:{index:0,remainingIndexes:[0],totalItems:0,itemsPerScroll:0},current:{index:0,remainingIndexes:[0],totalItems:0,itemsPerScroll:0}},o={children:{description:'<span id="children">Children elements to be rendered inside the Spinetic component.</span>',control:"number",table:{type:{summary:"ReactNode | ReactNode[]",detail:`
+const e={container:{},btnPrev:{},btnNext:{}},t={container:{},dot:{},dotActive:{}},_={arrows:!0,arrowsStyle:e,hideArrows:!1,progressIndicator:"dots",dots:!0,dotsStyle:t,itemNumberInDot:!1,maxDots:!1,autoRotate:!1,msPerAutoRotate:3e3,draggable:!0,touchThreshold:30,layout:"default",showItems:1,fullHeightItems:!1,autoWidth:!1,centerSingleItemAW:!1,groupScroll:!1,groupItemsScroll:1,clickTransitionCtrl:!1,msPerClicks:1500,resetScrollOnUpdateChildrens:!0,responsive:[{breakpoint:0,settings:{}}]},i={previous:{index:0,remainingIndexes:[0],totalItems:0,itemsPerScroll:0},current:{index:0,remainingIndexes:[0],totalItems:0,itemsPerScroll:0}},n={children:{description:'<span id="children">Children elements to be rendered inside the Spinetic component.</span>',control:"number",table:{type:{summary:"ReactNode | ReactNode[]",detail:`
                 
 The "children" property represents the child items of the Spinetic component to be rendered.
  For example:
@@ -41,7 +41,23 @@ Always remember to wrap your component with a SpineticItem.
 
 
 _________________________________________________________________________________________________
-`}}},config:{description:`The config prop accepts an object with optional settings to customize the Spinetic component. 
+`}}},CustomChildrenDots:{description:`<span id="CustomChildrenDots">Component to customize the dots, receiving the current item's index (currentIndex) and the remaining items' indexes (remainingIndexes) as props.</span>`,control:"ReactNode",table:{type:{summary:"<currentIndex | remainingIndexes>ReactNode",detail:`
+The "CustomChildrenDots" prop allows you to customize the rendering of the dots based on the current index and the remaining indexes.
+
+For example:
+
+<Spinetic CustomChildrenDots={({currentIndex, remainingIndexes}) => {
+    return <h1>Current item: {currentIndex+1} Remaining items: {remainingIndexes?.length}</h1>;
+}}>
+    {["content-1", "content-2", "content-3"].map((content, index) => (
+        <SpineticItem key={index}>
+            <div style={{ height: 200, width: 250, background: "blue", margin: 10 }}>
+                {content}
+            </div>
+        </SpineticItem>
+    ))}
+</Spinetic>
+`},defaultValue:{summary:void 0}}},config:{description:`The config prop accepts an object with optional settings to customize the Spinetic component. 
         Here are the available types:`,control:" ",table:{type:{summary:"TypesConfigOptional",detail:`
 types:
 
@@ -337,4 +353,4 @@ ________________________________________________________________________________
 }
 
 _________________________________________________________________________________________________
-                `}}}};export{_,o as a,i as e};
+                `}}}};export{_,n as a,i as e};

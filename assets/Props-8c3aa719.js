@@ -1,10 +1,25 @@
-import{j as e,a as t,F as a,G as c}from"./CardExample-edf23076.js";import{M as d}from"./index-f6834f73.js";import{a as r}from"./argTypes-34b41db3.js";import{u as l}from"./index-a1cf9e47.js";import"./index-76fb7be0.js";import"./_commonjsHelpers-de833af9.js";import"./iframe-b679e5a2.js";import"../sb-preview/runtime.js";import"./index-d3ea75b5.js";import"./index-11d98b33.js";import"./index-8fd8397b.js";import"./index-356e4a49.js";function o(i){const n=Object.assign({h1:"h1",h2:"h2",code:"code",em:"em",p:"p",pre:"pre",ul:"ul",li:"li",a:"a",strong:"strong",h3:"h3"},l(),i.components);return t(a,{children:[e(c,{}),`
+import{j as e,a as t,F as a,G as c}from"./CardExample-edf23076.js";import{M as d}from"./index-b2ab6839.js";import{a as r}from"./argTypes-41a615a3.js";import{u as l}from"./index-a1cf9e47.js";import"./index-76fb7be0.js";import"./_commonjsHelpers-de833af9.js";import"./iframe-8582f50d.js";import"../sb-preview/runtime.js";import"./index-d3ea75b5.js";import"./index-11d98b33.js";import"./index-8fd8397b.js";import"./index-356e4a49.js";function o(i){const n=Object.assign({h1:"h1",h2:"h2",code:"code",em:"em",p:"p",h3:"h3",pre:"pre",ul:"ul",li:"li",a:"a",strong:"strong"},l(),i.components);return t(a,{children:[e(c,{}),`
 `,e(d,{title:"pages/Props"}),`
 `,e(n.h1,{id:"spinetic",children:"Spinetic"}),`
 `,e("br",{}),`
 `,e(n.h2,{id:"props",children:"Props"}),`
 `,t(n.h2,{id:"children-reactnode-or-reactnode",children:[e(n.code,{children:"children"}),": ",e(n.em,{children:"ReactNode"})," or ",e(n.em,{children:"ReactNode[]"})]}),`
 `,t(n.p,{children:["Children elements to be rendered inside the Spinetic component. It can be a single ",e(n.code,{children:"ReactNode"})," or an ",e(n.em,{children:"array"})," of ",e(n.code,{children:"ReactNodes"}),"."]}),`
+`,t(n.h2,{id:"customchildrendots-reactnode-or-reactnode",children:[e(n.code,{children:"CustomChildrenDots"}),": ",e(n.em,{children:"ReactNode"})," or ",e(n.em,{children:"ReactNode[]"})]}),`
+`,e(n.p,{children:"prop allows you to customize the rendering of the dots based on the current index and the remaining indexes."}),`
+`,e(n.h3,{id:"example-usage",children:"Example Usage:"}),`
+`,e(n.pre,{children:e(n.code,{className:"language-tsx",children:`<Spinetic CustomChildrenDots={({currentIndex, remainingIndexes}) => {
+    return <h1>C Current item: {currentIndex+1} Remaining items: {remainingIndexes?.length}</h1>;
+}}>
+    {["content-1", "content-2", "content-3"].map((content, index) => (
+        <SpineticItem key={index}>
+            <div style={{ height: 200, width: 250, background: "blue", margin: 10 }}>
+                {content}
+            </div>
+        </SpineticItem>
+    ))}
+</Spinetic>
+`})}),`
 `,t(n.h2,{id:"config-typesconfigoptional",children:[e(n.code,{children:"config"}),": ",e(n.em,{children:"TypesConfigOptional"})]}),`
 `,t(n.p,{children:["The ",e(n.code,{children:"config"})," prop accepts an object with optional settings for customizing the Spinetic component. To run tests and explore detailed information about each property and its functionality, navigate by clicking on individual properties and experiment with them in the playground:"]}),`
 `,e(n.pre,{children:e(n.code,{className:"language-tsx",children:`export interface TypesConfigOptional {
@@ -132,7 +147,7 @@ interface TypesReponsiveSettings {
 `]}),`
 `]}),`
 `]}),`
-`,e(n.h3,{id:"example-usage",children:"Example Usage:"}),`
+`,e(n.h3,{id:"example-usage-1",children:"Example Usage:"}),`
 `,e(n.pre,{children:e(n.code,{className:"language-tsx",children:`function App() {
   const exampleItems = [
     "content-1",
@@ -187,4 +202,4 @@ default App;
 `,e("br",{}),`
 `,e("br",{}),`
 `,e("br",{}),`
-`,e("br",{})]})}function _(i={}){const{wrapper:n}=Object.assign({},l(),i.components);return n?e(n,Object.assign({},i,{children:e(o,i)})):o(i)}export{_ as default};
+`,e("br",{})]})}function x(i={}){const{wrapper:n}=Object.assign({},l(),i.components);return n?e(n,Object.assign({},i,{children:e(o,i)})):o(i)}export{x as default};
